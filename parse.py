@@ -43,5 +43,8 @@ for line in fileinput.input():
           #print(tk.pos_, tk.lemma_, tk.lemma, tk.lower_, tk.lower, tk.dep_, [x.lower_ for x in tk.children])
     except UnicodeDecodeError:
       pass
-#  verb = input("Enter a verb: ")
-#  print ("Frequency for female: ", freq_s[unicode(verb)], "Frequency for male: ", freq_h[unicode(verb)])
+
+verb = ""      
+while(verb != "Quit"):
+  verb = input("Enter a verb (Quit to quit): ")
+  print ("Frequency for female: ", freq_s[verb], "Frequency for male: ", freq_h[verb])
