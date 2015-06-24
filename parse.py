@@ -4,7 +4,8 @@ import spacy.en
 
 freq_h = defaultdict(int)
 freq_s = defaultdict(int)
-#freq_h["rando"] += 1
+tot_s = 0.0
+tot_h = 0.0
 
 # for k,v in freq_h.iteritems():
   # iterate over dictionary keys, values
@@ -32,10 +33,12 @@ for line in fileinput.input():
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "she"):
                    # print (tk.lower_, x.lower_)
+                   tot_s += 1
                    freq_s[tk.lemma_] +=1
                    # print freq_s[tk.lower_]
                 elif (x.lower_ == "he"):
                    # print (tk.lower_, x.lower_)
+                   tot_h += 1
                    freq_h[tk.lemma_] +=1
                    # print freq_h[tk.lower_]
              
@@ -46,5 +49,5 @@ for line in fileinput.input():
 
 verb = ""      
 while(verb != "Quit"):
-  verb = input("Enter a verb (Quit to quit): ")
-  print ("Frequency for female: ", freq_s[verb], "Frequency for male: ", freq_h[verb])
+  verb = input("Enter a verb (Quit to quit, remember the quotation marks!): ")
+  print ("Frequency for female: ", freq_s[verb]/tot_s, "Frequency for male: ", freq_h[verb]/tot_h)
