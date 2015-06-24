@@ -32,14 +32,16 @@ for line in fileinput.input():
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "she"):
                    # print (tk.lower_, x.lower_)
-                   freq_s[tk.lower_] +=1
+                   freq_s[tk.lemma_] +=1
                    # print freq_s[tk.lower_]
                 elif (x.lower_ == "he"):
                    # print (tk.lower_, x.lower_)
-                   freq_h[tk.lower_] +=1
+                   freq_h[tk.lemma_] +=1
                    # print freq_h[tk.lower_]
              
             
           #print(tk.pos_, tk.lemma_, tk.lemma, tk.lower_, tk.lower, tk.dep_, [x.lower_ for x in tk.children])
     except UnicodeDecodeError:
       pass
+#  verb = input("Enter a verb: ")
+#  print ("Frequency for female: ", freq_s[unicode(verb)], "Frequency for male: ", freq_h[unicode(verb)])
