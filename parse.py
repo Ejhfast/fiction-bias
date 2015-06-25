@@ -50,4 +50,11 @@ for line in fileinput.input():
 verb = ""      
 while(verb != "Quit"):
   verb = input("Enter a verb (Quit to quit, remember the quotation marks!): ")
-  print ("Frequency for female: ", freq_s[verb]/tot_s, "Frequency for male: ", freq_h[verb]/tot_h)
+  verbGivenShe = freq_s[verb]/tot_s
+  verbGivenHe = freq_h[verb]/tot_h
+  sheGivenVerb = (2**(nlp.vocab[u'she'].prob) * verbGivenShe) /2**(nlp.vocab[unicode(verb)].prob)
+  heGivenVerb = (2**(nlp.vocab[u'he'].prob) * verbGivenHe) /2**(nlp.vocab[unicode(verb)].prob)
+  pmi_she = sheGivenVerb/2**(nlp.vocab[u'she'].prob)
+  pmi_he = heGivenVerb/2**(nlp.vocab[u'he'].prob)
+  # print ("Frequency for female: ", freq_s[verb]/tot_s, "Frequency for male: ", freq_h[verb]/tot_h)
+  print ("Frequency for female: ", pmi_she, "Frequency for male: ", pmi_he)
