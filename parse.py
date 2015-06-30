@@ -89,18 +89,35 @@ def calcPMI(pron, word, freq, tot):
      pmi = 0
   return pmi
 
-def calcAllPMIs(pron, freq, tot, pmi):
-  for k,v in freq.iteritems():
-     pmi[k] = calcPMI(pron, k, freq, tot)
-     
-calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
-calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
-calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
-calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
-calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
-calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
-calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
-calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
+def calcPMIsAndFindMax(prons, freqs, tots, pmis, pronh, freqh, toth, pmih):
+  mxnum = 0.0
+  mx = ""
+  for k,v in freqs.iteritems():
+     pmis[k] = calcPMI(prons, k, freqs, tots)
+     pmih[k] = calcPMI(pronh, k, freqh, toth)
+     if(abs(pmis[k] - pmih[k]) > mxnum):
+        mxnum = abs(pmis[k] - pmih[k])
+        mx = k
+  for k,v in freqh.iteritems():
+     pmih[k] = calcPMI(pronh, k, freqh, toth)
+     if(abs(pmis[k] - pmih[k]) > mxnum):
+        mxnum = abs(pmis[k] - pmih[k])
+        mx = k
+  print ("Max for ", prons, pronh, "is", mx)
+  print ("Frequency for ", prons, pmis[mx], "Frequency for ", pronh, pmih[mx])
+
+calcPMIsAndFindMax(u'she', freq_s, tot_s, pmi_s, u'he', freq_h, tot_h, pmi_h)
+calcPMIsAndFindMax(u'her', freq_her, tot_her, pmi_her, u'him', freq_him, tot_him, pmi_him) 
+calcPMIsAndFindMax(u'her', freq_her_pos, tot_her_pos, pmi_her_pos, u'his', freq_his, tot_his, pmi_his) 
+calcPMIsAndFindMax(u'she', freq_sobj, tot_s, pmi_sobj, u'he', freq_hobj, tot_h, pmi_hobj)  
+#calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
+#calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
+#calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
+#calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
+#calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
+#calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
+#calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
+#calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
 
 def queryForVerbFreq(freq_s, tot_s, freq_h, tot_h, freq_her, tot_her, freq_him, tot_him):
    verb = ""      
