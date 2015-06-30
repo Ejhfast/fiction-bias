@@ -2,6 +2,9 @@ import fileinput
 from collections import defaultdict
 import spacy.en
 import math
+import cPickle as pickle
+
+LARGEANDPOS = 1
 
 freq_h = defaultdict(int)
 freq_s = defaultdict(int)
@@ -30,6 +33,7 @@ tot_his = 0.0
   # iterate over dictionary keys, values
 
 nlp = spacy.en.English()
+f = open("small.write.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -78,7 +82,6 @@ for line in fileinput.input():
     except UnicodeDecodeError:
       pass
 
-
 def calcPMI(pron, word, freq, tot):
   if(tot != 0 and freq[word] != 0):
      wordGivenPron = freq[word]/tot
@@ -88,60 +91,78 @@ def calcPMI(pron, word, freq, tot):
   else:
      pmi = 0
   return pmi
-
-def calcPMIsAndFindMax(prons, freqs, tots, pmis, pronh, freqh, toth, pmih):
-  mxnum = 0.0
-  mx = ""
-  for k,v in freqs.iteritems():
-     pmis[k] = calcPMI(prons, k, freqs, tots)
-     pmih[k] = calcPMI(pronh, k, freqh, toth)
-     if(abs(pmis[k] - pmih[k]) > mxnum):
-        mxnum = abs(pmis[k] - pmih[k])
-        mx = k
-  for k,v in freqh.iteritems():
-     pmih[k] = calcPMI(pronh, k, freqh, toth)
-     if(abs(pmis[k] - pmih[k]) > mxnum):
-        mxnum = abs(pmis[k] - pmih[k])
-        mx = k
-  print ("Max for ", prons, pronh, "is", mx)
-  print ("Frequency for ", prons, pmis[mx], "Frequency for ", pronh, pmih[mx])
-
-calcPMIsAndFindMax(u'she', freq_s, tot_s, pmi_s, u'he', freq_h, tot_h, pmi_h)
-calcPMIsAndFindMax(u'her', freq_her, tot_her, pmi_her, u'him', freq_him, tot_him, pmi_him) 
-calcPMIsAndFindMax(u'her', freq_her_pos, tot_her_pos, pmi_her_pos, u'his', freq_his, tot_his, pmi_his) 
-calcPMIsAndFindMax(u'she', freq_sobj, tot_s, pmi_sobj, u'he', freq_hobj, tot_h, pmi_hobj)  
-#calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
-#calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
-#calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
-#calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
-#calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
-#calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
-#calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
-#calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
-
-def queryForVerbFreq(freq_s, tot_s, freq_h, tot_h, freq_her, tot_her, freq_him, tot_him):
-   verb = ""      
-   while True:
-     verb = input("Enter a verb (Quit to quit, remember the quotation marks!): ")
-     if(verb == "Quit"): return
-#     pmi_she = calcPMI(u'she', verb, freq_s, tot_s)
-#     pmi_he = calcPMI(u'he', verb, freq_h, tot_h)
-#     pmi_her = calcPMI(u'her', verb, freq_her, tot_her)
-#     pmi_him = calcPMI(u'him', verb, freq_him, tot_him)
-     print ("Frequency for she: ", pmi_s[verb], "Frequency for he: ", pmi_h[verb])
-     print ("Frequency for her: ", pmi_her[verb], "Frequency for him: ", pmi_him[verb])
+  
+def calcAllPMIs(pron, freq, tot, pmi):
+  for k,v in freq.iteritems():
+     pmi[k] = calcPMI(pron, k, freq, tot)
      
-def queryForNounFreq(freq_her_pos, tot_her_pos, freq_his, tot_his, freq_sobj, tot_s, freq_hobj, tot_h):
-   noun = ""
-   while True:
-      noun = input("Enter a noun (Quit to quit, remember the quotation marks!): ")
-      if(noun == "Quit"): return
-#      pmi_her_pos = calcPMI(u'her', noun, freq_her_pos, tot_her_pos)
-#      pmi_his = calcPMI(u'his', noun, freq_his, tot_his)
-#      pmi_sobj = calcPMI(u'she', noun, freq_sobj, tot_s)
-#      pmi_hobj = calcPMI(u'he', noun, freq_hobj, tot_h)
-      print ("Frequency for she: ", pmi_sobj[noun], "Frequency for he: ", pmi_hobj[noun])
-      print ("Frequency for her: ", pmi_her_pos[noun], "Frequency for his: ", pmi_his[noun])
-      
-queryForVerbFreq(freq_s, tot_s, freq_h, tot_h, freq_her, tot_her, freq_him, tot_him)
-queryForNounFreq(freq_her_pos, tot_her_pos, freq_his, tot_his, freq_sobj, tot_s, freq_hobj, tot_h)
+calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
+calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
+calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
+calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
+calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
+calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
+calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
+calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
+
+pickle.dump(pmi_h, f)
+pickle.dump(pmi_s, f)
+pickle.dump(pmi_her, f)
+pickle.dump(pmi_him, f)
+pickle.dump(pmi_her_pos, f)
+pickle.dump(pmi_his, f)
+pickle.dump(pmi_sobj, f)
+pickle.dump(pmi_hobj, f)
+
+f.close()
+
+#def calcPMIsAndFindMax(prons, freqs, tots, pmis, pronh, freqh, toth, pmih):
+#  mxnum = 0.0
+#  mx = ""
+#  largeAndPos = []
+#  for k,v in freqs.iteritems():
+#     pmis[k] = calcPMI(prons, k, freqs, tots)
+#     pmih[k] = calcPMI(pronh, k, freqh, toth)
+#     if(abs(pmis[k] - pmih[k]) >= LARGEANDPOS and (pmis != 0.0 and pmih != 0.0)):
+#        largeAndPos.append(k)
+##     if(abs(pmis[k] - pmih[k]) > mxnum):
+##        mxnum = abs(pmis[k] - pmih[k])
+##        mx = k
+#  for k,v in freqh.iteritems():
+#     if(pmih[k] == 0):
+#        pmih[k] = calcPMI(pronh, k, freqh, toth)
+#        if(abs(pmis[k] - pmih[k]) >= LARGEANDPOS and (pmis != 0.0 and pmih != 0.0)):
+#           largeAndPos.append(k)
+##        if(abs(pmis[k] - pmih[k]) > mxnum):
+##           mxnum = abs(pmis[k] - pmih[k])
+##           mx = k
+##  for word in largeAndPos:
+##     print (word)
+##     print ("Frequency for ", prons, pmis[word], "Frequency for ", pronh, pmih[word])  
+##  print ("Max for ", prons, pronh, "is", mx)
+##  print ("Frequency for ", prons, pmis[mx], "Frequency for ", pronh, pmih[mx])
+#
+#calcPMIsAndFindMax(u'she', freq_s, tot_s, pmi_s, u'he', freq_h, tot_h, pmi_h)
+#calcPMIsAndFindMax(u'her', freq_her, tot_her, pmi_her, u'him', freq_him, tot_him, pmi_him) 
+#calcPMIsAndFindMax(u'her', freq_her_pos, tot_her_pos, pmi_her_pos, u'his', freq_his, tot_his, pmi_his) 
+#calcPMIsAndFindMax(u'she', freq_sobj, tot_s, pmi_sobj, u'he', freq_hobj, tot_h, pmi_hobj)  
+
+ 
+#def queryForVerbFreq(freq_s, tot_s, freq_h, tot_h, freq_her, tot_her, freq_him, tot_him):
+#   verb = ""      
+#   while True:
+#     verb = input("Enter a verb (Quit to quit, remember the quotation marks!): ")
+#     if(verb == "Quit"): return
+#     print ("Frequency for she: ", pmi_s[verb], "Frequency for he: ", pmi_h[verb])
+#     print ("Frequency for her: ", pmi_her[verb], "Frequency for him: ", pmi_him[verb])
+#     
+#def queryForNounFreq(freq_her_pos, tot_her_pos, freq_his, tot_his, freq_sobj, tot_s, freq_hobj, tot_h):
+#   noun = ""
+#   while True:
+#      noun = input("Enter a noun (Quit to quit, remember the quotation marks!): ")
+#      if(noun == "Quit"): return
+#      print ("Frequency for she: ", pmi_sobj[noun], "Frequency for he: ", pmi_hobj[noun])
+#      print ("Frequency for her: ", pmi_her_pos[noun], "Frequency for his: ", pmi_his[noun])
+#      
+#queryForVerbFreq(freq_s, tot_s, freq_h, tot_h, freq_her, tot_her, freq_him, tot_him)
+#queryForNounFreq(freq_her_pos, tot_her_pos, freq_his, tot_his, freq_sobj, tot_s, freq_hobj, tot_h)
