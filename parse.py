@@ -33,7 +33,7 @@ tot_his = 0.0
   # iterate over dictionary keys, values
 
 nlp = spacy.en.English()
-f = open("small.write.txt", "w")
+f = open("pm00000.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
