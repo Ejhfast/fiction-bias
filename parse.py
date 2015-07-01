@@ -33,7 +33,7 @@ tot_his = 0.0
   # iterate over dictionary keys, values
 
 nlp = spacy.en.English()
-f = open("pm00000.pmis.txt", "w")
+f = open("small.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -85,14 +85,16 @@ for line in fileinput.input():
 def calcPMI(pron, word, freq, tot):
   if(tot != 0 and freq[word] != 0):
      wordGivenPron = freq[word]/tot
-     pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
-     x = pronGivenWord/2**(nlp.vocab[pron].prob)
-     pmi = math.log(x)
   else:
-     pmi = 0
+     wordGivenPron = 1/tot
+  pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
+  x = pronGivenWord/2**(nlp.vocab[pron].prob)
+  pmi = math.log(x)
   return pmi
   
 def calcAllPMIs(pron, freq, tot, pmi):
+  for key in freq:
+     pmi[key] += 1
   for k,v in freq.iteritems():
      pmi[k] = calcPMI(pron, k, freq, tot)
      
@@ -113,6 +115,12 @@ pickle.dump(pmi_her_pos, f)
 pickle.dump(pmi_his, f)
 pickle.dump(pmi_sobj, f)
 pickle.dump(pmi_hobj, f)
+#pickle.dump(tot_h, f)
+#pickle.dump(tot_s, f)
+#pickle.dump(tot_her, f)
+#pickle.dump(tot_him, f)
+#pickle.dump(tot_her_pos, f)
+#pickle.dump(tot_his, f)
 
 f.close()
 
