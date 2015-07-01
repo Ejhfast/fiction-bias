@@ -22,16 +22,16 @@ pmi_hobj = pickle.load(f)
 
 MINPMI = 0.0
 LARGEDIFF = 2.0
-nlp = spacy.en.English()
-
-def calcPMI(pron, word, tot):
-  if(tot == 0): return 0
-  wordGivenPron = 1/tot
-  pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
-  x = pronGivenWord/2**(nlp.vocab[pron].prob)
-  pmi = math.log(x)
-  print(pmi)
-  return pmi
+#nlp = spacy.en.English()
+#
+#def calcPMI(pron, word, tot):
+#  if(tot == 0): return 0
+#  wordGivenPron = 1/tot
+#  pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
+#  x = pronGivenWord/2**(nlp.vocab[pron].prob)
+#  pmi = math.log(x)
+#  print(pmi)
+#  return pmi
 #
 #def calcPMIsAndFindMax(prons, freqs, tots, pmis, pronh, freqh, toth, pmih):
 #  mxnum = 0.0
@@ -69,17 +69,17 @@ def findLargeAndPos(pmis, pmih, prons, pronh):
    for k,v in pmis.iteritems():
 #      if(pmih[k] == 0):
 #         pmih[k] = calcPMI(pronh, k, toth)
-      if(((pmis[k] > MINPMI) or (pmih[k] > MINPMI)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
+      if(((pmis[k] != 0) and (pmih[k] != 0)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
          print (k)
          print ("Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
          print("")
-   for k,v in pmih.iteritems():
-      if(pmis[k] == 0):
-#         pmis[k] = calcPMI(prons, k, toth)
-         if(((pmis[k] > MINPMI) or (pmih[k] > MINPMI)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
-            print (k)
-            print ("Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
-            print("")
+#   for k,v in pmih.iteritems():
+#      if(pmis[k] == 0):
+##         pmis[k] = calcPMI(prons, k, toth)
+#         if(((pmis[k] > MINPMI) or (pmih[k] > MINPMI)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
+#            print (k)
+#            print ("Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
+#            print("")
 
 
 def queryForVerbFreq(pmi_s, pmi_h, pmi_her, pmi_him):
