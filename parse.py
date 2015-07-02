@@ -16,36 +16,39 @@ f = open("/home/ubuntu/metadata/details/story_details/part-m-00000", "r")
 for line in f:
   writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
   categories[storyID] = categoryID
-f.close
+f.close 
 
-freq_h = defaultdict(int)
-freq_s = defaultdict(int)
-freq_her = defaultdict(int)
-freq_him = defaultdict(int)
-freq_her_pos = defaultdict(int)
-freq_his = defaultdict(int)
-freq_sobj = defaultdict(int)
-freq_hobj = defaultdict(int)
-pmi_h = defaultdict(float)
-pmi_s = defaultdict(float)
-pmi_her = defaultdict(float)
-pmi_him = defaultdict(float)
-pmi_her_pos = defaultdict(float)
-pmi_his = defaultdict(float)
-pmi_sobj = defaultdict(float)
-pmi_hobj = defaultdict(float)
-tot_s = 0.0
-tot_h = 0.0
-tot_her = 0.0
-tot_him = 0.0
-tot_her_pos = 0.0
-tot_his = 0.0
+class Cat:
+#    def __init__(self, freq_s, freq_h, freq_her, freq_him, freq_her_pos, freq_his, freq_sobj, freq_hobj, tot_s, tot_h, tot_her, tot_him, tot_her_pos, tot_his, pmi_h, pmi_s, pmi_her, pmi_him, pmi_her_pos, pmi_his, pmi_sobj, pmi_hobj):
+  freq_h = defaultdict(int)
+  freq_s = defaultdict(int)
+  freq_her = defaultdict(int)
+  freq_him = defaultdict(int)
+  freq_her_pos = defaultdict(int)
+  freq_his = defaultdict(int)
+  freq_sobj = defaultdict(int)
+  freq_hobj = defaultdict(int)
+  pmi_h = defaultdict(float)
+  pmi_s = defaultdict(float)
+  pmi_her = defaultdict(float)
+  pmi_him = defaultdict(float)
+  pmi_her_pos = defaultdict(float)
+  pmi_his = defaultdict(float)
+  pmi_sobj = defaultdict(float)
+  pmi_hobj = defaultdict(float)
+  tot_s = 0.0
+  tot_h = 0.0
+  tot_her = 0.0
+  tot_him = 0.0
+  tot_her_pos = 0.0
+  tot_his = 0.0
 
-# for k,v in freq_h.iteritems():
-  # iterate over dictionary keys, values
+cats = {}
+for x in range (1, 25):
+  cats[x] = Cat()
 
 nlp = spacy.en.English()
-f = open("pmis.txt", "w")
+f = open("small.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -55,13 +58,7 @@ def findObjFreq(tk, freq):
      if(x.pos_ == "NOUN"):
         freq[x.lemma_] += 1
         
-def countOccur(chapter):
-  global tot_s
-  global tot_h
-  global tot_her
-  global tot_him
-  global tot_her_pos
-  global tot_his
+def countOccur(chapter, cat):
   for sen in chapter.split("." or "!" or "?"):
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
@@ -71,29 +68,29 @@ def countOccur(chapter):
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "she"):
-                   tot_s += 1
-                   freq_s[tk.lemma_] +=1
-                   findObjFreq(tk, freq_sobj)
+                   cats[cat].tot_s += 1
+                   cats[cat].freq_s[tk.lemma_] +=1
+                   findObjFreq(tk, cats[cat].freq_sobj)
                 elif (x.lower_ == "he"):
-                   tot_h += 1
-                   freq_h[tk.lemma_] +=1
-                   findObjFreq(tk, freq_hobj)
+                   cats[cat].tot_h += 1
+                   cats[cat].freq_h[tk.lemma_] +=1
+                   findObjFreq(tk, cats[cat].freq_hobj)
                 elif (x.lower_ == "her"):
-                   tot_her += 1
-                   freq_her[tk.lemma_] +=1
+                   cats[cat].tot_her += 1
+                   cats[cat].freq_her[tk.lemma_] +=1
                 elif (x.lower_ == "him"):
-                   tot_him += 1
-                   freq_him[tk.lemma_] +=1
+                   cats[cat].tot_him += 1
+                   cats[cat].freq_him[tk.lemma_] +=1
                    
         elif(tk.pos_ == "NOUN"):
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "her"):
-                   tot_her_pos += 1
-                   freq_her_pos[tk.lemma_] +=1
+                   cats[cat].tot_her_pos += 1
+                   cats[cat].freq_her_pos[tk.lemma_] +=1
                 elif (x.lower_ == "his"):
-                   tot_his += 1
-                   freq_his[tk.lemma_] +=1
+                   cats[cat].tot_his += 1
+                   cats[cat].freq_his[tk.lemma_] +=1
                     
     except UnicodeDecodeError:
       pass
@@ -115,43 +112,45 @@ def calcAllPMIs(pron, freq, tot, pmi):
      pmi[k] = calcPMI(pron, k, freq, tot)
 
 def calcPMIs(cat):
-  calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
-  calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
-  calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
-  calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
-  calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
-  calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
-  calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
-  calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
+  calcAllPMIs(u'she', cats[cat].freq_s, cats[cat].tot_s, cats[cat].pmi_s)
+  calcAllPMIs(u'he', cats[cat].freq_h, cats[cat].tot_h, cats[cat].pmi_h)
+  calcAllPMIs(u'her', cats[cat].freq_her, cats[cat].tot_her, cats[cat].pmi_her)
+  calcAllPMIs(u'him', cats[cat].freq_him, cats[cat].tot_him, cats[cat].pmi_him)
+  calcAllPMIs(u'her', cats[cat].freq_her_pos, cats[cat].tot_her_pos, cats[cat].pmi_her_pos)
+  calcAllPMIs(u'his', cats[cat].freq_his, cats[cat].tot_his, cats[cat].pmi_his)
+  calcAllPMIs(u'she', cats[cat].freq_sobj, cats[cat].tot_s, cats[cat].pmi_sobj)
+  calcAllPMIs(u'he', cats[cat].freq_hobj, cats[cat].tot_h, cats[cat].pmi_hobj)
 
-def putInFile(cat):
-  pickle.dump(pmi_h, f)
-  pickle.dump(pmi_s, f)
-  pickle.dump(pmi_her, f)
-  pickle.dump(pmi_him, f)
-  pickle.dump(pmi_her_pos, f)
-  pickle.dump(pmi_his, f)
-  pickle.dump(pmi_sobj, f)
-  pickle.dump(pmi_hobj, f)
-  #pickle.dump(tot_h, f)
-  #pickle.dump(tot_s, f)
-  #pickle.dump(tot_her, f)
-  #pickle.dump(tot_him, f)
-  #pickle.dump(tot_her_pos, f)
-  #pickle.dump(tot_his, f)
+def putInFile():
+  for k in cats:
+     pickle.dump(k, f)
+     pickle.dump(cats[k].pmi_h, f)
+     pickle.dump(cats[k].pmi_s, f)
+     pickle.dump(cats[k].pmi_her, f)
+     pickle.dump(cats[k].pmi_him, f)
+     pickle.dump(cats[k].pmi_her_pos, f)
+     pickle.dump(cats[k].pmi_his, f)
+     pickle.dump(cats[k].pmi_sobj, f)
+     pickle.dump(cats[k].pmi_hobj, f)
+     #pickle.dump(tot_h, f)
+     #pickle.dump(tot_s, f)
+     #pickle.dump(tot_her, f)
+     #pickle.dump(tot_him, f)
+     #pickle.dump(tot_her_pos, f)
+     #pickle.dump(tot_his, f)
 
 
 def findPMIForCat(chapter, cat):
   countOccur(chapter, cat)
   calcPMIs(cat)
-  putInFile(cat)
 
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
   storyid = stories[id_]
-  cat = categories[storyid]
+  cat = int(categories[storyid])
   findPMIForCat(chapter, cat)
-     
+
+putInFile()     
 
 f.close()
 
