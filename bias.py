@@ -3,7 +3,7 @@ from collections import defaultdict
 import cPickle as pickle
 import spacy.en
 
-f = open("pm00000.pmis.txt", "r")
+f = open("pmis.txt", "r")
 
 pmi_h = pickle.load(f)
 pmi_s = pickle.load(f)

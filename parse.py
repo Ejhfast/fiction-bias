@@ -45,7 +45,7 @@ tot_his = 0.0
   # iterate over dictionary keys, values
 
 nlp = spacy.en.English()
-f = open("small.pmis.txt", "w")
+f = open("pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -54,10 +54,14 @@ def findObjFreq(tk, freq):
   for x in tk.children:
      if(x.pos_ == "NOUN"):
         freq[x.lemma_] += 1
-
-for line in fileinput.input():
-  id_, chapter = [x.rstrip() for x in line.split("\t")]
-  id_ = int(id_)
+        
+def countOccur(chapter):
+  global tot_s
+  global tot_h
+  global tot_her
+  global tot_him
+  global tot_her_pos
+  global tot_his
   for sen in chapter.split("." or "!" or "?"):
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
@@ -97,11 +101,11 @@ for line in fileinput.input():
 def calcPMI(pron, word, freq, tot):
   if(tot != 0 and freq[word] != 0):
      wordGivenPron = freq[word]/tot
+     pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
+     x = pronGivenWord/2**(nlp.vocab[pron].prob)
+     pmi = math.log(x)
   else:
-     wordGivenPron = 1/tot
-  pronGivenWord = (2**(nlp.vocab[pron].prob) * wordGivenPron) /2**(nlp.vocab[unicode(word)].prob)
-  x = pronGivenWord/2**(nlp.vocab[pron].prob)
-  pmi = math.log(x)
+     pmi = 0.0
   return pmi
   
 def calcAllPMIs(pron, freq, tot, pmi):
@@ -109,30 +113,45 @@ def calcAllPMIs(pron, freq, tot, pmi):
      pmi[key] += 1
   for k,v in freq.iteritems():
      pmi[k] = calcPMI(pron, k, freq, tot)
-     
-calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
-calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
-calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
-calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
-calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
-calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
-calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
-calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
 
-pickle.dump(pmi_h, f)
-pickle.dump(pmi_s, f)
-pickle.dump(pmi_her, f)
-pickle.dump(pmi_him, f)
-pickle.dump(pmi_her_pos, f)
-pickle.dump(pmi_his, f)
-pickle.dump(pmi_sobj, f)
-pickle.dump(pmi_hobj, f)
-#pickle.dump(tot_h, f)
-#pickle.dump(tot_s, f)
-#pickle.dump(tot_her, f)
-#pickle.dump(tot_him, f)
-#pickle.dump(tot_her_pos, f)
-#pickle.dump(tot_his, f)
+def calcPMIs(cat):
+  calcAllPMIs(u'she', freq_s, tot_s, pmi_s)
+  calcAllPMIs(u'he', freq_h, tot_h, pmi_h)
+  calcAllPMIs(u'her', freq_her, tot_her, pmi_her)
+  calcAllPMIs(u'him', freq_him, tot_him, pmi_him)
+  calcAllPMIs(u'her', freq_her_pos, tot_her_pos, pmi_her_pos)
+  calcAllPMIs(u'his', freq_his, tot_his, pmi_his)
+  calcAllPMIs(u'she', freq_sobj, tot_s, pmi_sobj)
+  calcAllPMIs(u'he', freq_hobj, tot_h, pmi_hobj)
+
+def putInFile(cat):
+  pickle.dump(pmi_h, f)
+  pickle.dump(pmi_s, f)
+  pickle.dump(pmi_her, f)
+  pickle.dump(pmi_him, f)
+  pickle.dump(pmi_her_pos, f)
+  pickle.dump(pmi_his, f)
+  pickle.dump(pmi_sobj, f)
+  pickle.dump(pmi_hobj, f)
+  #pickle.dump(tot_h, f)
+  #pickle.dump(tot_s, f)
+  #pickle.dump(tot_her, f)
+  #pickle.dump(tot_him, f)
+  #pickle.dump(tot_her_pos, f)
+  #pickle.dump(tot_his, f)
+
+
+def findPMIForCat(chapter, cat):
+  countOccur(chapter, cat)
+  calcPMIs(cat)
+  putInFile(cat)
+
+for line in fileinput.input():
+  id_, chapter = [x.rstrip() for x in line.split("\t")]
+  storyid = stories[id_]
+  cat = categories[storyid]
+  findPMIForCat(chapter, cat)
+     
 
 f.close()
 
