@@ -4,7 +4,19 @@ import spacy.en
 import math
 import cPickle as pickle
 
-LARGEANDPOS = 1
+stories = {}
+f = open("/home/ubuntu/metadata/chapters/story_chapters/part-m-00000", "r")
+for line in f:
+  storyID, textID = [x.rstrip() for x in line.split("\t")]
+  stories[textID] = storyID
+f.close
+
+categories = {}
+f = open("/home/ubuntu/metadata/details/story_details/part-m-00000", "r")
+for line in f:
+  writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
+  categories[storyID] = categoryID
+f.close
 
 freq_h = defaultdict(int)
 freq_s = defaultdict(int)
