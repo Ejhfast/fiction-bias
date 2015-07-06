@@ -20,35 +20,36 @@ f.close
 
 class Cat:
 #    def __init__(self, freq_s, freq_h, freq_her, freq_him, freq_her_pos, freq_his, freq_sobj, freq_hobj, tot_s, tot_h, tot_her, tot_him, tot_her_pos, tot_his, pmi_h, pmi_s, pmi_her, pmi_him, pmi_her_pos, pmi_his, pmi_sobj, pmi_hobj):
-  freq_h = defaultdict(int)
-  freq_s = defaultdict(int)
-  freq_her = defaultdict(int)
-  freq_him = defaultdict(int)
-  freq_her_pos = defaultdict(int)
-  freq_his = defaultdict(int)
-  freq_sobj = defaultdict(int)
-  freq_hobj = defaultdict(int)
-  pmi_h = defaultdict(float)
-  pmi_s = defaultdict(float)
-  pmi_her = defaultdict(float)
-  pmi_him = defaultdict(float)
-  pmi_her_pos = defaultdict(float)
-  pmi_his = defaultdict(float)
-  pmi_sobj = defaultdict(float)
-  pmi_hobj = defaultdict(float)
-  tot_s = 0.0
-  tot_h = 0.0
-  tot_her = 0.0
-  tot_him = 0.0
-  tot_her_pos = 0.0
-  tot_his = 0.0
+  def __init__(self):
+     self.freq_h = defaultdict(int)
+     self.freq_s = defaultdict(int)
+     self.freq_her = defaultdict(int)
+     self.freq_him = defaultdict(int)
+     self.freq_her_pos = defaultdict(int)
+     self.freq_his = defaultdict(int)
+     self.freq_sobj = defaultdict(int)
+     self.freq_hobj = defaultdict(int)
+     self.pmi_h = defaultdict(float)
+     self.pmi_s = defaultdict(float)
+     self.pmi_her = defaultdict(float)
+     self.pmi_him = defaultdict(float)
+     self.pmi_her_pos = defaultdict(float)
+     self.pmi_his = defaultdict(float)
+     self.pmi_sobj = defaultdict(float)
+     self.pmi_hobj = defaultdict(float)
+     self.tot_s = 0.0
+     self.tot_h = 0.0
+     self.tot_her = 0.0
+     self.tot_him = 0.0
+     self.tot_her_pos = 0.0
+     self.tot_his = 0.0
 
 cats = {}
-for x in range (1, 25):
+for x in range (0, 25):
   cats[x] = Cat()
 
 nlp = spacy.en.English()
-f = open("small.pmis.txt", "w")
+f = open("cat00000.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -121,36 +122,32 @@ def calcPMIs(cat):
   calcAllPMIs(u'she', cats[cat].freq_sobj, cats[cat].tot_s, cats[cat].pmi_sobj)
   calcAllPMIs(u'he', cats[cat].freq_hobj, cats[cat].tot_h, cats[cat].pmi_hobj)
 
-def putInFile():
-  for k in cats:
-     pickle.dump(k, f)
-     pickle.dump(cats[k].pmi_h, f)
-     pickle.dump(cats[k].pmi_s, f)
-     pickle.dump(cats[k].pmi_her, f)
-     pickle.dump(cats[k].pmi_him, f)
-     pickle.dump(cats[k].pmi_her_pos, f)
-     pickle.dump(cats[k].pmi_his, f)
-     pickle.dump(cats[k].pmi_sobj, f)
-     pickle.dump(cats[k].pmi_hobj, f)
-     #pickle.dump(tot_h, f)
-     #pickle.dump(tot_s, f)
-     #pickle.dump(tot_her, f)
-     #pickle.dump(tot_him, f)
-     #pickle.dump(tot_her_pos, f)
-     #pickle.dump(tot_his, f)
-
-
-def findPMIForCat(chapter, cat):
-  countOccur(chapter, cat)
-  calcPMIs(cat)
+def putInFile(k):
+  pickle.dump(k, f)
+  pickle.dump(cats[k].pmi_h, f)
+  pickle.dump(cats[k].pmi_s, f)
+  pickle.dump(cats[k].pmi_her, f)
+  pickle.dump(cats[k].pmi_him, f)
+  pickle.dump(cats[k].pmi_her_pos, f)
+  pickle.dump(cats[k].pmi_his, f)
+  pickle.dump(cats[k].pmi_sobj, f)
+  pickle.dump(cats[k].pmi_hobj, f)
+  #pickle.dump(tot_h, f)
+  #pickle.dump(tot_s, f)
+  #pickle.dump(tot_her, f)
+  #pickle.dump(tot_him, f)
+  #pickle.dump(tot_her_pos, f)
+  #pickle.dump(tot_his, f)
 
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
   storyid = stories[id_]
   cat = int(categories[storyid])
-  findPMIForCat(chapter, cat)
+  countOccur(chapter, cat)
 
-putInFile()     
+for k in cats:
+  calcPMIs(k)
+  putInFile(k)     
 
 f.close()
 

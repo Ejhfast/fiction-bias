@@ -21,7 +21,7 @@ pmi_hobj = pickle.load(f)
 #tot_his = pickle.load(f)
 
 MINPMI = 0.0
-LARGEDIFF = 2.0
+LARGEDIFF = 1.0
 #nlp = spacy.en.English()
 #
 #def calcPMI(pron, word, tot):
@@ -69,7 +69,7 @@ def findLargeAndPos(pmis, pmih, prons, pronh):
    for k,v in pmis.iteritems():
 #      if(pmih[k] == 0):
 #         pmih[k] = calcPMI(pronh, k, toth)
-      if(((pmis[k] != 0) and (pmih[k] != 0)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
+      if(((pmis[k] > 0) and (pmih[k] > 0)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
          print (k)
          print ("Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
          print("")
