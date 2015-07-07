@@ -34,31 +34,23 @@ for x in range (0, 25):
    cats[cat].pmi_sobj = pickle.load(f)
    cats[cat].pmi_hobj = pickle.load(f)
    
-def avepmi(cat, pmih, pmis, pronh, prons):
-   count = 0.0
-   numer = 0.0
+def avepmi(cat, pmih, pmis):
    for k,v in pmih.iteritems():
       if((pmis[k] != 0) and (pmih[k] != 0)):
-         count += 1
-         numer += abs((pmis[k] - pmih[k]))
-         diffs[cat].append(abs((pmis[k] - pmih[k])))
-   if(count != 0):
-      ave = numer/count
-      #print("Average for", cat, "between pronouns", pronh, prons, "is:", ave)
-      return ave
-   return 0      
+         diffs[cat].append(abs((pmis[k] - pmih[k])))     
 
 for x in range (0, 25):
-   avehs = avepmi(x, cats[x].pmi_h, cats[x].pmi_s, "he", "she")
-   avehh = avepmi(x, cats[x].pmi_his, cats[x].pmi_her, "his", "her")
-   avehsobj = avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, "hobj", "sobj")
-   avehhpos = avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, "his", "her_pos")
-   total = (avehs + avehh + avehsobj + avehhpos)/4.0
-   if total != 0:
+   avepmi(x, cats[x].pmi_h, cats[x].pmi_s)
+   avepmi(x, cats[x].pmi_his, cats[x].pmi_her)
+   avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj)
+   avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos)
+   if len(diffs[x]) != 0:
+      ave = numpy.mean(diffs[x])
       std = numpy.std(diffs[x])
    else:
+      ave = 0
       std = 0
-   print("Average for", x, "is: ", total, "Std dev is: ", std)
+   print("Average for", x, "is: ", ave, "Std dev is: ", std)
 
 def queryForVerbFreq():
    verb = ""      
