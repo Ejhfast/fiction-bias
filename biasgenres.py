@@ -5,6 +5,7 @@ import spacy.en
 import numpy
 
 f = open("cat00000.pmis.txt", "r")
+MINPMI = -3
 
 class Cat:
   def __init__(self):
@@ -19,11 +20,15 @@ class Cat:
 
 cats = {}
 diffs = {}
-for x in range (0, 25):
-  cats[x] = Cat()
-  diffs[x] = []
+
+def avepmi(cat, pmih, pmis):
+   for k,v in pmih.iteritems():
+      if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
+         diffs[cat].append(abs((pmis[k] - pmih[k])))
   
 for x in range (0, 25):
+   cats[x] = Cat()
+   diffs[x] = []
    cat = pickle.load(f)
    cats[cat].pmi_h = pickle.load(f)
    cats[cat].pmi_s = pickle.load(f)
@@ -33,13 +38,6 @@ for x in range (0, 25):
    cats[cat].pmi_his = pickle.load(f)
    cats[cat].pmi_sobj = pickle.load(f)
    cats[cat].pmi_hobj = pickle.load(f)
-   
-def avepmi(cat, pmih, pmis):
-   for k,v in pmih.iteritems():
-      if((pmis[k] != 0) and (pmih[k] != 0)):
-         diffs[cat].append(abs((pmis[k] - pmih[k])))     
-
-for x in range (0, 25):
    avepmi(x, cats[x].pmi_h, cats[x].pmi_s)
    avepmi(x, cats[x].pmi_his, cats[x].pmi_her)
    avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj)
@@ -51,6 +49,7 @@ for x in range (0, 25):
       ave = 0
       std = 0
    print("Average for", x, "is: ", ave, "Std dev is: ", std)
+   
 
 def queryForVerbFreq():
    verb = ""      
