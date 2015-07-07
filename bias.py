@@ -1,7 +1,7 @@
 import math
 from collections import defaultdict
 import cPickle as pickle
-import spacy.en
+import numpy
 
 f = open("pmis.txt", "r")
 
@@ -64,12 +64,15 @@ LARGEDIFF = 1.0
 #calcPMIsAndFindMax(u'her', freq_her_pos, tot_her_pos, pmi_her_pos, u'his', freq_his, tot_his, pmi_his) 
 #calcPMIsAndFindMax(u'she', freq_sobj, tot_s, pmi_sobj, u'he', freq_hobj, tot_h, pmi_hobj)  
 
+diffs = []
 def findLargeAndPos(pmis, pmih, prons, pronh):
    print("DIFFERENCES BETWEEN", prons, "AND", pronh)
    for k,v in pmis.iteritems():
 #      if(pmih[k] == 0):
 #         pmih[k] = calcPMI(pronh, k, toth)
-      if(((pmis[k] > 0) and (pmih[k] > 0)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
+      if((pmis[k] != 0) and (pmih[k] != 0)):
+         diffs.append(abs(pmis[k] - pmih[k]))
+      if(((pmis[k] != 0) and (pmih[k] != 0)) and (abs((pmis[k] - pmih[k])) > LARGEDIFF)):
          print (k)
          print ("Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
          print("")
@@ -101,6 +104,8 @@ def queryForNounFreq(pmi_sobj, pmi_hobj, pmi_her_pos, pmi_his):
 findLargeAndPos(pmi_s, pmi_h, u'she', u'he')
 findLargeAndPos(pmi_her, pmi_him, u'her', u'him')
 findLargeAndPos(pmi_sobj, pmi_hobj, u'she', u'he')
-findLargeAndPos(pmi_her_pos, pmi_his, u'her', u'his')      
+findLargeAndPos(pmi_her_pos, pmi_his, u'her', u'his')
+stddev = numpy.std(diffs)
+print("Std dev is: ", stddev)      
 queryForVerbFreq(pmi_s, pmi_h, pmi_her, pmi_him)
 queryForNounFreq(pmi_sobj, pmi_hobj, pmi_her_pos, pmi_his)

@@ -12,10 +12,14 @@ for line in f:
 f.close
 
 categories = {}
+writers = {}
+ratings = {}
 f = open("/home/ubuntu/metadata/details/story_details/part-m-00000", "r")
 for line in f:
   writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
   categories[storyID] = categoryID
+  writers[storyID] = writerID
+  ratings[storyID] = rating
 f.close 
 
 class Cat:
@@ -45,11 +49,15 @@ class Cat:
      self.tot_his = 0.0
 
 cats = {}
+rats = {}
+for x in range (0, 4):
+  rats[x] = Cat()
 for x in range (0, 25):
   cats[x] = Cat()
 
 nlp = spacy.en.English()
-f = open("cat00000.pmis.txt", "w")
+fcat = open("cat00000.pmis.txt", "w")
+frat = open("rat00000.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -59,7 +67,7 @@ def findObjFreq(tk, freq):
      if(x.pos_ == "NOUN"):
         freq[x.lemma_] += 1
         
-def countOccur(chapter, cat):
+def countOccur(chapter, cat, rat):
   for sen in chapter.split("." or "!" or "?"):
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
@@ -72,16 +80,26 @@ def countOccur(chapter, cat):
                    cats[cat].tot_s += 1
                    cats[cat].freq_s[tk.lemma_] +=1
                    findObjFreq(tk, cats[cat].freq_sobj)
+                   rats[rat].tot_s += 1
+                   rats[rat].freq_s[tk.lemma_] +=1
+                   findObjFreq(tk, rats[rat].freq_sobj)
                 elif (x.lower_ == "he"):
                    cats[cat].tot_h += 1
                    cats[cat].freq_h[tk.lemma_] +=1
                    findObjFreq(tk, cats[cat].freq_hobj)
+                   rats[rat].tot_h += 1
+                   rats[rat].freq_h[tk.lemma_] +=1
+                   findObjFreq(tk, rats[rat].freq_hobj)
                 elif (x.lower_ == "her"):
                    cats[cat].tot_her += 1
                    cats[cat].freq_her[tk.lemma_] +=1
+                   rats[rat].tot_her += 1
+                   rats[rat].freq_her[tk.lemma_] +=1
                 elif (x.lower_ == "him"):
                    cats[cat].tot_him += 1
                    cats[cat].freq_him[tk.lemma_] +=1
+                   rats[rat].tot_him += 1
+                   rats[rat].freq_him[tk.lemma_] +=1
                    
         elif(tk.pos_ == "NOUN"):
            for x in tk.children:
@@ -89,9 +107,13 @@ def countOccur(chapter, cat):
                 if (x.lower_ == "her"):
                    cats[cat].tot_her_pos += 1
                    cats[cat].freq_her_pos[tk.lemma_] +=1
+                   rats[rat].tot_her_pos += 1
+                   rats[rat].freq_her_pos[tk.lemma_] +=1
                 elif (x.lower_ == "his"):
                    cats[cat].tot_his += 1
                    cats[cat].freq_his[tk.lemma_] +=1
+                   rats[rat].tot_his += 1
+                   rats[rat].freq_his[tk.lemma_] +=1
                     
     except UnicodeDecodeError:
       pass
@@ -112,17 +134,17 @@ def calcAllPMIs(pron, freq, tot, pmi):
   for k,v in freq.iteritems():
      pmi[k] = calcPMI(pron, k, freq, tot)
 
-def calcPMIs(cat):
-  calcAllPMIs(u'she', cats[cat].freq_s, cats[cat].tot_s, cats[cat].pmi_s)
-  calcAllPMIs(u'he', cats[cat].freq_h, cats[cat].tot_h, cats[cat].pmi_h)
-  calcAllPMIs(u'her', cats[cat].freq_her, cats[cat].tot_her, cats[cat].pmi_her)
-  calcAllPMIs(u'him', cats[cat].freq_him, cats[cat].tot_him, cats[cat].pmi_him)
-  calcAllPMIs(u'her', cats[cat].freq_her_pos, cats[cat].tot_her_pos, cats[cat].pmi_her_pos)
-  calcAllPMIs(u'his', cats[cat].freq_his, cats[cat].tot_his, cats[cat].pmi_his)
-  calcAllPMIs(u'she', cats[cat].freq_sobj, cats[cat].tot_s, cats[cat].pmi_sobj)
-  calcAllPMIs(u'he', cats[cat].freq_hobj, cats[cat].tot_h, cats[cat].pmi_hobj)
+def calcPMIs(k, dic):
+  calcAllPMIs(u'she', dic[k].freq_s, dic[k].tot_s, dic[k].pmi_s)
+  calcAllPMIs(u'he', dic[k].freq_h, dic[k].tot_h, dic[k].pmi_h)
+  calcAllPMIs(u'her', dic[k].freq_her, dic[k].tot_her, dic[k].pmi_her)
+  calcAllPMIs(u'him', dic[k].freq_him, dic[k].tot_him, dic[k].pmi_him)
+  calcAllPMIs(u'her', dic[k].freq_her_pos, dic[k].tot_her_pos, dic[k].pmi_her_pos)
+  calcAllPMIs(u'his', dic[k].freq_his, dic[k].tot_his, dic[k].pmi_his)
+  calcAllPMIs(u'she', dic[k].freq_sobj, dic[k].tot_s, dic[k].pmi_sobj)
+  calcAllPMIs(u'he', dic[k].freq_hobj, dic[k].tot_h, dic[k].pmi_hobj)
 
-def putInFile(k):
+def putInFile(k, f):
   pickle.dump(k, f)
   pickle.dump(cats[k].pmi_h, f)
   pickle.dump(cats[k].pmi_s, f)
@@ -142,12 +164,17 @@ def putInFile(k):
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
   storyid = stories[id_]
+  rating = int(ratings[storyid])
   cat = int(categories[storyid])
-  countOccur(chapter, cat)
+  countOccur(chapter, cat, rating)
 
 for k in cats:
   calcPMIs(k)
-  putInFile(k)     
+  putInFile(k, fcat)     
+
+for k in ratings:
+  calcPMIs(k)
+  putInFile(k, frat)
 
 f.close()
 
