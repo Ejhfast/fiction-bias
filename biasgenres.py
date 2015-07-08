@@ -1,10 +1,11 @@
 import math
 from collections import defaultdict
 import cPickle as pickle
-import spacy.en
 import numpy
+import graph
 
-MINPMI = -3
+MINPMI = -50
+BINNUM = 50
 
 class Cat:
   def __init__(self):
@@ -17,7 +18,7 @@ class Cat:
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
 
-def calcAveGivenGrouping(num, f):
+def calcAveGivenGrouping(num, f, row, col):
    cats = {}
    diffs = {}
    f = open(f, "r")
@@ -76,12 +77,13 @@ def calcAveGivenGrouping(num, f):
            print ("Frequency for she: ", cats[ct].pmi_sobj[noun], "Frequency for he: ", cats[ct].pmi_hobj[noun])
            print ("Frequency for her: ", cats[ct].pmi_her_pos[noun], "Frequency for him: ", cats[ct].pmi_his[noun])
          #queryForGenre(noun, "pmi_sobj", "pmi_hobj", "pmi_her_pos", "pmi_his")
-        
+   
+   graph.multhisto(row, col, num, diffs, BINNUM)     
    queryForVerbFreq()
    queryForNounFreq()
    f.close()
 
 f1 = "cat00000.pmis.txt"
 f2 = "rat00000.pmis.txt"
-calcAveGivenGrouping(25, f1)
-calcAveGivenGrouping(5, f2)
+calcAveGivenGrouping(5, f2, 2, 3)
+calcAveGivenGrouping(25, f1, 6, 4)
