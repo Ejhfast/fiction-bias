@@ -2,6 +2,7 @@ import math
 from collections import defaultdict
 import cPickle as pickle
 import numpy
+import graph
 
 f = open("pmis.txt", "r")
 
@@ -22,8 +23,8 @@ pmi_hobj = pickle.load(f)
 
 MINPMI = 0.0
 LARGEDIFF = 1.0
-#nlp = spacy.en.English()
-#
+BINNUM = 50
+
 #def calcPMI(pron, word, tot):
 #  if(tot == 0): return 0
 #  wordGivenPron = 1/tot
@@ -109,3 +110,4 @@ stddev = numpy.std(diffs)
 print("Std dev is: ", stddev)      
 queryForVerbFreq(pmi_s, pmi_h, pmi_her, pmi_him)
 queryForNounFreq(pmi_sobj, pmi_hobj, pmi_her_pos, pmi_his)
+graph.makehistogram(diffs, BINNUM)
