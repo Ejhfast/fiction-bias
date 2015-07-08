@@ -50,7 +50,7 @@ class Cat:
 
 cats = {}
 rats = {}
-for x in range (0, 4):
+for x in range (0, 5):
   rats[x] = Cat()
 for x in range (0, 25):
   cats[x] = Cat()
@@ -169,11 +169,11 @@ for line in fileinput.input():
   countOccur(chapter, cat, rating)
 
 for k in cats:
-  calcPMIs(k)
+  calcPMIs(k, cats)
   putInFile(k, fcat)     
 
-for k in ratings:
-  calcPMIs(k)
+for k in range (0, 5):
+  calcPMIs(k, rats)
   putInFile(k, frat)
 
 f.close()
