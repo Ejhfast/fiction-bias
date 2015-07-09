@@ -11,7 +11,6 @@ def multhisto(row, col, n, arrs, binnum):
    for i, ax in enumerate(axes.flat, start=0):
        if(i >= n): break
        if(len(arrs[i]) == 0): continue
-       print(i)
        ax.set_title('Group {}'.format(i))
        ax.hist(arrs[i], bins = binnum)
        ax.set_xlabel('Difference in PMIs')
