@@ -85,5 +85,5 @@ def calcAveGivenGrouping(num, f, row, col):
 
 f1 = "cat00000.pmis.txt"
 f2 = "rat00000.pmis.txt"
-calcAveGivenGrouping(5, f2, 2, 3)
 calcAveGivenGrouping(25, f1, 6, 4)
+calcAveGivenGrouping(5, f2, 2, 3)
