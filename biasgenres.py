@@ -18,19 +18,23 @@ class Cat:
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
 
-def calcAveGivenGrouping(num, f, row, col):
+def calcAveGivenGrouping(num, f, row, col, ylimabs, ylim):
    cats = {}
    diffs = {}
+   diffsminush = {}
    f = open(f, "r")
+   if(num == 25): genre = graph.getGenres()
    
    def avepmi(cat, pmih, pmis):
       for k,v in pmih.iteritems():
          if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
             diffs[cat].append(abs((pmis[k] - pmih[k])))
+            diffsminush[cat].append(pmis[k] - pmih[k])
      
    for x in range (0, num):
       cats[x] = Cat()
       diffs[x] = []
+      diffsminush[x] = []
       cat = pickle.load(f)
       cats[cat].pmi_h = pickle.load(f)
       cats[cat].pmi_s = pickle.load(f)
@@ -44,14 +48,16 @@ def calcAveGivenGrouping(num, f, row, col):
       avepmi(x, cats[x].pmi_his, cats[x].pmi_her)
       avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj)
       avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos)
-      if len(diffs[x]) != 0:
-         ave = numpy.mean(diffs[x])
-         std = numpy.std(diffs[x])
+      if len(diffsminush[x]) != 0:
+         ave = numpy.mean(diffsminush[x])
+         std = numpy.std(diffsminush[x])
       else:
          ave = 0
          std = 0
-      print("Average for", x, "is: ", ave, "Std dev is: ", std)
-      
+      if(num == 25 and (x in genre)):
+         print("Average for", genre[x], "is: ", ave, "Std dev is: ", std)
+      else:
+         print("Average for", x, "is: ", ave, "Std dev is: ", std)
    
    def queryForVerbFreq():
       verb = ""      
@@ -78,12 +84,13 @@ def calcAveGivenGrouping(num, f, row, col):
            print ("Frequency for her: ", cats[ct].pmi_her_pos[noun], "Frequency for him: ", cats[ct].pmi_his[noun])
          #queryForGenre(noun, "pmi_sobj", "pmi_hobj", "pmi_her_pos", "pmi_his")
    
-   graph.multhisto(row, col, num, diffs, BINNUM)     
+   graph.multhisto(row, col, num, diffs, BINNUM, ylimabs)
+   graph.multhisto(row, col, num, diffsminush, BINNUM, ylim)     
    queryForVerbFreq()
    queryForNounFreq()
    f.close()
 
-f1 = "cat00000.pmis.txt"
-f2 = "rat00000.pmis.txt"
-calcAveGivenGrouping(25, f1, 5, 5)
-calcAveGivenGrouping(5, f2, 2, 3)
+f1 = "cateq.pmis.txt"
+f2 = "rateq.pmis.txt"
+calcAveGivenGrouping(25, f1, 5, 5, 700, 600)
+calcAveGivenGrouping(5, f2, 2, 3, 700, 500)

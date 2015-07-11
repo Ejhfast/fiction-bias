@@ -4,8 +4,10 @@ import spacy.en
 import math
 import cPickle as pickle
 
+N = 100000
+
 stories = {}
-f = open("/home/ubuntu/metadata/chapters/story_chapters/part-m-00000", "r")
+f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
 for line in f:
   storyID, textID = [x.rstrip() for x in line.split("\t")]
   stories[textID] = storyID
@@ -14,7 +16,7 @@ f.close
 categories = {}
 writers = {}
 ratings = {}
-f = open("/home/ubuntu/metadata/details/story_details/part-m-00000", "r")
+f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
 for line in f:
   writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
   categories[storyID] = categoryID
@@ -47,6 +49,7 @@ class Cat:
      self.tot_him = 0.0
      self.tot_her_pos = 0.0
      self.tot_his = 0.0
+     self.count = 0.0
 
 cats = {}
 rats = {}
@@ -56,8 +59,8 @@ for x in range (0, 25):
   cats[x] = Cat()
 
 nlp = spacy.en.English()
-fcat = open("cat00000.pmis.txt", "w")
-frat = open("rat00000.pmis.txt", "w")
+fcat = open("cateq.pmis.txt", "w")
+frat = open("rateq.pmis.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -69,6 +72,11 @@ def findObjFreq(tk, freq):
         
 def countOccur(chapter, cat, rat):
   for sen in chapter.split("." or "!" or "?"):
+    if(cats[cat].count >= N and rats[rat].count >=N): return
+    if(cats[cat].count < N):
+       cats[cat].count += 1
+    if(rats[rat].count < N):
+       rats[rat].count += 1
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens:
@@ -77,43 +85,55 @@ def countOccur(chapter, cat, rat):
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "she"):
-                   cats[cat].tot_s += 1
-                   cats[cat].freq_s[tk.lemma_] +=1
-                   findObjFreq(tk, cats[cat].freq_sobj)
-                   rats[rat].tot_s += 1
-                   rats[rat].freq_s[tk.lemma_] +=1
-                   findObjFreq(tk, rats[rat].freq_sobj)
+                   if(cats[cat].count < N):
+                      cats[cat].tot_s += 1
+                      cats[cat].freq_s[tk.lemma_] +=1
+                      findObjFreq(tk, cats[cat].freq_sobj)
+                   if(rats[rat].count < N):
+                      rats[rat].tot_s += 1
+                      rats[rat].freq_s[tk.lemma_] +=1
+                      findObjFreq(tk, rats[rat].freq_sobj)
                 elif (x.lower_ == "he"):
-                   cats[cat].tot_h += 1
-                   cats[cat].freq_h[tk.lemma_] +=1
-                   findObjFreq(tk, cats[cat].freq_hobj)
-                   rats[rat].tot_h += 1
-                   rats[rat].freq_h[tk.lemma_] +=1
-                   findObjFreq(tk, rats[rat].freq_hobj)
+                   if(cats[cat].count < N):
+                      cats[cat].tot_h += 1
+                      cats[cat].freq_h[tk.lemma_] +=1
+                      findObjFreq(tk, cats[cat].freq_hobj)
+                   if(rats[rat].count < N):
+                      rats[rat].tot_h += 1
+                      rats[rat].freq_h[tk.lemma_] +=1
+                      findObjFreq(tk, rats[rat].freq_hobj)
                 elif (x.lower_ == "her"):
-                   cats[cat].tot_her += 1
-                   cats[cat].freq_her[tk.lemma_] +=1
-                   rats[rat].tot_her += 1
-                   rats[rat].freq_her[tk.lemma_] +=1
+                   if(cats[cat].count < N):
+                      cats[cat].tot_her += 1
+                      cats[cat].freq_her[tk.lemma_] +=1
+                   if(rats[rat].count < N):
+                      rats[rat].tot_her += 1
+                      rats[rat].freq_her[tk.lemma_] +=1
                 elif (x.lower_ == "him"):
-                   cats[cat].tot_him += 1
-                   cats[cat].freq_him[tk.lemma_] +=1
-                   rats[rat].tot_him += 1
-                   rats[rat].freq_him[tk.lemma_] +=1
+                   if(cats[cat].count < N):
+                      cats[cat].tot_him += 1
+                      cats[cat].freq_him[tk.lemma_] +=1
+                   if(rats[rat].count < N):
+                      rats[rat].tot_him += 1
+                      rats[rat].freq_him[tk.lemma_] +=1
                    
         elif(tk.pos_ == "NOUN"):
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "her"):
-                   cats[cat].tot_her_pos += 1
-                   cats[cat].freq_her_pos[tk.lemma_] +=1
-                   rats[rat].tot_her_pos += 1
-                   rats[rat].freq_her_pos[tk.lemma_] +=1
+                   if(cats[cat].count < N):
+                      cats[cat].tot_her_pos += 1
+                      cats[cat].freq_her_pos[tk.lemma_] +=1
+                   if(rats[rat].count < N):
+                      rats[rat].tot_her_pos += 1
+                      rats[rat].freq_her_pos[tk.lemma_] +=1
                 elif (x.lower_ == "his"):
-                   cats[cat].tot_his += 1
-                   cats[cat].freq_his[tk.lemma_] +=1
-                   rats[rat].tot_his += 1
-                   rats[rat].freq_his[tk.lemma_] +=1
+                   if(cats[cat].count < N):
+                      cats[cat].tot_his += 1
+                      cats[cat].freq_his[tk.lemma_] +=1
+                   if(rats[rat].count < N):
+                      rats[rat].tot_his += 1
+                      rats[rat].freq_his[tk.lemma_] +=1
                     
     except UnicodeDecodeError:
       pass
@@ -163,6 +183,7 @@ def putInFile(k, f):
 
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
+  print(id_)
   storyid = stories[id_]
   rating = int(ratings[storyid])
   cat = int(categories[storyid])
@@ -176,7 +197,8 @@ for k in range (0, 5):
   calcPMIs(k, rats)
   putInFile(k, frat)
 
-f.close()
+fcat.close()
+frat.close()
 
 #def calcPMIsAndFindMax(prons, freqs, tots, pmis, pronh, freqh, toth, pmih):
 #  mxnum = 0.0
