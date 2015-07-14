@@ -6,6 +6,8 @@ import graph
 
 MINPMI = -50
 BINNUM = 50
+BUCKMIN = 1.5
+BUCKMAX = 2.0
 
 class Cat:
   def __init__(self):
@@ -18,17 +20,20 @@ class Cat:
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
 
-def calcAveGivenGrouping(num, f, row, col, ylimabs, ylim):
+def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
    cats = {}
    diffs = {}
    diffsminush = {}
    f = open(f, "r")
    if(num == 25): genre = graph.getGenres()
    
-   def avepmi(cat, pmih, pmis):
+   def avepmi(cat, pmih, pmis, pronh, prons):
       for k,v in pmih.iteritems():
          if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
-            diffs[cat].append(abs((pmis[k] - pmih[k])))
+            absdiff = abs((pmis[k] - pmih[k]))
+            diffs[cat].append(absdiff)
+            if(absdiff > BUCKMIN and absdiff < BUCKMAX):
+               print(k, "Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
             diffsminush[cat].append(pmis[k] - pmih[k])
      
    for x in range (0, num):
@@ -44,10 +49,14 @@ def calcAveGivenGrouping(num, f, row, col, ylimabs, ylim):
       cats[cat].pmi_his = pickle.load(f)
       cats[cat].pmi_sobj = pickle.load(f)
       cats[cat].pmi_hobj = pickle.load(f)
-      avepmi(x, cats[x].pmi_h, cats[x].pmi_s)
-      avepmi(x, cats[x].pmi_his, cats[x].pmi_her)
-      avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj)
-      avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos)
+      if(num == 25 and (x in genre)):
+         print("Group " + genre[x])
+      else:
+         print("Group ", x)
+      avepmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she')
+      avepmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her')
+      avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she')
+      avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, u'his', u'her')
       if len(diffsminush[x]) != 0:
          ave = numpy.mean(diffsminush[x])
          std = numpy.std(diffsminush[x])
@@ -84,13 +93,13 @@ def calcAveGivenGrouping(num, f, row, col, ylimabs, ylim):
            print ("Frequency for her: ", cats[ct].pmi_her_pos[noun], "Frequency for him: ", cats[ct].pmi_his[noun])
          #queryForGenre(noun, "pmi_sobj", "pmi_hobj", "pmi_her_pos", "pmi_his")
    
-   graph.multhisto(row, col, num, diffs, BINNUM, ylimabs)
-   graph.multhisto(row, col, num, diffsminush, BINNUM, ylim)     
+#   graph.multhisto(row, col, num, diffs, BINNUM, ylimabs)
+#   graph.multhisto(row, col, num, diffsminush, BINNUM, ylim)     
    queryForVerbFreq()
    queryForNounFreq()
    f.close()
 
 f1 = "cateq.pmis.txt"
 f2 = "rateq.pmis.txt"
-calcAveGivenGrouping(25, f1, 5, 5, 700, 600)
-calcAveGivenGrouping(5, f2, 2, 3, 700, 500)
+calcGivenGrouping(25, f1, 5, 5, 700, 600)
+calcGivenGrouping(5, f2, 2, 3, 700, 500)
