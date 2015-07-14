@@ -24,21 +24,25 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
    cats = {}
    diffs = {}
    diffsminush = {}
+   wordfreq = defaultdict(int)
+   words = {}
    f = open(f, "r")
    if(num == 25): genre = graph.getGenres()
    
-   def avepmi(cat, pmih, pmis, pronh, prons):
+   def avepmi(cat, pmih, pmis, pronh, prons, word):
       for k,v in pmih.iteritems():
          if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
             absdiff = abs((pmis[k] - pmih[k]))
             diffs[cat].append(absdiff)
             if(absdiff > BUCKMIN and absdiff < BUCKMAX):
-               print(k, "Frequency for ", prons, pmis[k], "Frequency for ", pronh, pmih[k])
+               wordfreq[k] += 1
+               word[k] = (": Frequency for " + prons + " is " + str(pmis[k]) + " Frequency for " + pronh + " is " + str(pmih[k]))               
             diffsminush[cat].append(pmis[k] - pmih[k])
      
    for x in range (0, num):
       cats[x] = Cat()
       diffs[x] = []
+      words[x] = {}
       diffsminush[x] = []
       cat = pickle.load(f)
       cats[cat].pmi_h = pickle.load(f)
@@ -49,14 +53,10 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
       cats[cat].pmi_his = pickle.load(f)
       cats[cat].pmi_sobj = pickle.load(f)
       cats[cat].pmi_hobj = pickle.load(f)
-      if(num == 25 and (x in genre)):
-         print("Group " + genre[x])
-      else:
-         print("Group ", x)
-      avepmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she')
-      avepmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her')
-      avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she')
-      avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, u'his', u'her')
+      avepmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she', words[x])
+      avepmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her', words[x])
+      avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she', words[x])
+      avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, u'his', u'her', words[x])
       if len(diffsminush[x]) != 0:
          ave = numpy.mean(diffsminush[x])
          std = numpy.std(diffsminush[x])
@@ -67,6 +67,14 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
          print("Average for", genre[x], "is: ", ave, "Std dev is: ", std)
       else:
          print("Average for", x, "is: ", ave, "Std dev is: ", std)
+   for x in range (0, num):
+      if(num == 25 and (x in genre)):
+         print("Group " + genre[x])
+      else:
+         print("Group ", x)
+      for k, v in words[x].iteritems():
+         if(wordfreq[k] == 1):
+            print(k + v)
    
    def queryForVerbFreq():
       verb = ""      
