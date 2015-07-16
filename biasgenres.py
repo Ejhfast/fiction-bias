@@ -20,17 +20,24 @@ class Cat:
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
 
-def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
+def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
    cats = {}
    diffs = {}
    diffsminush = {}
    wordfreq = defaultdict(int)
    words = {}
    f = open(f, "r")
+   fdata = open(filename, 'w')
    if(num == 25): genre = graph.getGenres()
    
-   def avepmi(cat, pmih, pmis, pronh, prons, word):
+   def iterpmi(cat, pmih, pmis, pronh, prons, word, wordtype):
       for k,v in pmih.iteritems():
+         gen = ""
+         if(num == 25 and (x in genre)):
+            gen = genre[x]
+         else:
+            gen = str(x)
+         fdata.write(k + "\t" + wordtype + "\t" + gen + "\t" + str(pmih[k]) + "\t" + str(pmis[k]) + "\n")
          if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
             absdiff = abs((pmis[k] - pmih[k]))
             diffs[cat].append(absdiff)
@@ -53,10 +60,10 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
       cats[cat].pmi_his = pickle.load(f)
       cats[cat].pmi_sobj = pickle.load(f)
       cats[cat].pmi_hobj = pickle.load(f)
-      avepmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she', words[x])
-      avepmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her', words[x])
-      avepmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she', words[x])
-      avepmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, u'his', u'her', words[x])
+      iterpmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she', words[x], "subjv")
+      iterpmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her', words[x], "obj")
+      iterpmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she', words[x], "subjn")
+      iterpmi(x, cats[x].pmi_his, cats[x].pmi_her_pos, u'his', u'her', words[x], "poss")
       if len(diffsminush[x]) != 0:
          ave = numpy.mean(diffsminush[x])
          std = numpy.std(diffsminush[x])
@@ -109,5 +116,5 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim):
 
 f1 = "cateq.pmis.txt"
 f2 = "rateq.pmis.txt"
-calcGivenGrouping(25, f1, 5, 5, 700, 600)
-calcGivenGrouping(5, f2, 2, 3, 700, 500)
+calcGivenGrouping(25, f1, 5, 5, 700, 600, "genredata.txt")
+calcGivenGrouping(5, f2, 2, 3, 700, 500, "ratingdata.txt")
