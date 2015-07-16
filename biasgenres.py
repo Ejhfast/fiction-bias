@@ -19,6 +19,7 @@ class Cat:
      self.pmi_his = defaultdict(float)
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
+     self.counts = defaultdict(int)
 
 def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
    cats = {}
@@ -37,7 +38,7 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
             gen = genre[x]
          else:
             gen = str(x)
-         fdata.write(k + "\t" + wordtype + "\t" + gen + "\t" + str(pmih[k]) + "\t" + str(pmis[k]) + "\n")
+         fdata.write(k + "\t" + str(cats[cat].counts[k]) + "\t"+ wordtype + "\t" + gen + "\t" + str(pmih[k]) + "\t" + str(pmis[k]) + "\n")
          if((pmis[k] != 0) and (pmih[k] != 0) and pmis[k] > MINPMI and pmis[k] > MINPMI):
             absdiff = abs((pmis[k] - pmih[k]))
             diffs[cat].append(absdiff)
@@ -60,6 +61,7 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
       cats[cat].pmi_his = pickle.load(f)
       cats[cat].pmi_sobj = pickle.load(f)
       cats[cat].pmi_hobj = pickle.load(f)
+      cats[cat].counts = pickle.load(f)
       iterpmi(x, cats[x].pmi_h, cats[x].pmi_s, u'he', u'she', words[x], "subjv")
       iterpmi(x, cats[x].pmi_him, cats[x].pmi_her, u'him', u'her', words[x], "obj")
       iterpmi(x, cats[x].pmi_hobj, cats[x].pmi_sobj, u'he', u'she', words[x], "subjn")
@@ -93,7 +95,6 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
            if(ct == -1): return
            print ("Frequency for she: ", cats[ct].pmi_s[verb], "Frequency for he: ", cats[ct].pmi_h[verb])
            print ("Frequency for her: ", cats[ct].pmi_her[verb], "Frequency for him: ", cats[ct].pmi_him[verb])
-        #queryForGenre(verb, "pmi_s", "pmi_h", "pmi_her", "pmi_him")
         
         
    def queryForNounFreq():
@@ -106,7 +107,6 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
            if(ct == -1): return
            print ("Frequency for she: ", cats[ct].pmi_sobj[noun], "Frequency for he: ", cats[ct].pmi_hobj[noun])
            print ("Frequency for her: ", cats[ct].pmi_her_pos[noun], "Frequency for him: ", cats[ct].pmi_his[noun])
-         #queryForGenre(noun, "pmi_sobj", "pmi_hobj", "pmi_her_pos", "pmi_his")
    
 #   graph.multhisto(row, col, num, diffs, BINNUM, ylimabs)
 #   graph.multhisto(row, col, num, diffsminush, BINNUM, ylim)     
@@ -114,7 +114,7 @@ def calcGivenGrouping(num, f, row, col, ylimabs, ylim, filename):
    queryForNounFreq()
    f.close()
 
-f1 = "cateq.pmis.txt"
-f2 = "rateq.pmis.txt"
+f1 = "cateq.pmisandcount.txt"
+f2 = "rateq.pmisandcount.txt"
 calcGivenGrouping(25, f1, 5, 5, 700, 600, "genredata.txt")
 calcGivenGrouping(5, f2, 2, 3, 700, 500, "ratingdata.txt")

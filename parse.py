@@ -43,6 +43,7 @@ class Cat:
      self.pmi_his = defaultdict(float)
      self.pmi_sobj = defaultdict(float)
      self.pmi_hobj = defaultdict(float)
+     self.counts = defaultdict(int)
      self.tot_s = 0.0
      self.tot_h = 0.0
      self.tot_her = 0.0
@@ -59,8 +60,8 @@ for x in range (0, 25):
   cats[x] = Cat()
 
 nlp = spacy.en.English()
-fcat = open("cateq.pmis.txt", "w")
-frat = open("rateq.pmis.txt", "w")
+fcat = open("cateq.pmisandcount.txt", "w")
+frat = open("rateq.pmisandcount.txt", "w")
 
 #x = [1,2,3]
 #y = [z*z for z in x if z > 1]
@@ -82,6 +83,7 @@ def countOccur(chapter, cat, rat):
       for tk in tokens:
       
         if(tk.pos_ == "VERB"):
+           cats[cat].counts[tk.lemma_] += 1
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "she"):
@@ -118,6 +120,7 @@ def countOccur(chapter, cat, rat):
                       rats[rat].freq_him[tk.lemma_] +=1
                    
         elif(tk.pos_ == "NOUN"):
+           cats[cat].counts[tk.lemma_] += 1
            for x in tk.children:
               if(x.pos_ == "PRON"):
                 if (x.lower_ == "her"):
@@ -174,6 +177,7 @@ def putInFile(k, f):
   pickle.dump(cats[k].pmi_his, f)
   pickle.dump(cats[k].pmi_sobj, f)
   pickle.dump(cats[k].pmi_hobj, f)
+  pickle.dump(cats[k].counts, f)
   #pickle.dump(tot_h, f)
   #pickle.dump(tot_s, f)
   #pickle.dump(tot_her, f)
@@ -189,6 +193,7 @@ for line in fileinput.input():
   cat = int(categories[storyid])
   countOccur(chapter, cat, rating)
 
+print("here")
 for k in cats:
   calcPMIs(k, cats)
   putInFile(k, fcat)     
