@@ -5,6 +5,7 @@ import math
 import cPickle as pickle
 
 N = 100000
+CONVOLENGTH = 10
 
 stories = {}
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
@@ -24,6 +25,7 @@ for line in f:
   ratings[storyID] = rating
 f.close 
 
+storyBechFreq = defaultdict(int)
 cats = {}
 
 nlp = spacy.en.English()
@@ -34,10 +36,19 @@ def speakerverb(word):
     or word == 'recall' or word == 'ask' or word == 'hint' or word == 'groan' or word == 'claim'):
        return True
    else:
-       return False
+       return False 
+  
        
-def bechtal(chapter):
+def bechdel(chapter, cat):
+  first = True
+  start = False
+  countConvo = 0
+  countBuffer = 0
   for sen in chapter.split("." or "!" or "?"):
+    if (countConvo > CONVOLENGTH) return True
+    if (countBuffer > BUFFERLENGTH):
+       countBuffer = 0
+       first = True
     if(cats[cat] >= N):
        return
     else:
@@ -45,35 +56,29 @@ def bechtal(chapter):
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens:
-      
-        if(tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
+        if (tk.lower == 'he' or ismalename(tk.lower_)):
+           break
+           first = True
+           start = False
+           countConvo = 0
+           countBuffer = 0
+        if(start == False and tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
            for x in tk.children:
-              if(x.pos_ == "PRON"):
-                if (x.lower_ == "she"):
-                   
-                   
-        elif(tk.pos_ == "NOUN"):
-#           cats[cat].counts[tk.lemma_] += 1
-           for x in tk.children:
-              if(x.pos_ == "PRON"):
-                if (x.lower_ == "her"):
-                   if(cats[cat].count < N):
-                      cats[cat].tot_her_pos += 1
-                      cats[cat].freq_her_pos[tk.lemma_] +=1
-                   if(rats[rat].count < N):
-                      rats[rat].tot_her_pos += 1
-                      rats[rat].freq_her_pos[tk.lemma_] +=1
-                elif (x.lower_ == "his"):
-                   if(cats[cat].count < N):
-                      cats[cat].tot_his += 1
-                      cats[cat].freq_his[tk.lemma_] +=1
-                   if(rats[rat].count < N):
-                      rats[rat].tot_his += 1
-                      rats[rat].freq_his[tk.lemma_] +=1
-                    
+              if(isfemalename(x.lower_) and first == True):
+                 first = False
+              else if (isfemalename(x.lower_)):
+                 start = True
+      if (first = False):
+         countBuffer += 1
+      if (start == True):
+         countConvo += 1
+         
     except UnicodeDecodeError:
       pass
+   return False
+                    
 
+#if this works, next step is to find genres for ones that pass
 
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
@@ -81,5 +86,6 @@ for line in fileinput.input():
   storyid = stories[id_]
   rating = int(ratings[storyid])
   cat = int(categories[storyid])
-  bechtal(chapter)
+  if(bechdel(chapter, cat)):
+     storyBechFreq[storyid] += 1
 
