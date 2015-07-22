@@ -39,6 +39,8 @@ cats = {}
 for x in range (0, 25):
   cats[x] = Cat()
 
+counts = defaultdict(int)
+
 nlp = spacy.en.English()
  
 def speakerverb(word):
@@ -58,15 +60,16 @@ def bechdel(chapter, cat):
   countBuffer = 0
   name = ""
   for sen in chapter.split("." or "!" or "?"):
-    if (countConvo > CONVOLENGTH): return True
+    if (countConvo > CONVOLENGTH):
+       return True
     if (countBuffer > BUFFERLENGTH):
        countBuffer = 0
        first = True
        name = ""
-    if(cats[cat] >= N):
+    if(counts[cat] >= N):
        return
     else:
-       cats[cat] += 1
+       counts[cat] += 1
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       dialog = False
@@ -108,11 +111,13 @@ for line in fileinput.input():
      cats[cat].storyBechFreq[storyid] += 1
      cats[cat].passed.append(storyid)
   else:
+     print(cat)
      cats[cat].failed.append(storyid)
 
 f = open("bechdeltesetscateg.txt", 'w')
 
 for cat in range (0, 25):
    for key in sorted(cats[cat].storyBechFreq):
+      f.write("Genre: " + str(cat) + "\n")
       f.write(key + "," + str(cats[cat].storyBechFreq[key]) + "\n")
-   f.write("Num pass bechtel:" + str(len(cats[cat].passed)) + " Num fail bechtel:" + str(len(cats[cat].failed)))
+   f.write("Num pass bechtel:" + str(len(cats[cat].passed)) + " Num fail bechtel:" + str(len(cats[cat].failed)) + "\n")
