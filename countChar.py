@@ -11,7 +11,6 @@ stories = {}
 categories = {}
 writers = {}
 ratings = {}
-nlp = spacy.en.English()
 
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
 for line in f:
@@ -27,31 +26,53 @@ for line in f:
   ratings[storyID] = rating
 f.close
 
-
 storyFemChar = defaultdict(int)
+storyFemMain = defaultdict(int)
+
 catFemChar = defaultdict(int)
+catFemMain = defaultdict(int)
+
 storyMaleChar = defaultdict(int)
-catFemChar = defaultdict(int)
+storyMaleMain = defaultdict(int)
+
 catMaleChar = defaultdict(int)
-maleNames = Set([])
-femaleNames = Set([])
+catMaleMain = defaultdict(int)
+
+nameList = defaultdict(dict)
+
+def keywithmaxval(d):
+     """ a) create a list of the dict's keys and values; 
+         b) return the key with the max value"""  
+     v=list(d.values())
+     k=list(d.keys())
+     return k[v.index(max(v))]
 
 def countChar(chapter, cat, storyid):
-  for sen in chapter.split("." or "!" or "?"):
-    try:
-      tokens = nlp(unicode(sen),tag=True,parse=True)
-      for tk in tokens:
-        if ((tk.lower not in maleNames) and names.ismalename(tk.lower_)):
-           maleNames.add(tk.lower)
+  for tk in chapter.split(" "):
+     if(tk.lower() in nameList[storyid]):
+        nameList[storyid][tk.lower()] += 1
+     else:
+        if (names.ismalename(tk.lower())):
+           nameList[storyid][tk.lower()] = 1
            storyMaleChar[storyid] += 1
            catMaleChar[cat]+= 1
-        if((tk.lower not in femaleNames) and names.isfemalename(tk.lower_)):
-           femaleNames.add(tk.lower)
+        if(names.isfemalename(tk.lower())):
+           nameList[storyid][tk.lower()] = 1
            storyFemChar[storyid] += 1
            catFemChar[cat] += 1
-        
-    except UnicodeDecodeError:
-      pass
+
+def getMain(nameList, storyid, cat):
+  mainchar = keywithmaxval(nameList[storyid])
+  print(mainchar)
+  if(nameList[storyid][mainchar] == 0): return
+  nameList[storyid][mainchar] = 0
+  if(names.isfemalename(mainchar)):
+     catFemMain[cat] += 1
+     storyFemMain[storyid] += 1
+  elif (names.ismalename(mainchar)):
+     catMaleMain[cat] += 1
+     storyMaleMain[storyid] += 1
+  
 
 for line in fileinput.input():
   id_, chapter = [x.rstrip() for x in line.split("\t")]
@@ -61,17 +82,32 @@ for line in fileinput.input():
   cat = int(categories[storyid])
   countChar(chapter, cat, storyid)
 
-f = open("charcounts.txt", 'w')
+for storyid in storyFemChar:
+  cat = int(categories[storyid])
+  getMain(nameList, storyid, cat)
+  getMain(nameList, storyid, cat)
+  getMain(nameList, storyid, cat)
+
+f = open("charcountstiny.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(catFemChar):
    gen = ""
    if (key in genre):
       gen = genre[key]
-   f.write(gen + "," + "Female:" + str(catFemChar[key]) + "," + "Male:" + str(catMaleChar[key]) + "\n")  
+   f.write(gen + ", " + "Female:" + str(catFemChar[key]) + ", " + "Male:" + str(catMaleChar[key]) +  ", " + "Ratio:" + str(catFemChar[key]/float(catMaleChar[key])) + "\n")
+   f.write("Main, " + "Female:" + str(catFemMain[key]) + ", " + "Male:" + str(catMaleMain[key]) +  ", " + "Ratio:" + str(catFemMain[key]/float(catMaleMain[key])) + "\n")
+   f.write("\n") 
 f.close
 
-f = open("charcountsstories.txt", 'w')
+f = open("charcountsstoriestiny.txt", 'w')
 pickle.dump(storyFemChar, f)
 pickle.dump(storyMaleChar, f)
+pickle.dump(storyFemMain, f)
+pickle.dump(storyMaleMain, f)
+pickle.dump(catFemChar, f)
+pickle.dump(catMaleChar, f)
+pickle.dump(catFemMain, f)
+pickle.dump(catMaleMain, f)
+pickle.dump(nameList, f)
 
 
