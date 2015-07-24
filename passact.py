@@ -73,7 +73,7 @@ for line in fileinput.input():
   cat = int(categories[storyid])
   countVerbs(chapter, cat)
   
-f = open("passacttiny.txt", 'w')
+f = open("passact.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(cats):
    gen = ""
