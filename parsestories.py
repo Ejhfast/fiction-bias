@@ -5,6 +5,7 @@ import math
 import cPickle as pickle
 from sets import Set
 import names
+from speakerverbs import speakerverb
 
 N = 100000
 CONVOLENGTH = 5
@@ -43,14 +44,14 @@ counts = defaultdict(int)
 
 nlp = spacy.en.English()
  
-def speakerverb(word):
-   if(word == 'say' or word == 'answer' or word == 'reply' or word == 'shout' or word == 'whisper' or word == 'yell'
-    or word == 'whine' or word == 'stammer' or word == 'respond' or word == 'remind' or word == 'remark' or word == 'utter'
-    or word == 'recall' or word == 'ask' or word == 'hint' or word == 'groan' or word == 'claim' or word == 'declare' or word == 'describe'
-    or word == 'interject' or word == 'mutter' or word == 'mumble' or word == 'continue' or word == 'clarify'):
-       return True
-   else:
-       return False 
+#def speakerverb(word):
+#   if(word == 'say' or word == 'answer' or word == 'reply' or word == 'shout' or word == 'whisper' or word == 'yell'
+#    or word == 'whine' or word == 'stammer' or word == 'respond' or word == 'remind' or word == 'remark' or word == 'utter'
+#    or word == 'recall' or word == 'ask' or word == 'hint' or word == 'groan' or word == 'claim' or word == 'declare' or word == 'describe'
+#    or word == 'interject' or word == 'mutter' or word == 'mumble' or word == 'continue' or word == 'clarify'):
+#       return True
+#   else:
+#       return False 
 
        
 def bechdel(chapter, cat):
@@ -114,7 +115,7 @@ for line in fileinput.input():
      print(cat)
      cats[cat].failed.append(storyid)
 
-f = open("bechdeltesetscateg.txt", 'w')
+f = open("bechdeltesetscategtiny.txt", 'w')
 
 for cat in range (0, 25):
    for key in sorted(cats[cat].storyBechFreq):
