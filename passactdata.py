@@ -5,5 +5,4 @@ for line in f:
   verb, typ, freq = [x.rstrip() for x in line.split("\t")]
   verbs[verb] = typ
 
-print(verbs)
 f.close
