@@ -7,6 +7,7 @@ from passactdata import verbs
 import names
 import graph
 from speakerverbs import speakerverb
+from sets import Set
 
 stories = {}
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
@@ -18,6 +19,7 @@ f.close
 categories = {}
 writers = {}
 ratings = {}
+
 f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
 for line in f:
   writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
@@ -37,6 +39,8 @@ cats = {}
 for x in range (0, 25):
   cats[x] = Cat()
 
+nameList = Set([])
+
 def countVerbs(chapter, cat):
   for sen in chapter.split("." or "!" or "?"):
 #    if(cats[cat].count >= N and rats[rat].count >=N): return
@@ -46,15 +50,14 @@ def countVerbs(chapter, cat):
 #       rats[rat].count += 1
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
-      for tk in tokens:
-            
-        if(tk.pos_ == "VERB" and speakerverb(tk.lemma)):
+      for tk in tokens: 
+        if(tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
            for x in tk.children:
-              if(x.pos_ == "PRON"):
-                if (x.lower_ == "she" or names.isfemalename(x.lower_)):
-                   cats[cat].femDialog += 1
-                elif (x.lower_ == "he" or names.ismalename(x.lower_)):
-                   cats[cat].malDialog += 1
+             if (x.lower_ == "she" or names.isfemalename(x.lower_)):
+                cats[cat].femDialog += 1
+             if (x.lower_ == "he" or names.ismalename(x.lower_)):
+                cats[cat].malDialog += 1
+             
     except UnicodeDecodeError:
       pass
 
