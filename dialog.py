@@ -34,6 +34,8 @@ class Cat:
   def __init__(self):
      self.femDialog = 0
      self.malDialog = 0
+     self.femUniq = 0
+     self.malUniq = 0
 
 cats = {}
 for x in range (0, 25):
@@ -56,7 +58,15 @@ def countVerbs(chapter, cat):
              if (x.lower_ == "she" or names.isfemalename(x.lower_)):
                 cats[cat].femDialog += 1
              if (x.lower_ == "he" or names.ismalename(x.lower_)):
-                cats[cat].malDialog += 1
+                cats[cat].malDialog += 1   
+             if (names.isfemalename(x.lower_) or names.ismalename(x.lower_)):
+                if(x.lower_ not in nameList): 
+                   nameList.add(x.lower_)
+                   if(names.isfemalename(x.lower_)):
+                      cats[cat].femUniq += 1
+                   elif(names.ismalename(x.lower_)):
+                      cats[cat].malUniq += 1
+                
              
     except UnicodeDecodeError:
       pass
@@ -77,6 +87,8 @@ for key in sorted(cats):
       gen = genre[key]
    f.write(gen + ", " + "Female dialogue: " + str(cats[key].femDialog) + ", " + "Male dialogue: " + str(cats[key].malDialog) + "\n")
    if(cats[key].malDialog != 0): f.write("Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)) + "\n")
+   f.write(gen + ", " + "Female unique: " + str(cats[key].femUniq) + ", " + "Male unique: " + str(cats[key].malUniq) + "\n")
+   if(cats[key].malUniq != 0): f.write("Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)) + "\n")
    f.write("\n") 
 f.close
 
