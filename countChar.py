@@ -32,11 +32,17 @@ storyFemMain = defaultdict(int)
 catFemChar = defaultdict(int)
 catFemMain = defaultdict(int)
 
+catMaleTopMain = defaultdict(int)
+storyMaleTopMain = defaultdict(int)
+
 storyMaleChar = defaultdict(int)
 storyMaleMain = defaultdict(int)
 
 catMaleChar = defaultdict(int)
 catMaleMain = defaultdict(int)
+
+catFemTopMain = defaultdict(int)
+storyFemTopMain = defaultdict(int)
 
 nameList = defaultdict(dict)
 
@@ -61,7 +67,7 @@ def countChar(chapter, cat, storyid):
            storyFemChar[storyid] += 1
            catFemChar[cat] += 1
 
-def getMain(nameList, storyid, cat):
+def getMain(nameList, storyid, cat, topMain):
   mainchar = keywithmaxval(nameList[storyid])
   print(mainchar)
   if(nameList[storyid][mainchar] == 0): return
@@ -69,9 +75,15 @@ def getMain(nameList, storyid, cat):
   if(names.isfemalename(mainchar)):
      catFemMain[cat] += 1
      storyFemMain[storyid] += 1
+     if(topMain == True):
+        catFemTopMain[cat] += 1
+        storyFemTopMain[storyid] += 1
   elif (names.ismalename(mainchar)):
      catMaleMain[cat] += 1
      storyMaleMain[storyid] += 1
+     if(topMain == True):
+        catMaleTopMain[cat] += 1
+        storyMaleTopMain[storyid] += 1
   
 
 for line in fileinput.input():
@@ -84,30 +96,36 @@ for line in fileinput.input():
 
 for storyid in storyFemChar:
   cat = int(categories[storyid])
-  getMain(nameList, storyid, cat)
-  getMain(nameList, storyid, cat)
-  getMain(nameList, storyid, cat)
+  getMain(nameList, storyid, cat, True)
+  getMain(nameList, storyid, cat, False)
+  getMain(nameList, storyid, cat, False)
 
-f = open("charcountstiny.txt", 'w')
+f = open("charcounts.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(catFemChar):
    gen = ""
    if (key in genre):
       gen = genre[key]
    f.write(gen + ", " + "Female:" + str(catFemChar[key]) + ", " + "Male:" + str(catMaleChar[key]) +  ", " + "Ratio:" + str(catFemChar[key]/float(catMaleChar[key])) + "\n")
-   f.write("Main, " + "Female:" + str(catFemMain[key]) + ", " + "Male:" + str(catMaleMain[key]) +  ", " + "Ratio:" + str(catFemMain[key]/float(catMaleMain[key])) + "\n")
+   f.write("Top 3 Main, " + "Female:" + str(catFemMain[key]) + ", " + "Male:" + str(catMaleMain[key]) +  ", " + "Ratio:" + str(catFemMain[key]/float(catMaleMain[key])) + "\n")
+   f.write("Top 1 Main, " + "Female:" + str(catFemTopMain[key]) + ", " + "Male:" + str(catMaleTopMain[key]) +  ", " + "Ratio:" + str(catFemTopMain[key]/float(catMaleTopMain[key])) + "\n")
    f.write("\n") 
 f.close
 
-f = open("charcountsstoriestiny.txt", 'w')
+f = open("charcountsstories.txt", 'w')
 pickle.dump(storyFemChar, f)
 pickle.dump(storyMaleChar, f)
 pickle.dump(storyFemMain, f)
 pickle.dump(storyMaleMain, f)
+pickle.dump(storyFemTopMain, f)
+pickle.dump(storyMaleTopMain, f)
 pickle.dump(catFemChar, f)
 pickle.dump(catMaleChar, f)
 pickle.dump(catFemMain, f)
 pickle.dump(catMaleMain, f)
+pickle.dump(catFemTopMain, f)
+pickle.dump(catMaleTopMain, f)
 pickle.dump(nameList, f)
+
 
 
