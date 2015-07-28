@@ -8,6 +8,7 @@ import names
 import graph
 from speakerverbs import speakerverb
 from sets import Set
+import string
 
 stories = {}
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
@@ -54,6 +55,14 @@ def extractDialog(sen, gender, cat, storyid, chapter):
    before, speaking, after = [x.rstrip() for x in line.split("\"")]
    fdial.write(speaking + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid))
 
+def addtoquote(tk):
+   if(tk == "\""):
+      return ""
+   elif(tk in string.punctuation):
+      return tk
+   else:
+      return " " + tk
+
 def countVerbs(chapter, cat, storyid):
   gender = ""
   inquote = False
@@ -62,18 +71,19 @@ def countVerbs(chapter, cat, storyid):
     if(cats[cat].count >= N): return
     if(cats[cat].count < N):
        cats[cat].count += 1
-    if(inquote == True): quote += ". " + sen
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens: 
+        if(inquote == True): quote += addtoquote(tk.lower_)
+        if(tk.lower_ == "\""):
+           if(inquote == False):
+              inquote = True
+           else:
+              inquote = False
+              fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+              quote = ""
         if(tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
            for x in tk.children:
-             if(x.lower_ == "\""):
-                if(inquote == False):
-                   inquote = True
-                else:
-                   inquote = False
-                   fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid))
              if (x.lower_ == "she" or names.isfemalename(x.lower_)):
                 gender = "female"
                 cats[cat].femDialog += 1
