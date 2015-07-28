@@ -7,6 +7,8 @@ from passactdata import verbs
 import names
 import graph
 
+N = 100000
+
 stories = {}
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")
 for line in f:
@@ -33,6 +35,7 @@ class Cat:
      self.passFem = 0
      self.actMal = 0
      self.passMal = 0
+     self.count = 0
 
 cats = {}
 for x in range (0, 25):
@@ -40,11 +43,9 @@ for x in range (0, 25):
 
 def countVerbs(chapter, cat):
   for sen in chapter.split("." or "!" or "?"):
-#    if(cats[cat].count >= N and rats[rat].count >=N): return
-#    if(cats[cat].count < N):
-#       cats[cat].count += 1
-#    if(rats[rat].count < N):
-#       rats[rat].count += 1
+    if(cats[cat].count >= N): return
+    if(cats[cat].count < N):
+       cats[cat].count += 1
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens:
@@ -83,5 +84,6 @@ for key in sorted(cats):
    if(cats[key].actFem != 0): f.write("Ratio:" + str(cats[key].passFem/float(cats[key].actFem)) + "\n")
    f.write(gen + ", " + "Male active: " + str(cats[key].actMal) + ", " + "Male passive: " + str(cats[key].passMal) +  "\n")
    if(cats[key].actMal != 0): f.write("Ratio:" + str(cats[key].passMal/float(cats[key].actMal)) + "\n")
+   if(cats[key].actMal != 0): f.write("Diff: " + str(cats[key].passFem/float(cats[key].actFem) - cats[key].passMal/float(cats[key].actMal)) + "\n")
    f.write("\n") 
 f.close

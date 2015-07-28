@@ -20,6 +20,8 @@ categories = {}
 writers = {}
 ratings = {}
 
+N = 100000
+
 f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
 for line in f:
   writerID, storyID, categoryID, rating = [x.rstrip() for x in line.split("\t")]
@@ -36,6 +38,7 @@ class Cat:
      self.malDialog = 0
      self.femUniq = 0
      self.malUniq = 0
+     self.count = 0
 
 cats = {}
 for x in range (0, 25):
@@ -43,22 +46,42 @@ for x in range (0, 25):
 
 nameList = Set([])
 
-def countVerbs(chapter, cat):
+fdial = open("gendereddialog.txt", 'w')
+
+def extractDialog(sen, gender, cat, storyid, chapter):
+   print(sen)
+   print(chapter)
+   before, speaking, after = [x.rstrip() for x in line.split("\"")]
+   fdial.write(speaking + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid))
+
+def countVerbs(chapter, cat, storyid):
+  gender = ""
+  inquote = False
+  quote = ""
   for sen in chapter.split("." or "!" or "?"):
-#    if(cats[cat].count >= N and rats[rat].count >=N): return
-#    if(cats[cat].count < N):
-#       cats[cat].count += 1
-#    if(rats[rat].count < N):
-#       rats[rat].count += 1
+    if(cats[cat].count >= N): return
+    if(cats[cat].count < N):
+       cats[cat].count += 1
+    if(inquote == True): quote += ". " + sen
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens: 
         if(tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
            for x in tk.children:
+             if(x.lower_ == "\""):
+                if(inquote == False):
+                   inquote = True
+                else:
+                   inquote = False
+                   fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid))
              if (x.lower_ == "she" or names.isfemalename(x.lower_)):
+                gender = "female"
                 cats[cat].femDialog += 1
+                #extractDialog(sen, "female", cat, storyid, chapter)
              if (x.lower_ == "he" or names.ismalename(x.lower_)):
+                gender = "male"
                 cats[cat].malDialog += 1   
+                #extractDialog(sen, "male", cat, storyid)
              if (names.isfemalename(x.lower_) or names.ismalename(x.lower_)):
                 if(x.lower_ not in nameList): 
                    nameList.add(x.lower_)
@@ -77,9 +100,9 @@ for line in fileinput.input():
   storyid = stories[id_]
   rating = int(ratings[storyid])
   cat = int(categories[storyid])
-  countVerbs(chapter, cat)
+  countVerbs(chapter, cat, storyid)
   
-f = open("dialogtiny.txt", 'w')
+f = open("dialogtest.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(cats):
    gen = ""
