@@ -106,9 +106,9 @@ for key in sorted(catFemChar):
    gen = ""
    if (key in genre):
       gen = genre[key]
-   f.write(gen + ", " + "Female:" + str(catFemChar[key]) + ", " + "Male:" + str(catMaleChar[key]) +  ", " + "Ratio:" + str(catFemChar[key]/float(catMaleChar[key])) + "\n")
-   f.write("Top 3 Main, " + "Female:" + str(catFemMain[key]) + ", " + "Male:" + str(catMaleMain[key]) +  ", " + "Ratio:" + str(catFemMain[key]/float(catMaleMain[key])) + "\n")
-   f.write("Top 1 Main, " + "Female:" + str(catFemTopMain[key]) + ", " + "Male:" + str(catMaleTopMain[key]) +  ", " + "Ratio:" + str(catFemTopMain[key]/float(catMaleTopMain[key])) + "\n")
+   f.write(gen + " " + str(catFemChar[key]) + " " + str(catMaleChar[key]) +  " " + "Ratio:" + str(catFemChar[key]/float(catMaleChar[key])))
+   f.write(" " + str(catFemMain[key]) + " " + str(catMaleMain[key]) +  " " + "Ratio:" + str(catFemMain[key]/float(catMaleMain[key])))
+   f.write(" " + str(catFemTopMain[key]) + " " + str(catMaleTopMain[key]) +  " " + "Ratio:" + str(catFemTopMain[key]/float(catMaleTopMain[key])))
    f.write("\n") 
 f.close
 

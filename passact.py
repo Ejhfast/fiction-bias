@@ -80,10 +80,8 @@ for key in sorted(cats):
    gen = ""
    if (key in genre):
       gen = genre[key]
-   f.write(gen + ", " + "Female active: " + str(cats[key].actFem) + ", " + "Female passive: " + str(cats[key].passFem) + "\n")
-   if(cats[key].actFem != 0): f.write("Ratio:" + str(cats[key].passFem/float(cats[key].actFem)) + "\n")
-   f.write(gen + ", " + "Male active: " + str(cats[key].actMal) + ", " + "Male passive: " + str(cats[key].passMal) +  "\n")
-   if(cats[key].actMal != 0): f.write("Ratio:" + str(cats[key].passMal/float(cats[key].actMal)) + "\n")
-   if(cats[key].actMal != 0): f.write("Diff: " + str(cats[key].passFem/float(cats[key].actFem) - cats[key].passMal/float(cats[key].actMal)) + "\n")
-   f.write("\n") 
+   f.write(gen + " " + "F " + str(cats[key].actFem) + " " + str(cats[key].passFem))
+   if(cats[key].actFem != 0): f.write(" " + str(cats[key].passFem/float(cats[key].actFem)) + "\n")
+   f.write(gen + " " + "M " + str(cats[key].actMal) + " " + str(cats[key].passMal))
+   if(cats[key].actMal != 0): f.write(" " + str(cats[key].passMal/float(cats[key].actMal)) + "\n")
 f.close

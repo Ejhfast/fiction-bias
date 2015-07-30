@@ -1,11 +1,9 @@
 import numpy as np
 import graph
 import charcountsread
+import actpass
 
 from bokeh.plotting import figure, output_file, show, VBox
-from bokeh.sampledata.olympics2014 import data
-
-data = { d['abbr']: d['medals'] for d in data['data'] if d['medals']['total'] > 0}
 
 genFTot = charcountsread.genFTot
 genMTot = charcountsread.genMTot
@@ -14,13 +12,10 @@ genMTh = charcountsread.genMTh
 genFOn = charcountsread.genFOn
 genMOn = charcountsread.genMOn
 
-#female = {graph[0]: , graph[1]:, graph[2]:, graph[3]:, graph[4]:, graph[5]:, graph[6]:, graph[7]:, graph[8]:, graph[9]:, graph[10]:, graph[11]:, graph[12]:, graph[13]:, graph[14]:, graph[15]:, graph[16]:, graph[17]:, graph[18]:, graph[19]:, graph[20]:, graph[21]:, graph[22]:, graph[23]:, graph[24]:}
-## pull out just the data we care about
-#female = sorted(
-#                   data.keys(),
-#    key=lambda x: data[x]['total'], reverse=True
-#)
-
+genFAct = actpass.genFAct
+genFPass = actpass.genFPass
+genMAct = actpass.genMAct
+genMPass = actpass.genMPass
 
 # EXERCISE: output static HTML file
 output_file('charcountsgraphs.html')
@@ -60,5 +55,7 @@ def graphPer(genF, genM, titleName):
 p1 = graphPer(genFTot, genMTot, "Total Character Percentages (Gold = Female, Silver = Male)")
 p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, Silver = Male)")
 p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)")
+p4 = graphPer(genFPass, genFAct, "Female Active and Passive Percentages (Gold = Pass., Silver = Act.)")
+p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)")
 
-show(VBox(p1, p2, p3))
+show(VBox(p1, p2, p3, p4, p5))

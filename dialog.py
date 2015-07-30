@@ -74,16 +74,8 @@ def countVerbs(chapter, cat, storyid):
     try:
       tokens = nlp(unicode(sen),tag=True,parse=True)
       for tk in tokens: 
-        if(inquote == True): quote += addtoquote(tk.lower_)
-        if(tk.lower_ == "\""):
-           if(inquote == False):
-              inquote = True
-           else:
-              inquote = False
-              fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
-              quote = ""
         if(tk.pos_ == "VERB" and speakerverb(tk.lemma_)):
-           for x in tk.children:
+           for x in tk.lefts:
              if (x.lower_ == "she" or names.isfemalename(x.lower_)):
                 gender = "female"
                 cats[cat].femDialog += 1
@@ -99,7 +91,24 @@ def countVerbs(chapter, cat, storyid):
                       cats[cat].femUniq += 1
                    elif(names.ismalename(x.lower_)):
                       cats[cat].malUniq += 1
-                
+             
+        if(inquote == True): quote += addtoquote(tk.lower_)
+        if(tk.lower_.count("\"") == 1):
+           if(inquote == False):
+              quote = ""
+              inquote = True
+           else:
+              inquote = False
+              if(gender != ""):
+                fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+              gender = ""
+              
+
+      if(inquote == False):
+        if(gender != ""):
+          fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+        gender = ""
+        quote = ""
              
     except UnicodeDecodeError:
       pass
@@ -118,7 +127,7 @@ for key in sorted(cats):
    gen = ""
    if (key in genre):
       gen = genre[key]
-   f.write(gen + ", " + "Female dialogue: " + str(cats[key].femDialog) + ", " + "Male dialogue: " + str(cats[key].malDialog) + "\n")
+   f.write(gen + " " + "Female dialogue: " + str(cats[key].femDialog) + ", " + "Male dialogue: " + str(cats[key].malDialog) + "\n")
    if(cats[key].malDialog != 0): f.write("Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)) + "\n")
    f.write(gen + ", " + "Female unique: " + str(cats[key].femUniq) + ", " + "Male unique: " + str(cats[key].malUniq) + "\n")
    if(cats[key].malUniq != 0): f.write("Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)) + "\n")
