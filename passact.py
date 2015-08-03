@@ -7,7 +7,7 @@ from passactdata import verbs
 import names
 import graph
 
-N = 100000
+N = 200000
 
 stories = {}
 f = open("/home/ubuntu/ebs/dataset/story_chapters/part-m-00000", "r")

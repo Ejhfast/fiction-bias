@@ -1,0 +1,92 @@
+Other
+F: Percent Passive: 0.336299668874	Percent Active: 0.663700331126	Ratio Passive/Active: 0.506704084814
+M: Percent Passive: 0.29481225952	Percent Active: 0.70518774048	Ratio Passive/Active: 0.418062088429
+
+Teen-Fiction
+F: Percent Passive: 0.324040317392	Percent Active: 0.675959682608	Ratio Passive/Active: 0.479378172589
+M: Percent Passive: 0.283668903803	Percent Active: 0.716331096197	Ratio Passive/Active: 0.396002498438
+
+Poetry
+F: Percent Passive: 0.497310513447	Percent Active: 0.502689486553	Ratio Passive/Active: 0.989299610895
+M: Percent Passive: 0.393808777429	Percent Active: 0.606191222571	Ratio Passive/Active: 0.649644473174
+
+Fantasy
+F: Percent Passive: 0.450469798658	Percent Active: 0.549530201342	Ratio Passive/Active: 0.819736199316
+M: Percent Passive: 0.392101187403	Percent Active: 0.607898812597	Ratio Passive/Active: 0.645010615711
+
+Romance
+F: Percent Passive: 0.354423445631	Percent Active: 0.645576554369	Ratio Passive/Active: 0.549002969877
+M: Percent Passive: 0.32020610968	Percent Active: 0.67979389032	Ratio Passive/Active: 0.471034109367
+
+Science-Fiction
+F: Percent Passive: 0.413402061856	Percent Active: 0.586597938144	Ratio Passive/Active: 0.70474516696
+M: Percent Passive: 0.385380788366	Percent Active: 0.614619211634	Ratio Passive/Active: 0.62702366127
+
+Fanfiction
+F: Percent Passive: 0.351851851852	Percent Active: 0.648148148148	Ratio Passive/Active: 0.542857142857
+M: Percent Passive: 0.361672794118	Percent Active: 0.638327205882	Ratio Passive/Active: 0.566594672426
+
+Humor
+F: Percent Passive: 0.322238163558	Percent Active: 0.677761836442	Ratio Passive/Active: 0.475444538527
+M: Percent Passive: 0.321297429621	Percent Active: 0.678702570379	Ratio Passive/Active: 0.473399458972
+
+Mystery/Thriller
+F: Percent Passive: 0.392499467292	Percent Active: 0.607500532708	Ratio Passive/Active: 0.646089091547
+M: Percent Passive: 0.3583855254	Percent Active: 0.6416144746	Ratio Passive/Active: 0.558568329718
+
+Horror
+F: Percent Passive: 0.378658677115	Percent Active: 0.621341322885	Ratio Passive/Active: 0.609421364985
+M: Percent Passive: 0.361757587042	Percent Active: 0.638242412958	Ratio Passive/Active: 0.566802800467
+
+Classics
+F: Percent Passive: 0.37134502924	Percent Active: 0.62865497076	Ratio Passive/Active: 0.590697674419
+M: Percent Passive: 0.382456140351	Percent Active: 0.617543859649	Ratio Passive/Active: 0.619318181818
+
+Adventure
+F: Percent Passive: 0.395738203957	Percent Active: 0.604261796043	Ratio Passive/Active: 0.654911838791
+M: Percent Passive: 0.362716153522	Percent Active: 0.637283846478	Ratio Passive/Active: 0.569159497022
+
+Paranormal
+F: Percent Passive: 0.424506654429	Percent Active: 0.575493345571	Ratio Passive/Active: 0.737639553429
+M: Percent Passive: 0.378910029023	Percent Active: 0.621089970977	Ratio Passive/Active: 0.610072689512
+
+Spiritual
+F: Percent Passive: 0.401441190144	Percent Active: 0.598558809856	Ratio Passive/Active: 0.67067961165
+M: Percent Passive: 0.425399762125	Percent Active: 0.574600237875	Ratio Passive/Active: 0.740340386385
+
+Action
+F: Percent Passive: 0.340223007887	Percent Active: 0.659776992113	Ratio Passive/Active: 0.515663643858
+M: Percent Passive: 0.314290863219	Percent Active: 0.685709136781	Ratio Passive/Active: 0.458344283837
+
+Non-Fiction
+F: Percent Passive: 0.396587030717	Percent Active: 0.603412969283	Ratio Passive/Active: 0.657239819005
+M: Percent Passive: 0.357825370675	Percent Active: 0.642174629325	Ratio Passive/Active: 0.557208825038
+
+Short-Story
+F: Percent Passive: 0.409061348363	Percent Active: 0.590938651637	Ratio Passive/Active: 0.692223037417
+M: Percent Passive: 0.349224154047	Percent Active: 0.650775845953	Ratio Passive/Active: 0.536627405918
+
+Vampire
+F: Percent Passive: 0.370717344754	Percent Active: 0.629282655246	Ratio Passive/Active: 0.589111016589
+M: Percent Passive: 0.329604004122	Percent Active: 0.670395995878	Ratio Passive/Active: 0.491655687308
+
+Random
+F: Percent Passive: 0.451314508277	Percent Active: 0.548685491723	Ratio Passive/Active: 0.822537710736
+M: Percent Passive: 0.358564182599	Percent Active: 0.641435817401	Ratio Passive/Active: 0.55900243309
+
+General-Fiction
+F: Percent Passive: 0.380121596616	Percent Active: 0.619878403384	Ratio Passive/Active: 0.613219620469
+M: Percent Passive: 0.354570637119	Percent Active: 0.645429362881	Ratio Passive/Active: 0.549356223176
+
+Werewolf
+F: Percent Passive: 0.388967468175	Percent Active: 0.611032531825	Ratio Passive/Active: 0.636574074074
+M: Percent Passive: 0.333280905945	Percent Active: 0.666719094055	Ratio Passive/Active: 0.499882047653
+
+Historical-Fiction
+F: Percent Passive: 0.489190858555	Percent Active: 0.510809141445	Ratio Passive/Active: 0.957678355502
+M: Percent Passive: 0.427978142077	Percent Active: 0.572021857923	Ratio Passive/Active: 0.748184944593
+
+ChickLit
+F: Percent Passive: 0.420444444444	Percent Active: 0.579555555556	Ratio Passive/Active: 0.725460122699
+M: Percent Passive: 0.335511537676	Percent Active: 0.664488462324	Ratio Passive/Active: 0.5049170252
+

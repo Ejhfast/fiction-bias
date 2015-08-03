@@ -1,0 +1,110 @@
+Other
+Percent Female: 0.352025193461	Ratio to female characters: 1.01337259462
+Percent Male: 0.647974806539	Ratio to male characters: 0.992881970657
+Ratio Fem/Mal: Ratio:0.54326987702	Norm Ratio Fem/Male: 1.02063752245
+
+Teen-Fiction
+Percent Female: 0.386903713083	Ratio to female characters: 1.06603604036
+Percent Male: 0.613096286917	Ratio to male characters: 0.962379070784
+Ratio Fem/Mal: Ratio:0.631065170904	Norm Ratio Fem/Male: 1.10770908546
+
+Poetry
+Percent Female: 0.418898894335	Ratio to female characters: 1.09276411098
+Percent Male: 0.581101105665	Ratio to male characters: 0.942334486831
+Ratio Fem/Mal: Ratio:0.720870929776	Norm Ratio Fem/Male: 1.15963506192
+
+Fantasy
+Percent Female: 0.396031895287	Ratio to female characters: 1.11280476981
+Percent Male: 0.603968104713	Ratio to male characters: 0.937673022552
+Ratio Fem/Mal: Ratio:0.655716572112	Norm Ratio Fem/Male: 1.18677272679
+
+Romance
+Percent Female: 0.377224265136	Ratio to female characters: 1.06851308761
+Percent Male: 0.622775734864	Ratio to male characters: 0.962613601892
+Ratio Fem/Mal: Ratio:0.60571445549	Norm Ratio Fem/Male: 1.11001245516
+
+Science-Fiction
+Percent Female: 0.373343332424	Ratio to female characters: 1.12760335869
+Percent Male: 0.626656667576	Ratio to male characters: 0.936838939485
+Ratio Fem/Mal: Ratio:0.595770142954	Norm Ratio Fem/Male: 1.20362562995
+
+Fanfiction
+Percent Female: 0.343579542275	Ratio to female characters: 0.986846679945
+Percent Male: 0.656420457725	Ratio to male characters: 1.00702540425
+Ratio Fem/Mal: Ratio:0.523413824525	Norm Ratio Fem/Male: 0.97996205039
+
+Humor
+Percent Female: 0.384931615147	Ratio to female characters: 1.10761619546
+Percent Male: 0.615068384853	Ratio to male characters: 0.942679175587
+Ratio Fem/Mal: Ratio:0.625835475578	Norm Ratio Fem/Male: 1.17496622833
+
+Mystery/Thriller
+Percent Female: 0.396908019538	Ratio to female characters: 1.11943216374
+Percent Male: 0.603091980462	Ratio to male characters: 0.934391696169
+Ratio Fem/Mal: Ratio:0.658121865978	Norm Ratio Fem/Male: 1.19803308219
+
+Horror
+Percent Female: 0.411500381948	Ratio to female characters: 1.18947250953
+Percent Male: 0.588499618052	Ratio to male characters: 0.899780458352
+Ratio Fem/Mal: Ratio:0.699236446933	Norm Ratio Fem/Male: 1.32195859389
+
+Adventure
+Percent Female: 0.403104455513	Ratio to female characters: 1.16246547859
+Percent Male: 0.596895544487	Ratio to male characters: 0.9137557021
+Ratio Fem/Mal: Ratio:0.675335004988	Norm Ratio Fem/Male: 1.27218410339
+
+Paranormal
+Percent Female: 0.414309080996	Ratio to female characters: 1.15913367479
+Percent Male: 0.585690919004	Ratio to male characters: 0.911481807786
+Ratio Fem/Mal: Ratio:0.70738518825	Norm Ratio Fem/Male: 1.27170247929
+
+Spiritual
+Percent Female: 0.376785586103	Ratio to female characters: 1.03843878188
+Percent Male: 0.623214413897	Ratio to male characters: 0.978110618899
+Ratio Fem/Mal: Ratio:0.60458419719	Norm Ratio Fem/Male: 1.06167826196
+
+Action
+Percent Female: 0.360883309662	Ratio to female characters: 1.12146773402
+Percent Male: 0.639116690338	Ratio to male characters: 0.942365796004
+Ratio Fem/Mal: Ratio:0.564659498208	Norm Ratio Fem/Male: 1.19005564376
+
+Non-Fiction
+Percent Female: 0.412948950594	Ratio to female characters: 1.13993260913
+Percent Male: 0.587051049406	Ratio to male characters: 0.920513998608
+Ratio Fem/Mal: Ratio:0.703429371282	Norm Ratio Fem/Male: 1.23836531639
+
+Short-Story
+Percent Female: 0.410713511796	Ratio to female characters: 1.12744743233
+Percent Male: 0.589286488204	Ratio to male characters: 0.92696818024
+Ratio Fem/Mal: Ratio:0.696967468314	Norm Ratio Fem/Male: 1.21627414658
+
+Vampire
+Percent Female: 0.354644944339	Ratio to female characters: 1.01148331461
+Percent Male: 0.645355055661	Ratio to male characters: 0.993799845357
+Ratio Fem/Mal: Ratio:0.549534618546	Norm Ratio Fem/Male: 1.01779379353
+
+Random
+Percent Female: 0.361499914305	Ratio to female characters: 1.01495465125
+Percent Male: 0.638500085695	Ratio to male characters: 0.991726886592
+Ratio Fem/Mal: Ratio:0.566170502406	Norm Ratio Fem/Male: 1.02342153366
+
+General-Fiction
+Percent Female: 0.438982717506	Ratio to female characters: 1.20902637783
+Percent Male: 0.561017282494	Ratio to male characters: 0.880839266529
+Ratio Fem/Mal: Ratio:0.78247628229	Norm Ratio Fem/Male: 1.37258456085
+
+Werewolf
+Percent Female: 0.34303737265	Ratio to female characters: 1.00805873956
+Percent Male: 0.65696262735	Ratio to male characters: 0.995843067632
+Ratio Fem/Mal: Ratio:0.522156601257	Norm Ratio Fem/Male: 1.01226666362
+
+Historical-Fiction
+Percent Female: 0.4256	Ratio to female characters: 1.17018585804
+Percent Male: 0.5744	Ratio to male characters: 0.902722969553
+Ratio Fem/Mal: Ratio:0.740947075209	Norm Ratio Fem/Male: 1.2962845718
+
+ChickLit
+Percent Female: 0.396600437477	Ratio to female characters: 1.0691398327
+Percent Male: 0.603399562523	Ratio to male characters: 0.959227833952
+Ratio Fem/Mal: Ratio:0.657276640737	Norm Ratio Fem/Male: 1.11458382968
+

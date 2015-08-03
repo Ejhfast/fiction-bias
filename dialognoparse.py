@@ -25,7 +25,7 @@ categories = {}
 writers = {}
 ratings = {}
 
-N = 100000
+N = 200000
 MAXBUFF = 50
 
 f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
@@ -50,7 +50,7 @@ for x in range (0, 25):
 
 nameList = Set([])
 
-fdial = open("gendereddialog.txt", 'w')
+fdial = open("gendereddialogsmall.txt", 'w')
 
 def addtoquote(tk):
    if(tk == "\""):
@@ -146,13 +146,13 @@ def countVerbs(chapter, cat, storyid):
              if(speakerverb(bufftk[len(bufftk) - 1])):
                 if (buff[len(buff) - 2] == "she" or names.isfemalename(buff[len(buff) - 2])):
                    gend = "female"
-                   cats[cat].femDialog += 1
+#                   cats[cat].femDialog += 1
                    inquote = True
                 if (buff[len(buff) - 2] == "he" or names.ismalename(buff[len(buff) - 2])):
                    gend = "male"
-                   cats[cat].malDialog += 1   
+#                   cats[cat].malDialog += 1   
                    inquote = True
-                checkUniq(buff[len(buff) - 2])
+#                checkUniq(buff[len(buff) - 2])
               
         if(len(buff) >= MAXBUFF):
            bufftk.remove(bufftk[0])
@@ -176,9 +176,9 @@ for key in sorted(cats):
    gen = ""
    if (key in genre):
       gen = genre[key]
-   f.write(gen + ", " + "Female dialogue: " + str(cats[key].femDialog) + ", " + "Male dialogue: " + str(cats[key].malDialog) + "\n")
-   if(cats[key].malDialog != 0): f.write("Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)) + "\n")
-   f.write(gen + ", " + "Female unique: " + str(cats[key].femUniq) + ", " + "Male unique: " + str(cats[key].malUniq) + "\n")
-   if(cats[key].malUniq != 0): f.write("Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)) + "\n")
+   f.write(gen + " " + str(cats[key].femDialog) + " " + str(cats[key].malDialog))
+   if(cats[key].malDialog != 0): f.write(" Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)))
+   f.write(" " + str(cats[key].femUniq) + " " + str(cats[key].malUniq))
+   if(cats[key].malUniq != 0): f.write(" Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)))
    f.write("\n") 
 f.close

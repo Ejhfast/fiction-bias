@@ -2,6 +2,7 @@ import numpy as np
 import graph
 import charcountsread
 import actpass
+import dialogread
 
 from bokeh.plotting import figure, output_file, show, VBox
 
@@ -16,6 +17,11 @@ genFAct = actpass.genFAct
 genFPass = actpass.genFPass
 genMAct = actpass.genMAct
 genMPass = actpass.genMPass
+
+genFDial = dialogread.genFTot
+genMDial = dialogread.genMTot
+genFUn = dialogread.genFUn
+genMUn = dialogread.genMUn
 
 # EXERCISE: output static HTML file
 output_file('charcountsgraphs.html')
@@ -43,7 +49,7 @@ def graphPer(genF, genM, titleName):
    #   - make the tick labels smaller
    #   - set the x-axis orientation to vertical, or angled
    p1.xgrid.grid_line_color = None
-   p1.axis.major_label_text_font_size = "8pt"
+   p1.axis.major_label_text_font_size = "6pt"
    p1.axis.major_label_standoff = 0
    p1.xaxis.major_label_orientation = np.pi/3
    p1.xaxis.major_label_standoff = 6
@@ -51,11 +57,36 @@ def graphPer(genF, genM, titleName):
    return p1
 
    # show the plots arrayed in a VBox
+
+def graphNotStacked(genF, genM, titleName):   
+   female = np.array([genF[name] for name in genF], dtype=np.float)
+   male = np.array([genM[name] for name in genM], dtype=np.float)
+   p2 = figure(title=titleName, tools="", x_range=list(genF.keys()), y_range=[0, max(female + .1)], background_fill='#59636C', plot_width=1000, plot_height=300)
+   # Categorical percentage coordinates can be used for positioning/grouping
+   dial_fem = [c+":0.3" for c in genF.keys()]
+   dial_mal = [c+":0.5" for c in genM.keys()]
+   #countries_gold = [c+":0.7" for c in countries]
+   
+   # EXERCISE: re create the medal plot, but this time:
+   #   - do not stack the bars on the y coordinate
+   #   - use countries_gold, etc. to positions the bars on the x coordinate
+   p2.rect(x=dial_mal, y=male/2, width=0.2, height=male, color="silver", alpha=0.6)
+   p2.rect(x=dial_fem, y=female/2, width=0.2, height=female, color="gold", alpha=0.6)
+   
+   p2.xgrid.grid_line_color = None
+   p2.axis.major_label_text_font_size = "6pt"
+   p2.axis.major_label_standoff = 0
+   p2.xaxis.major_label_orientation = np.pi/3
+   p2.xaxis.major_label_standoff = 6
+   p2.xaxis.major_tick_out = 0
+   return p2
    
 p1 = graphPer(genFTot, genMTot, "Total Character Percentages (Gold = Female, Silver = Male)")
 p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, Silver = Male)")
 p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)")
 p4 = graphPer(genFPass, genFAct, "Female Active and Passive Percentages (Gold = Pass., Silver = Act.)")
 p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)")
+p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)")
+#p7 = graphPer(genMUn, genFUn, "Unique Speaking Characters Percentages (Gold = Female, Silver = Male)")
 
-show(VBox(p1, p2, p3, p4, p5))
+show(VBox(p1, p2, p3, p4, p5, p6))

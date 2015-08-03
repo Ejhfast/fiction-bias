@@ -1,0 +1,110 @@
+Other
+Total Characters: Percent Female: 0.347379823898	Percent Male: 0.652620176102	Ratio Fem/Mal: Ratio:0.532284836752
+Top 3 Main Characters: Percent Female: 0.418473367043	Percent Male: 0.581526632957	Ratio Fem/Mal: Ratio:0.719611696742
+Main Characters: Percent Female: 0.430541778848	Percent Male: 0.569458221152	Ratio Fem/Mal: Ratio:0.756055076311
+
+Teen-Fiction
+Total Characters: Percent Female: 0.362936803668	Percent Male: 0.637063196332	Ratio Fem/Mal: Ratio:0.569702983562
+Top 3 Main Characters: Percent Female: 0.393335396279	Percent Male: 0.606664603721	Ratio Fem/Mal: Ratio:0.648357253524
+Main Characters: Percent Female: 0.38568422459	Percent Male: 0.61431577541	Ratio Fem/Mal: Ratio:0.627827316224
+
+Poetry
+Total Characters: Percent Female: 0.383338810384	Percent Male: 0.616661189616	Ratio Fem/Mal: Ratio:0.621636024514
+Top 3 Main Characters: Percent Female: 0.489819461268	Percent Male: 0.510180538732	Ratio Fem/Mal: Ratio:0.96009044658
+Main Characters: Percent Female: 0.367154039285	Percent Male: 0.632845960715	Ratio Fem/Mal: Ratio:0.58016336056
+
+Fantasy
+Total Characters: Percent Female: 0.355886230929	Percent Male: 0.644113769071	Ratio Fem/Mal: Ratio:0.552520762662
+Top 3 Main Characters: Percent Female: 0.37377178587	Percent Male: 0.62622821413	Ratio Fem/Mal: Ratio:0.596861938566
+Main Characters: Percent Female: 0.374962688795	Percent Male: 0.625037311205	Ratio Fem/Mal: Ratio:0.599904489016
+
+Romance
+Total Characters: Percent Female: 0.353036635218	Percent Male: 0.646963364782	Ratio Fem/Mal: Ratio:0.545682575608
+Top 3 Main Characters: Percent Female: 0.368604854199	Percent Male: 0.631395145801	Ratio Fem/Mal: Ratio:0.583794247788
+Main Characters: Percent Female: 0.353884458683	Percent Male: 0.646115541317	Ratio Fem/Mal: Ratio:0.54771079792
+
+Science-Fiction
+Total Characters: Percent Female: 0.331094555143	Percent Male: 0.668905444857	Ratio Fem/Mal: Ratio:0.494979608386
+Top 3 Main Characters: Percent Female: 0.345423143351	Percent Male: 0.654576856649	Ratio Fem/Mal: Ratio:0.527704485488
+Main Characters: Percent Female: 0.334196891192	Percent Male: 0.665803108808	Ratio Fem/Mal: Ratio:0.501945525292
+
+Fanfiction
+Total Characters: Percent Female: 0.348158988885	Percent Male: 0.651841011115	Ratio Fem/Mal: Ratio:0.534116422485
+Top 3 Main Characters: Percent Female: 0.358160851996	Percent Male: 0.641839148004	Ratio Fem/Mal: Ratio:0.558022758677
+Main Characters: Percent Female: 0.329966560468	Percent Male: 0.670033439532	Ratio Fem/Mal: Ratio:0.492462824987
+
+Humor
+Total Characters: Percent Female: 0.34753158786	Percent Male: 0.65246841214	Ratio Fem/Mal: Ratio:0.532641245758
+Top 3 Main Characters: Percent Female: 0.390245004972	Percent Male: 0.609754995028	Ratio Fem/Mal: Ratio:0.640002965379
+Main Characters: Percent Female: 0.37893800813	Percent Male: 0.62106199187	Ratio Fem/Mal: Ratio:0.610145223972
+
+Mystery/Thriller
+Total Characters: Percent Female: 0.354561922014	Percent Male: 0.645438077986	Ratio Fem/Mal: Ratio:0.549335302806
+Top 3 Main Characters: Percent Female: 0.402910913728	Percent Male: 0.597089086272	Ratio Fem/Mal: Ratio:0.674791958171
+Main Characters: Percent Female: 0.415191462649	Percent Male: 0.584808537351	Ratio Fem/Mal: Ratio:0.709961356805
+
+Horror
+Total Characters: Percent Female: 0.345951990189	Percent Male: 0.654048009811	Ratio Fem/Mal: Ratio:0.528939749069
+Top 3 Main Characters: Percent Female: 0.40627089183	Percent Male: 0.59372910817	Ratio Fem/Mal: Ratio:0.684269789438
+Main Characters: Percent Female: 0.417437252312	Percent Male: 0.582562747688	Ratio Fem/Mal: Ratio:0.716553287982
+
+Adventure
+Total Characters: Percent Female: 0.346766818401	Percent Male: 0.653233181599	Ratio Fem/Mal: Ratio:0.530846913736
+Top 3 Main Characters: Percent Female: 0.378811745224	Percent Male: 0.621188254776	Ratio Fem/Mal: Ratio:0.609817945384
+Main Characters: Percent Female: 0.383185125303	Percent Male: 0.616814874697	Ratio Fem/Mal: Ratio:0.62123197903
+
+Paranormal
+Total Characters: Percent Female: 0.357429941003	Percent Male: 0.642570058997	Ratio Fem/Mal: Ratio:0.556250537974
+Top 3 Main Characters: Percent Female: 0.386798625879	Percent Male: 0.613201374121	Ratio Fem/Mal: Ratio:0.630785647592
+Main Characters: Percent Female: 0.410405972935	Percent Male: 0.589594027065	Ratio Fem/Mal: Ratio:0.696082311041
+
+Spiritual
+Total Characters: Percent Female: 0.362838515547	Percent Male: 0.637161484453	Ratio Fem/Mal: Ratio:0.569460842188
+Top 3 Main Characters: Percent Female: 0.409886714727	Percent Male: 0.590113285273	Ratio Fem/Mal: Ratio:0.694589877836
+Main Characters: Percent Female: 0.365477338476	Percent Male: 0.634522661524	Ratio Fem/Mal: Ratio:0.575987841945
+
+Action
+Total Characters: Percent Female: 0.321795535186	Percent Male: 0.678204464814	Ratio Fem/Mal: Ratio:0.474481593504
+Top 3 Main Characters: Percent Female: 0.343875383526	Percent Male: 0.656124616474	Ratio Fem/Mal: Ratio:0.524100719424
+Main Characters: Percent Female: 0.345273180685	Percent Male: 0.654726819315	Ratio Fem/Mal: Ratio:0.527354570637
+
+Non-Fiction
+Total Characters: Percent Female: 0.362257336343	Percent Male: 0.637742663657	Ratio Fem/Mal: Ratio:0.568030581906
+Top 3 Main Characters: Percent Female: 0.432971359624	Percent Male: 0.567028640376	Ratio Fem/Mal: Ratio:0.763579348191
+Main Characters: Percent Female: 0.386279683377	Percent Male: 0.613720316623	Ratio Fem/Mal: Ratio:0.629406706793
+
+Short-Story
+Total Characters: Percent Female: 0.364286174255	Percent Male: 0.635713825745	Ratio Fem/Mal: Ratio:0.573034846029
+Top 3 Main Characters: Percent Female: 0.421481160676	Percent Male: 0.578518839324	Ratio Fem/Mal: Ratio:0.72855217847
+Main Characters: Percent Female: 0.416245487365	Percent Male: 0.583754512635	Ratio Fem/Mal: Ratio:0.713048855906
+
+Vampire
+Total Characters: Percent Female: 0.350618679731	Percent Male: 0.649381320269	Ratio Fem/Mal: Ratio:0.539927264286
+Top 3 Main Characters: Percent Female: 0.340170837344	Percent Male: 0.659829162656	Ratio Fem/Mal: Ratio:0.515543805269
+Main Characters: Percent Female: 0.32352425994	Percent Male: 0.67647574006	Ratio Fem/Mal: Ratio:0.4782496116
+
+Random
+Total Characters: Percent Female: 0.35617346436	Percent Male: 0.64382653564	Ratio Fem/Mal: Ratio:0.553213396224
+Top 3 Main Characters: Percent Female: 0.416935680104	Percent Male: 0.583064319896	Ratio Fem/Mal: Ratio:0.715076649139
+Main Characters: Percent Female: 0.391703213103	Percent Male: 0.608296786897	Ratio Fem/Mal: Ratio:0.643934377989
+
+General-Fiction
+Total Characters: Percent Female: 0.363087791596	Percent Male: 0.636912208404	Ratio Fem/Mal: Ratio:0.570075101098
+Top 3 Main Characters: Percent Female: 0.404907447266	Percent Male: 0.595092552734	Ratio Fem/Mal: Ratio:0.68041087963
+Main Characters: Percent Female: 0.400688298918	Percent Male: 0.599311701082	Ratio Fem/Mal: Ratio:0.668580803938
+
+Werewolf
+Total Characters: Percent Female: 0.340295023681	Percent Male: 0.659704976319	Ratio Fem/Mal: Ratio:0.515829099212
+Top 3 Main Characters: Percent Female: 0.328549478571	Percent Male: 0.671450521429	Ratio Fem/Mal: Ratio:0.489313014266
+Main Characters: Percent Female: 0.299513683608	Percent Male: 0.700486316392	Ratio Fem/Mal: Ratio:0.427579635176
+
+Historical-Fiction
+Total Characters: Percent Female: 0.363702908452	Percent Male: 0.636297091548	Ratio Fem/Mal: Ratio:0.571592913567
+Top 3 Main Characters: Percent Female: 0.379511382565	Percent Male: 0.620488617435	Ratio Fem/Mal: Ratio:0.61163310962
+Main Characters: Percent Female: 0.396774193548	Percent Male: 0.603225806452	Ratio Fem/Mal: Ratio:0.657754010695
+
+ChickLit
+Total Characters: Percent Female: 0.370952821462	Percent Male: 0.629047178538	Ratio Fem/Mal: Ratio:0.589705882353
+Top 3 Main Characters: Percent Female: 0.403188588211	Percent Male: 0.596811411789	Ratio Fem/Mal: Ratio:0.675571177504
+Main Characters: Percent Female: 0.396987951807	Percent Male: 0.603012048193	Ratio Fem/Mal: Ratio:0.658341658342
+
