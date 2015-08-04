@@ -24,15 +24,15 @@ genFUn = dialogread.genFUn
 genMUn = dialogread.genMUn
 
 # EXERCISE: output static HTML file
-output_file('charcountsgraphs.html')
+output_file('alldatagraphs.html')
 
-def graphPer(genF, genM, titleName):
+def graphPer(genF, genM, titleName, h):
    female = np.array([genF[name] for name in genF], dtype=np.float)
    male = np.array([genM[name] for name in genM], dtype=np.float)
    # create a figure()
    p1 = figure(title=titleName, tools="",
                x_range=list(genF.keys()), y_range=[0, max(female + male)],
-               background_fill='#59636C', plot_width=800
+               background_fill='#59636C', plot_width=800, plot_height = h
        )
    
    # use the `rect` renderer to display stacked bars of the medal results. Note
@@ -49,7 +49,7 @@ def graphPer(genF, genM, titleName):
    #   - make the tick labels smaller
    #   - set the x-axis orientation to vertical, or angled
    p1.xgrid.grid_line_color = None
-   p1.axis.major_label_text_font_size = "6pt"
+   p1.axis.major_label_text_font_size = "8pt"
    p1.axis.major_label_standoff = 0
    p1.xaxis.major_label_orientation = np.pi/3
    p1.xaxis.major_label_standoff = 6
@@ -61,7 +61,7 @@ def graphPer(genF, genM, titleName):
 def graphNotStacked(genF, genM, titleName):   
    female = np.array([genF[name] for name in genF], dtype=np.float)
    male = np.array([genM[name] for name in genM], dtype=np.float)
-   p2 = figure(title=titleName, tools="", x_range=list(genF.keys()), y_range=[0, max(female + .1)], background_fill='#59636C', plot_width=1000, plot_height=300)
+   p2 = figure(title=titleName, tools="", x_range=list(genF.keys()), y_range=[0, max(female + .1)], background_fill='#59636C', plot_width=800, plot_height=300)
    # Categorical percentage coordinates can be used for positioning/grouping
    dial_fem = [c+":0.3" for c in genF.keys()]
    dial_mal = [c+":0.5" for c in genM.keys()]
@@ -74,18 +74,18 @@ def graphNotStacked(genF, genM, titleName):
    p2.rect(x=dial_fem, y=female/2, width=0.2, height=female, color="gold", alpha=0.6)
    
    p2.xgrid.grid_line_color = None
-   p2.axis.major_label_text_font_size = "6pt"
+   p2.axis.major_label_text_font_size = "8pt"
    p2.axis.major_label_standoff = 0
    p2.xaxis.major_label_orientation = np.pi/3
    p2.xaxis.major_label_standoff = 6
    p2.xaxis.major_tick_out = 0
    return p2
    
-p1 = graphPer(genFTot, genMTot, "Total Character Percentages (Gold = Female, Silver = Male)")
-p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, Silver = Male)")
-p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)")
-p4 = graphPer(genFPass, genFAct, "Female Active and Passive Percentages (Gold = Pass., Silver = Act.)")
-p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)")
+p1 = graphPer(genFTot, genMTot, "Total Character Percentages (Gold = Female, Silver = Male)", 600)
+p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, Silver = Male)", 600)
+p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)", 600)
+p4 = graphPer(genFPass, genFAct, "Fem. Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
+p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
 p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)")
 #p7 = graphPer(genMUn, genFUn, "Unique Speaking Characters Percentages (Gold = Female, Silver = Male)")
 

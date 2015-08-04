@@ -48,7 +48,7 @@ cats = {}
 for x in range (0, 25):
   cats[x] = Cat()
 
-nameList = Set([])
+nameList = defaultdict(Set)
 
 fdial = open("gendereddialogsmall.txt", 'w')
 
@@ -60,10 +60,10 @@ def addtoquote(tk):
    else:
       return " " + tk
 
-def checkUniq(tk):
+def checkUniq(tk, cat, storyid):
   if (names.isfemalename(tk) or names.ismalename(tk)):
-     if(tk not in nameList): 
-        nameList.add(tk)
+     if(tk not in nameList[storyid]): 
+        nameList[storyid].add(tk)
         if(names.isfemalename(tk)):
            cats[cat].femUniq += 1
         elif(names.ismalename(tk)):
@@ -127,19 +127,19 @@ def countVerbs(chapter, cat, storyid):
                  gender = "male"
                  cats[cat].malDialog += 1   
                  extractDialogBack(buff, gender, cat, storyid)
-              checkUniq(buff[len(buff) - 1])
+              checkUniq(buff[len(buff) - 1], cat, storyid)
               
            if(names.isfemalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "female"
                  cats[cat].femDialog += 1
-                 checkUniq(tk.lower_)
+                 checkUniq(tk.lower_, cat, storyid)
                  extractDialogBack(buff, gender, cat, storyid)
            if(names.ismalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "male"
                  cats[cat].malDialog += 1
-                 checkUniq(tk.lower_)
+                 checkUniq(tk.lower_, cat, storyid)
                  extractDialogBack(buff, gender, cat, storyid)
                  
            if(tk.lower_ == ("\"")):
@@ -170,7 +170,7 @@ for line in fileinput.input():
   cat = int(categories[storyid])
   countVerbs(chapter, cat, storyid)
   
-f = open("dialogtest.txt", 'w')
+f = open("dialogtiny.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(cats):
    gen = ""
@@ -180,5 +180,5 @@ for key in sorted(cats):
    if(cats[key].malDialog != 0): f.write(" Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)))
    f.write(" " + str(cats[key].femUniq) + " " + str(cats[key].malUniq))
    if(cats[key].malUniq != 0): f.write(" Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)))
-   f.write("\n") 
+   f.write("\n")
 f.close
