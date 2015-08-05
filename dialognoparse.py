@@ -27,6 +27,7 @@ ratings = {}
 
 N = 200000
 MAXBUFF = 50
+CONVOBUFFLENGTH = 150
 
 f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
 for line in f:
@@ -42,6 +43,8 @@ class Cat:
      self.malDialog = 0
      self.femUniq = 0
      self.malUniq = 0
+     self.femInit = 0
+     self.malInit = 0
      self.count = 0
 
 cats = {}
@@ -50,7 +53,7 @@ for x in range (0, 25):
 
 nameList = defaultdict(Set)
 
-fdial = open("gendereddialogsmall.txt", 'w')
+fdial = open("gendereddialog.txt", 'w')
 
 def addtoquote(tk):
    if(tk == "\""):
@@ -77,6 +80,13 @@ def addtoquote(tk):
    else:
       return " " + tk
 
+def checkInit(tk, gender, cat, inConvo):
+  if(inConvo == False):
+     if(gender == "female"):
+        cats[cat].femInit += 1
+     elif(gender == "male"):
+        cats[cat].malInit += 1
+
 def extractDialogBack(buff, gender, cat, storyid):
   #print(buff[len(buff) - 2])
   #
@@ -88,7 +98,6 @@ def extractDialogBack(buff, gender, cat, storyid):
         quote = addtoquote(buff[i]) + quote
      fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
      buff.reverse()
-     return True
   return False
                    
 def countVerbs(chapter, cat, storyid):
@@ -98,12 +107,19 @@ def countVerbs(chapter, cat, storyid):
   gend = ""
   quote = ""
   count = 0
+  convoBuff = CONVOBUFFLENGTH
+  inConvo = False
 #  for sen in chapter.split("." or "!" or "?"):
 #    if(cats[cat].count >= N): return
 #    if(cats[cat].count < N):
 #       cats[cat].count += 1
   try:
-     for tk in nlp(unicode(chapter), parse=False): 
+     for tk in nlp(unicode(chapter), parse=False):
+        convoBuff += 1
+        if (convoBuff > CONVOBUFFLENGTH):
+           inConvo = False
+        else:
+           inConvo = True 
         if(len(buff) >= 2):
            if(inquote == True):
              if(tk.lower_== ("\"") or count >= 30):
@@ -112,6 +128,7 @@ def countVerbs(chapter, cat, storyid):
                gend = ""
                quote = ""
                count = 0
+               convoBuff = 0
              else:
                count += 1
                quote += addtoquote(tk.lower_)
@@ -123,10 +140,14 @@ def countVerbs(chapter, cat, storyid):
                  gender = "female"
                  cats[cat].femDialog += 1
                  extractDialogBack(buff, gender, cat, storyid)
+                 checkInit(buff[len(buff) - 1], gender, cat, inConvo)
+                 convoBuff = 0
               if (buff[len(buff) - 1] == "he" or names.ismalename(buff[len(buff) - 1])):
                  gender = "male"
                  cats[cat].malDialog += 1   
                  extractDialogBack(buff, gender, cat, storyid)
+                 checkInit(buff[len(buff) - 1], gender, cat, inConvo)
+                 convoBuff = 0
               checkUniq(buff[len(buff) - 1], cat, storyid)
               
            if(names.isfemalename(tk.lower_)):
@@ -135,12 +156,16 @@ def countVerbs(chapter, cat, storyid):
                  cats[cat].femDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
                  extractDialogBack(buff, gender, cat, storyid)
+                 checkInit(tk.lower_, gender, cat, inConvo)
+                 convoBuff = 0
            if(names.ismalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "male"
                  cats[cat].malDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
                  extractDialogBack(buff, gender, cat, storyid)
+                 checkInit(tk.lower_, gender, cat, inConvo)
+                 convoBuff = 0
                  
            if(tk.lower_ == ("\"")):
              if(speakerverb(bufftk[len(bufftk) - 1])):
@@ -170,7 +195,7 @@ for line in fileinput.input():
   cat = int(categories[storyid])
   countVerbs(chapter, cat, storyid)
   
-f = open("dialogtiny.txt", 'w')
+f = open("dialog.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(cats):
    gen = ""
@@ -180,5 +205,7 @@ for key in sorted(cats):
    if(cats[key].malDialog != 0): f.write(" Ratio:" + str(cats[key].femDialog/float(cats[key].malDialog)))
    f.write(" " + str(cats[key].femUniq) + " " + str(cats[key].malUniq))
    if(cats[key].malUniq != 0): f.write(" Ratio:" + str(cats[key].femUniq/float(cats[key].malUniq)))
+   f.write(" " + str(cats[key].femInit) + " " + str(cats[key].malInit))
+   if(cats[key].malInit != 0): f.write(" Ratio:" + str(cats[key].femInit/float(cats[key].malInit)))
    f.write("\n")
 f.close
