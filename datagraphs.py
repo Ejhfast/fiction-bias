@@ -3,6 +3,7 @@ import graph
 import charcountsread
 import actpass
 import dialogread
+from sets import Set
 
 from bokeh.plotting import figure, output_file, show, VBox
 
@@ -22,6 +23,8 @@ genFDial = dialogread.genFTot
 genMDial = dialogread.genMTot
 genFUn = dialogread.genFUn
 genMUn = dialogread.genMUn
+genFInit = dialogread.genFInit
+genMInit = dialogread.genMInit
 
 # EXERCISE: output static HTML file
 output_file('alldatagraphs.html')
@@ -58,10 +61,14 @@ def graphPer(genF, genM, titleName, h):
 
    # show the plots arrayed in a VBox
 
-def graphNotStacked(genF, genM, titleName):   
+def graphNotStacked(genF, genM, titleName, maxgen):   
    female = np.array([genF[name] for name in genF], dtype=np.float)
    male = np.array([genM[name] for name in genM], dtype=np.float)
-   p2 = figure(title=titleName, tools="", x_range=list(genF.keys()), y_range=[0, max(female + .1)], background_fill='#59636C', plot_width=800, plot_height=300)
+   if maxgen == "female":
+     maxarr = female
+   else:
+     maxarr = male
+   p2 = figure(title=titleName, tools="", x_range=list(genF.keys()), y_range=[0, max(maxarr) + .1], background_fill='#59636C', plot_width=800, plot_height=300)
    # Categorical percentage coordinates can be used for positioning/grouping
    dial_fem = [c+":0.3" for c in genF.keys()]
    dial_mal = [c+":0.5" for c in genM.keys()]
@@ -86,7 +93,8 @@ p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, 
 p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)", 600)
 p4 = graphPer(genFPass, genFAct, "Fem. Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
 p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
-p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)")
-#p7 = graphPer(genMUn, genFUn, "Unique Speaking Characters Percentages (Gold = Female, Silver = Male)")
+p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)", "female")
+p7 = graphNotStacked(genFUn, genMUn, "Unique Speaking Char. Perc. (Gold = Female, Silver = Male)", "female")
+p8 = graphNotStacked(genFInit, genMInit, "Char. Initiating Dialogue Per. (Gold = Female, Silver = Male)", "female")
 
-show(VBox(p1, p2, p3, p4, p5, p6))
+show(VBox(p1, p2, p3, p4, p5, p6, p7, p8))
