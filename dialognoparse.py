@@ -9,7 +9,6 @@ import graph
 from speakerverbs import speakerverb
 from sets import Set
 import string
-from collections import deque
 
 
 nlp = spacy.en.English()
@@ -52,6 +51,12 @@ for x in range (0, 25):
   cats[x] = Cat()
 
 nameList = defaultdict(Set)
+numFemSpeakers = defaultdict(int)
+numMalSpeakers = defaultdict(int)
+numFemUniq = defaultdict(int)
+numMalUniq = defaultdict(int)
+numFemInit = defaultdict(int)
+numMalInit = defaultdict(int)
 
 fdial = open("gendereddialog.txt", 'w')
 
@@ -69,8 +74,10 @@ def checkUniq(tk, cat, storyid):
         nameList[storyid].add(tk)
         if(names.isfemalename(tk)):
            cats[cat].femUniq += 1
+           numFemUniq[storyid] += 1
         elif(names.ismalename(tk)):
            cats[cat].malUniq += 1
+           numMalUniq[storyid] += 1
 
 def addtoquote(tk):
    if(tk == "\""):
@@ -80,12 +87,14 @@ def addtoquote(tk):
    else:
       return " " + tk
 
-def checkInit(tk, gender, cat, inConvo):
+def checkInit(tk, gender, cat, inConvo, storyid):
   if(inConvo == False):
      if(gender == "female"):
         cats[cat].femInit += 1
+        numFemInit[storyid] += 1
      elif(gender == "male"):
         cats[cat].malInit += 1
+        numFemInit[storyid] += 1
 
 def extractDialogBack(buff, gender, cat, storyid):
   #print(buff[len(buff) - 2])
@@ -136,17 +145,18 @@ def countVerbs(chapter, cat, storyid):
                 
            if(speakerverb(tk.lemma_)):
               if (buff[len(buff) - 1] == "she" or names.isfemalename(buff[len(buff) - 1])):
-                 if(tk.lemma == "state"): print buff[len(buff) - 1]
                  gender = "female"
                  cats[cat].femDialog += 1
+                 numFemSpeakers[storyid] += 1
                  extractDialogBack(buff, gender, cat, storyid)
-                 checkInit(buff[len(buff) - 1], gender, cat, inConvo)
+                 checkInit(buff[len(buff) - 1], gender, cat, inConvo, storyid)
                  convoBuff = 0
               if (buff[len(buff) - 1] == "he" or names.ismalename(buff[len(buff) - 1])):
                  gender = "male"
-                 cats[cat].malDialog += 1   
+                 cats[cat].malDialog += 1
+                 numMalSpeakers[storyid] += 1   
                  extractDialogBack(buff, gender, cat, storyid)
-                 checkInit(buff[len(buff) - 1], gender, cat, inConvo)
+                 checkInit(buff[len(buff) - 1], gender, cat, inConvo, storyid)
                  convoBuff = 0
               checkUniq(buff[len(buff) - 1], cat, storyid)
               
@@ -155,16 +165,18 @@ def countVerbs(chapter, cat, storyid):
                  gender = "female"
                  cats[cat].femDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
+                 numFemSpeakers[storyid] += 1
                  extractDialogBack(buff, gender, cat, storyid)
-                 checkInit(tk.lower_, gender, cat, inConvo)
+                 checkInit(tk.lower_, gender, cat, inConvo, storyid)
                  convoBuff = 0
            if(names.ismalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "male"
                  cats[cat].malDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
+                 numMalSpeakers[storyid] += 1
                  extractDialogBack(buff, gender, cat, storyid)
-                 checkInit(tk.lower_, gender, cat, inConvo)
+                 checkInit(tk.lower_, gender, cat, inConvo, storyid)
                  convoBuff = 0
                  
            if(tk.lower_ == ("\"")):
@@ -196,6 +208,7 @@ for line in fileinput.input():
   countVerbs(chapter, cat, storyid)
   
 f = open("dialog.txt", 'w')
+f2 = open("storydialog.txt", 'w')
 genre = graph.getGenres()
 for key in sorted(cats):
    gen = ""
@@ -209,3 +222,6 @@ for key in sorted(cats):
    if(cats[key].malInit != 0): f.write(" Ratio:" + str(cats[key].femInit/float(cats[key].malInit)))
    f.write("\n")
 f.close
+
+for key in sorted(nameList):
+   f2.write(key + "\t" + str(numFemSpeakers[key]) + "\t" + str(numMalSpeakers[key]) + "\t" + str(numFemUniq[key]) + "\t" + str(numMalUniq[key]) + "\t" + str(numFemInit[key]) + "\t" + str(numMalInit[key]) + "\n")
