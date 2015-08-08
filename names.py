@@ -18,10 +18,6 @@ for name in duplicate:
   femnames.remove(name)
   malnames.remove(name)
 
-print femnames
-print malnames
-print duplicate
-
 def ismalename(name):  
   if (name in malnames):
      return True

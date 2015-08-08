@@ -1,4 +1,4 @@
-f = open('charcountstemp.txt', 'r')
+f = open('charcounts.txt', 'r')
 fw = open('charcountsdata.txt', 'w')
 
 genFTot = {}

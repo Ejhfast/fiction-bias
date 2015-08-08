@@ -93,8 +93,8 @@ p2 = graphPer(genFTh, genMTh, "Top 3 Main Character Percentages (Gold = Female, 
 p3 = graphPer(genFOn, genMOn, "Main Character Percentages (Gold = Female, Silver = Male)", 600)
 p4 = graphPer(genFPass, genFAct, "Fem. Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
 p5 = graphPer(genMPass, genMAct, "Male Active and Passive Percentages (Gold = Pass., Silver = Act.)", 400)
-p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)", "female")
-p7 = graphNotStacked(genFUn, genMUn, "Unique Speaking Char. Perc. (Gold = Female, Silver = Male)", "female")
-p8 = graphNotStacked(genFInit, genMInit, "Char. Initiating Dialogue Per. (Gold = Female, Silver = Male)", "female")
+p6 = graphNotStacked(genFDial, genMDial, "Percent Dialogue Ratio to Char (Gold = Female, Silver = Male)", "male")
+p7 = graphNotStacked(genFUn, genMUn, "Unique Speaking Char. Perc. (Gold = Female, Silver = Male)", "male")
+p8 = graphNotStacked(genFInit, genMInit, "Char. Initiating Dialogue Per. (Gold = Female, Silver = Male)", "male")
 
 show(VBox(p1, p2, p3, p4, p5, p6, p7, p8))

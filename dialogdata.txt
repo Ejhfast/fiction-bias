@@ -1,308 +1,308 @@
 Other
 Percent for all Dialogue: 
-Percent Female: 0.352025193461	Ratio to female characters: 1.01337259462
-Percent Male: 0.647974806539	Ratio to male characters: 0.992881970657
-Ratio Fem/Mal: Ratio:0.54326987702	Norm Ratio Fem/Male: 1.02063752245
+Percent Female: 0.352025193461	Ratio to female characters: 0.868912832691
+Percent Male: 0.647974806539	Ratio to male characters: 1.0892766279
+Ratio Fem/Mal: Ratio:0.54326987702	Norm Ratio Fem/Male: 0.797697123428
 Unique Speakers: 
-Percent Female: 0.370264054367	Ratio to female characters: 1.0658766828
-Percent Male: 0.629735945633	Ratio to male characters: 0.964934840651
-Ratio Fem/Mal: Ratio:0.587967158195	Norm Ratio Fem/Male: 1.10461000877
+Percent Female: 0.370264054367	Ratio to female characters: 0.913932281837
+Percent Male: 0.629735945633	Ratio to male characters: 1.05861623076
+Ratio Fem/Mal: Ratio:0.587967158195	Norm Ratio Fem/Male: 0.863327290176
 Initiating Speakers: 
-Percent Female: 0.364456188646	Ratio to female characters: 1.04915761818
-Percent Male: 0.635543811354	Ratio to male characters: 0.97383414523
-Ratio Fem/Mal: Ratio:0.573455648745	Norm Ratio Fem/Male: 1.07734733201
+Percent Female: 0.364456188646	Ratio to female characters: 0.899596577605
+Percent Male: 0.635543811354	Ratio to male characters: 1.0683795307
+Ratio Fem/Mal: Ratio:0.573455648745	Norm Ratio Fem/Male: 0.842019667879
 
 Teen-Fiction
 Percent for all Dialogue: 
-Percent Female: 0.386903713083	Ratio to female characters: 1.06603604036
-Percent Male: 0.613096286917	Ratio to male characters: 0.962379070784
-Ratio Fem/Mal: Ratio:0.631065170904	Norm Ratio Fem/Male: 1.10770908546
+Percent Female: 0.386903713083	Ratio to female characters: 0.905409279229
+Percent Male: 0.613096286917	Ratio to male characters: 1.07058265808
+Ratio Fem/Mal: Ratio:0.631065170904	Norm Ratio Fem/Male: 0.845716369859
 Unique Speakers: 
-Percent Female: 0.3950924988	Ratio to female characters: 1.08859860672
-Percent Male: 0.6049075012	Ratio to male characters: 0.949525109412
-Ratio Fem/Mal: Ratio:0.653145312328	Norm Ratio Fem/Male: 1.14646637138
+Percent Female: 0.3950924988	Ratio to female characters: 0.924572193212
+Percent Male: 0.6049075012	Ratio to male characters: 1.05628348165
+Ratio Fem/Mal: Ratio:0.653145312328	Norm Ratio Fem/Male: 0.87530687479
 Initiating Speakers: 
-Percent Female: 0.395844834648	Ratio to female characters: 1.09067151815
-Percent Male: 0.604155165352	Ratio to male characters: 0.948344165587
-Ratio Fem/Mal: Ratio:0.655203923346	Norm Ratio Fem/Male: 1.15007985257
+Percent Female: 0.395844834648	Ratio to female characters: 0.926332765248
+Percent Male: 0.604155165352	Ratio to male characters: 1.05496976025
+Ratio Fem/Mal: Ratio:0.655203923346	Norm Ratio Fem/Male: 0.878065704016
 
 Poetry
 Percent for all Dialogue: 
-Percent Female: 0.418898894335	Ratio to female characters: 1.09276411098
-Percent Male: 0.581101105665	Ratio to male characters: 0.942334486831
-Ratio Fem/Mal: Ratio:0.720870929776	Norm Ratio Fem/Male: 1.15963506192
+Percent Female: 0.418898894335	Ratio to female characters: 0.945296898483
+Percent Male: 0.581101105665	Ratio to male characters: 1.04353183059
+Ratio Fem/Mal: Ratio:0.720870929776	Norm Ratio Fem/Male: 0.905863022831
 Unique Speakers: 
-Percent Female: 0.30390275112	Ratio to female characters: 0.792778458343
-Percent Male: 0.69609724888	Ratio to male characters: 1.12881637535
-Ratio Fem/Mal: Ratio:0.436580882353	Norm Ratio Fem/Male: 0.702309494844
+Percent Female: 0.30390275112	Ratio to female characters: 0.685793951617
+Percent Male: 0.69609724888	Ratio to male characters: 1.25004001767
+Ratio Fem/Mal: Ratio:0.436580882353	Norm Ratio Fem/Male: 0.548617597773
 Initiating Speakers: 
-Percent Female: 0.418803418803	Ratio to female characters: 1.09251504794
-Percent Male: 0.581196581197	Ratio to male characters: 0.942489313393
-Ratio Fem/Mal: Ratio:0.720588235294	Norm Ratio Fem/Male: 1.15918030307
+Percent Female: 0.418803418803	Ratio to female characters: 0.945081446199
+Percent Male: 0.581196581197	Ratio to male characters: 1.04370328399
+Ratio Fem/Mal: Ratio:0.720588235294	Norm Ratio Fem/Male: 0.90550778243
 
 Fantasy
 Percent for all Dialogue: 
-Percent Female: 0.396031895287	Ratio to female characters: 1.11280476981
-Percent Male: 0.603968104713	Ratio to male characters: 0.937673022552
-Ratio Fem/Mal: Ratio:0.655716572112	Norm Ratio Fem/Male: 1.18677272679
+Percent Female: 0.396031895287	Ratio to female characters: 0.932691176415
+Percent Male: 0.603968104713	Ratio to male characters: 1.04967107047
+Ratio Fem/Mal: Ratio:0.655716572112	Norm Ratio Fem/Male: 0.888555665341
 Unique Speakers: 
-Percent Female: 0.384161893214	Ratio to female characters: 1.07945140842
-Percent Male: 0.615838106786	Ratio to male characters: 0.956101447224
-Ratio Fem/Mal: Ratio:0.623803381085	Norm Ratio Fem/Male: 1.12901346563
+Percent Female: 0.384161893214	Ratio to female characters: 0.90473624064
+Percent Male: 0.615838106786	Ratio to male characters: 1.07030063301
+Ratio Fem/Mal: Ratio:0.623803381085	Norm Ratio Fem/Male: 0.845310385456
 Initiating Speakers: 
-Percent Female: 0.394835806173	Ratio to female characters: 1.10944389487
-Percent Male: 0.605164193827	Ratio to male characters: 0.939529975736
-Ratio Fem/Mal: Ratio:0.652444097322	Norm Ratio Fem/Male: 1.18084991807
+Percent Female: 0.394835806173	Ratio to female characters: 0.929874277635
+Percent Male: 0.605164193827	Ratio to male characters: 1.05174982286
+Ratio Fem/Mal: Ratio:0.652444097322	Norm Ratio Fem/Male: 0.884121164007
 
 Romance
 Percent for all Dialogue: 
-Percent Female: 0.377224265136	Ratio to female characters: 1.06851308761
-Percent Male: 0.622775734864	Ratio to male characters: 0.962613601892
-Ratio Fem/Mal: Ratio:0.60571445549	Norm Ratio Fem/Male: 1.11001245516
+Percent Female: 0.377224265136	Ratio to female characters: 0.914474643238
+Percent Male: 0.622775734864	Ratio to male characters: 1.06005066012
+Ratio Fem/Mal: Ratio:0.60571445549	Norm Ratio Fem/Male: 0.862670698337
 Unique Speakers: 
-Percent Female: 0.378040508812	Ratio to female characters: 1.07082515269
-Percent Male: 0.621959491188	Ratio to male characters: 0.961351948263
-Ratio Fem/Mal: Ratio:0.607821753939	Norm Ratio Fem/Male: 1.11387422122
+Percent Female: 0.378040508812	Ratio to female characters: 0.916453397561
+Percent Male: 0.621959491188	Ratio to male characters: 1.05866130019
+Ratio Fem/Mal: Ratio:0.607821753939	Norm Ratio Fem/Male: 0.86567195513
 Initiating Speakers: 
-Percent Female: 0.377371142153	Ratio to female characters: 1.06892912663
-Percent Male: 0.622628857847	Ratio to male characters: 0.962386576645
-Ratio Fem/Mal: Ratio:0.606093240616	Norm Ratio Fem/Male: 1.11070660437
+Percent Female: 0.377371142153	Ratio to female characters: 0.914830705456
+Percent Male: 0.622628857847	Ratio to male characters: 1.05980065507
+Ratio Fem/Mal: Ratio:0.606093240616	Norm Ratio Fem/Male: 0.863210171724
 
 Science-Fiction
 Percent for all Dialogue: 
-Percent Female: 0.373343332424	Ratio to female characters: 1.12760335869
-Percent Male: 0.626656667576	Ratio to male characters: 0.936838939485
-Ratio Fem/Mal: Ratio:0.595770142954	Norm Ratio Fem/Male: 1.20362562995
+Percent Female: 0.373343332424	Ratio to female characters: 0.988488906343
+Percent Male: 0.626656667576	Ratio to male characters: 1.00698629763
+Ratio Fem/Mal: Ratio:0.595770142954	Norm Ratio Fem/Male: 0.98163094043
 Unique Speakers: 
-Percent Female: 0.360333080999	Ratio to female characters: 1.08830868827
-Percent Male: 0.639666919001	Ratio to male characters: 0.956289000065
-Ratio Fem/Mal: Ratio:0.563313609467	Norm Ratio Fem/Male: 1.1380541742
+Percent Female: 0.360333080999	Ratio to female characters: 0.954042090007
+Percent Male: 0.639666919001	Ratio to male characters: 1.02789271352
+Ratio Fem/Mal: Ratio:0.563313609467	Norm Ratio Fem/Male: 0.928153373845
 Initiating Speakers: 
-Percent Female: 0.358465011287	Ratio to female characters: 1.08266658487
-Percent Male: 0.641534988713	Ratio to male characters: 0.959081726192
-Ratio Fem/Mal: Ratio:0.558761435609	Norm Ratio Fem/Male: 1.12885748452
+Percent Female: 0.358465011287	Ratio to female characters: 0.949096063048
+Percent Male: 0.641534988713	Ratio to male characters: 1.03089454962
+Ratio Fem/Mal: Ratio:0.558761435609	Norm Ratio Fem/Male: 0.920652906159
 
 Fanfiction
 Percent for all Dialogue: 
-Percent Female: 0.343579542275	Ratio to female characters: 0.986846679945
-Percent Male: 0.656420457725	Ratio to male characters: 1.00702540425
-Ratio Fem/Mal: Ratio:0.523413824525	Norm Ratio Fem/Male: 0.97996205039
+Percent Female: 0.343579542275	Ratio to female characters: 0.914382613143
+Percent Male: 0.656420457725	Ratio to male characters: 1.05153508117
+Ratio Fem/Mal: Ratio:0.523413824525	Norm Ratio Fem/Male: 0.869569289242
 Unique Speakers: 
-Percent Female: 0.356477192077	Ratio to female characters: 1.02389196734
-Percent Male: 0.643522807923	Ratio to male characters: 0.987238907878
-Ratio Fem/Mal: Ratio:0.553946476625	Norm Ratio Fem/Male: 1.03712683847
+Percent Female: 0.356477192077	Ratio to female characters: 0.948707668271
+Percent Male: 0.643522807923	Ratio to male characters: 1.03087403828
+Ratio Fem/Mal: Ratio:0.553946476625	Norm Ratio Fem/Male: 0.920294461832
 Initiating Speakers: 
-Percent Female: 0.345980287273	Ratio to female characters: 0.993742222139
-Percent Male: 0.654019712727	Ratio to male characters: 1.00334238192
-Ratio Fem/Mal: Ratio:0.529005900801	Norm Ratio Fem/Male: 0.990431820725
+Percent Female: 0.345980287273	Ratio to female characters: 0.920771816266
+Percent Male: 0.654019712727	Ratio to male characters: 1.04768927235
+Ratio Fem/Mal: Ratio:0.529005900801	Norm Ratio Fem/Male: 0.878859639562
 
 Humor
 Percent for all Dialogue: 
-Percent Female: 0.384931615147	Ratio to female characters: 1.10761619546
-Percent Male: 0.615068384853	Ratio to male characters: 0.942679175587
-Ratio Fem/Mal: Ratio:0.625835475578	Norm Ratio Fem/Male: 1.17496622833
+Percent Female: 0.384931615147	Ratio to female characters: 0.981904991819
+Percent Male: 0.615068384853	Ratio to male characters: 1.01166775772
+Ratio Fem/Mal: Ratio:0.625835475578	Norm Ratio Fem/Male: 0.970580493769
 Unique Speakers: 
-Percent Female: 0.371391076115	Ratio to female characters: 1.06865415717
-Percent Male: 0.628608923885	Ratio to male characters: 0.963431964197
-Ratio Fem/Mal: Ratio:0.590814196242	Norm Ratio Fem/Male: 1.10921600786
+Percent Female: 0.371391076115	Ratio to female characters: 0.947365031099
+Percent Male: 0.628608923885	Ratio to male characters: 1.03393930849
+Ratio Fem/Mal: Ratio:0.590814196242	Norm Ratio Fem/Male: 0.916267544253
 Initiating Speakers: 
-Percent Female: 0.389007613196	Ratio to female characters: 1.11934462013
-Percent Male: 0.610992386804	Ratio to male characters: 0.936432132859
-Ratio Fem/Mal: Ratio:0.636681604547	Norm Ratio Fem/Male: 1.19532914437
+Percent Female: 0.389007613196	Ratio to female characters: 0.99230227454
+Percent Male: 0.610992386804	Ratio to male characters: 1.00496353441
+Ratio Fem/Mal: Ratio:0.636681604547	Norm Ratio Fem/Male: 0.987401274343
 
 Mystery/Thriller
 Percent for all Dialogue: 
-Percent Female: 0.396908019538	Ratio to female characters: 1.11943216374
-Percent Male: 0.603091980462	Ratio to male characters: 0.934391696169
-Ratio Fem/Mal: Ratio:0.658121865978	Norm Ratio Fem/Male: 1.19803308219
+Percent Female: 0.396908019538	Ratio to female characters: 0.938190629091
+Percent Male: 0.603091980462	Ratio to male characters: 1.04532315386
+Ratio Fem/Mal: Ratio:0.658121865978	Norm Ratio Fem/Male: 0.897512530573
 Unique Speakers: 
-Percent Female: 0.40340673037	Ratio to female characters: 1.13776100964
-Percent Male: 0.59659326963	Ratio to male characters: 0.924323014055
-Ratio Fem/Mal: Ratio:0.676183844011	Norm Ratio Fem/Male: 1.23091277869
+Percent Female: 0.40340673037	Ratio to female characters: 0.953551945324
+Percent Male: 0.59659326963	Ratio to male characters: 1.03405911268
+Ratio Fem/Mal: Ratio:0.676183844011	Norm Ratio Fem/Male: 0.922144521166
 Initiating Speakers: 
-Percent Female: 0.388591097798	Ratio to female characters: 1.09597526884
-Percent Male: 0.611408902202	Ratio to male characters: 0.947277396632
-Ratio Fem/Mal: Ratio:0.635566633719	Norm Ratio Fem/Male: 1.15697394737
+Percent Female: 0.388591097798	Ratio to female characters: 0.91853152004
+Percent Male: 0.611408902202	Ratio to male characters: 1.05973865124
+Ratio Fem/Mal: Ratio:0.635566633719	Norm Ratio Fem/Male: 0.866752872477
 
 Horror
 Percent for all Dialogue: 
-Percent Female: 0.411500381948	Ratio to female characters: 1.18947250953
-Percent Male: 0.588499618052	Ratio to male characters: 0.899780458352
-Ratio Fem/Mal: Ratio:0.699236446933	Norm Ratio Fem/Male: 1.32195859389
+Percent Female: 0.411500381948	Ratio to female characters: 0.967725666337
+Percent Male: 0.588499618052	Ratio to male characters: 1.02387683732
+Ratio Fem/Mal: Ratio:0.699236446933	Norm Ratio Fem/Male: 0.945158275939
 Unique Speakers: 
-Percent Female: 0.401917840653	Ratio to female characters: 1.16177346005
-Percent Male: 0.598082159347	Ratio to male characters: 0.914431586634
-Ratio Fem/Mal: Ratio:0.672011084719	Norm Ratio Fem/Male: 1.27048701842
+Percent Female: 0.401917840653	Ratio to female characters: 0.945190398895
+Percent Male: 0.598082159347	Ratio to male characters: 1.04054862737
+Ratio Fem/Mal: Ratio:0.672011084719	Norm Ratio Fem/Male: 0.908357739404
 Initiating Speakers: 
-Percent Female: 0.413017957302	Ratio to female characters: 1.19385917415
-Percent Male: 0.586982042698	Ratio to male characters: 0.89746017707
-Ratio Fem/Mal: Ratio:0.70362962963	Norm Ratio Fem/Male: 1.33026423306
+Percent Female: 0.413017957302	Ratio to female characters: 0.971294549102
+Percent Male: 0.586982042698	Ratio to male characters: 1.02123654631
+Ratio Fem/Mal: Ratio:0.70362962963	Norm Ratio Fem/Male: 0.951096543319
 
 Adventure
 Percent for all Dialogue: 
-Percent Female: 0.403104455513	Ratio to female characters: 1.16246547859
-Percent Male: 0.596895544487	Ratio to male characters: 0.9137557021
-Ratio Fem/Mal: Ratio:0.675335004988	Norm Ratio Fem/Male: 1.27218410339
+Percent Female: 0.403104455513	Ratio to female characters: 0.968009074703
+Percent Male: 0.596895544487	Ratio to male characters: 1.02282807413
+Ratio Fem/Mal: Ratio:0.675335004988	Norm Ratio Fem/Male: 0.946404483008
 Unique Speakers: 
-Percent Female: 0.383366394828	Ratio to female characters: 1.1055452093
-Percent Male: 0.616633605172	Ratio to male characters: 0.943971651384
-Ratio Fem/Mal: Ratio:0.621708566663	Norm Ratio Fem/Male: 1.17116357009
+Percent Female: 0.383366394828	Ratio to female characters: 0.920610387838
+Percent Male: 0.616633605172	Ratio to male characters: 1.05665081378
+Ratio Fem/Mal: Ratio:0.621708566663	Norm Ratio Fem/Male: 0.871253185853
 Initiating Speakers: 
-Percent Female: 0.405236522607	Ratio to female characters: 1.16861389586
-Percent Male: 0.594763477393	Ratio to male characters: 0.91049183377
-Ratio Fem/Mal: Ratio:0.681340630368	Norm Ratio Fem/Male: 1.28349739395
+Percent Female: 0.405236522607	Ratio to female characters: 0.973128989073
+Percent Male: 0.594763477393	Ratio to male characters: 1.01917460729
+Ratio Fem/Mal: Ratio:0.681340630368	Norm Ratio Fem/Male: 0.95482067755
 
 Paranormal
 Percent for all Dialogue: 
-Percent Female: 0.414309080996	Ratio to female characters: 1.15913367479
-Percent Male: 0.585690919004	Ratio to male characters: 0.911481807786
-Ratio Fem/Mal: Ratio:0.70738518825	Norm Ratio Fem/Male: 1.27170247929
+Percent Female: 0.414309080996	Ratio to female characters: 0.990831720808
+Percent Male: 0.585690919004	Ratio to male characters: 1.00658864208
+Ratio Fem/Mal: Ratio:0.70738518825	Norm Ratio Fem/Male: 0.984346215906
 Unique Speakers: 
-Percent Female: 0.39640625	Ratio to female characters: 1.10904601021
-Percent Male: 0.60359375	Ratio to male characters: 0.939343098155
-Ratio Fem/Mal: Ratio:0.656743463629	Norm Ratio Fem/Male: 1.18066126466
+Percent Female: 0.39640625	Ratio to female characters: 0.948016601235
+Percent Male: 0.60359375	Ratio to male characters: 1.03735706576
+Ratio Fem/Mal: Ratio:0.656743463629	Norm Ratio Fem/Male: 0.913876843879
 Initiating Speakers: 
-Percent Female: 0.413338891205	Ratio to female characters: 1.15641932527
-Percent Male: 0.586661108795	Ratio to male characters: 0.912991666171
-Ratio Fem/Mal: Ratio:0.704561602956	Norm Ratio Fem/Male: 1.26662637581
+Percent Female: 0.413338891205	Ratio to female characters: 0.988511484867
+Percent Male: 0.586661108795	Ratio to male characters: 1.00825604377
+Ratio Fem/Mal: Ratio:0.704561602956	Norm Ratio Fem/Male: 0.98041711823
 
 Spiritual
 Percent for all Dialogue: 
-Percent Female: 0.376785586103	Ratio to female characters: 1.03843878188
-Percent Male: 0.623214413897	Ratio to male characters: 0.978110618899
-Ratio Fem/Mal: Ratio:0.60458419719	Norm Ratio Fem/Male: 1.06167826196
+Percent Female: 0.376785586103	Ratio to female characters: 0.947635341074
+Percent Male: 0.623214413897	Ratio to male characters: 1.03456294504
+Ratio Fem/Mal: Ratio:0.60458419719	Norm Ratio Fem/Male: 0.915976495797
 Unique Speakers: 
-Percent Female: 0.395683453237	Ratio to female characters: 1.09052219178
-Percent Male: 0.604316546763	Ratio to male characters: 0.94845115643
-Ratio Fem/Mal: Ratio:0.654761904762	Norm Ratio Fem/Male: 1.1497926745
+Percent Female: 0.395683453237	Ratio to female characters: 0.995164459565
+Percent Male: 0.604316546763	Ratio to male characters: 1.00319166632
+Ratio Fem/Mal: Ratio:0.654761904762	Norm Ratio Fem/Male: 0.9919983319
 Initiating Speakers: 
-Percent Female: 0.362916807006	Ratio to female characters: 1.00021577494
-Percent Male: 0.637083192994	Ratio to male characters: 0.999877124621
-Ratio Fem/Mal: Ratio:0.569653713984	Norm Ratio Fem/Male: 1.00033869194
+Percent Female: 0.362916807006	Ratio to female characters: 0.912754640499
+Percent Male: 0.637083192994	Ratio to male characters: 1.05758571958
+Ratio Fem/Mal: Ratio:0.569653713984	Norm Ratio Fem/Male: 0.863054997431
 
 Action
 Percent for all Dialogue: 
-Percent Female: 0.360883309662	Ratio to female characters: 1.12146773402
-Percent Male: 0.639116690338	Ratio to male characters: 0.942365796004
-Ratio Fem/Mal: Ratio:0.564659498208	Norm Ratio Fem/Male: 1.19005564376
+Percent Female: 0.360883309662	Ratio to female characters: 0.971351999819
+Percent Male: 0.639116690338	Ratio to male characters: 1.01693548791
+Ratio Fem/Mal: Ratio:0.564659498208	Norm Ratio Fem/Male: 0.955175634412
 Unique Speakers: 
-Percent Female: 0.337486602358	Ratio to female characters: 1.04876098471
-Percent Male: 0.662513397642	Ratio to male characters: 0.976863810273
-Ratio Fem/Mal: Ratio:0.509403437816	Norm Ratio Fem/Male: 1.07359999796
+Percent Female: 0.337486602358	Ratio to female characters: 0.908377520754
+Percent Male: 0.662513397642	Ratio to male characters: 1.05416334053
+Ratio Fem/Mal: Ratio:0.509403437816	Norm Ratio Fem/Male: 0.861704714845
 Initiating Speakers: 
-Percent Female: 0.35937007874	Ratio to female characters: 1.11676527312
-Percent Male: 0.64062992126	Ratio to male characters: 0.944597027145
-Ratio Fem/Mal: Ratio:0.560963618486	Norm Ratio Fem/Male: 1.18226634324
+Percent Female: 0.35937007874	Ratio to female characters: 0.967278993828
+Percent Male: 0.64062992126	Ratio to male characters: 1.01934327705
+Ratio Fem/Mal: Ratio:0.560963618486	Norm Ratio Fem/Male: 0.948923699805
 
 Non-Fiction
 Percent for all Dialogue: 
-Percent Female: 0.412948950594	Ratio to female characters: 1.13993260913
-Percent Male: 0.587051049406	Ratio to male characters: 0.920513998608
-Ratio Fem/Mal: Ratio:0.703429371282	Norm Ratio Fem/Male: 1.23836531639
+Percent Female: 0.412948950594	Ratio to female characters: 0.980090805785
+Percent Male: 0.587051049406	Ratio to male characters: 1.01449633947
+Ratio Fem/Mal: Ratio:0.703429371282	Norm Ratio Fem/Male: 0.966086093816
 Unique Speakers: 
-Percent Female: 0.40162037037	Ratio to female characters: 1.10866041921
-Percent Male: 0.59837962963	Ratio to male characters: 0.938277558849
-Ratio Fem/Mal: Ratio:0.671179883946	Norm Ratio Fem/Male: 1.18159110676
+Percent Female: 0.40162037037	Ratio to female characters: 0.953203614756
+Percent Male: 0.59837962963	Ratio to male characters: 1.03407351794
+Ratio Fem/Mal: Ratio:0.671179883946	Norm Ratio Fem/Male: 0.921794822339
 Initiating Speakers: 
-Percent Female: 0.428205565989	Ratio to female characters: 1.18204801678
-Percent Male: 0.571794434011	Ratio to male characters: 0.896591159092
-Ratio Fem/Mal: Ratio:0.748880262765	Norm Ratio Fem/Male: 1.31838018343
+Percent Female: 0.428205565989	Ratio to female characters: 1.01630077424
+Percent Male: 0.571794434011	Ratio to male characters: 0.988131033609
+Ratio Fem/Mal: Ratio:0.748880262765	Norm Ratio Fem/Male: 1.02850810234
 
 Short-Story
 Percent for all Dialogue: 
-Percent Female: 0.410713511796	Ratio to female characters: 1.12744743233
-Percent Male: 0.589286488204	Ratio to male characters: 0.92696818024
-Ratio Fem/Mal: Ratio:0.696967468314	Norm Ratio Fem/Male: 1.21627414658
+Percent Female: 0.410713511796	Ratio to female characters: 0.969831804562
+Percent Male: 0.589286488204	Ratio to male characters: 1.02216075856
+Ratio Fem/Mal: Ratio:0.696967468314	Norm Ratio Fem/Male: 0.948805553764
 Unique Speakers: 
-Percent Female: 0.407452213888	Ratio to female characters: 1.11849486114
-Percent Male: 0.592547786112	Ratio to male characters: 0.932098315491
-Ratio Fem/Mal: Ratio:0.687627603103	Norm Ratio Fem/Male: 1.19997519849
+Percent Female: 0.407452213888	Ratio to female characters: 0.962130790731
+Percent Male: 0.592547786112	Ratio to male characters: 1.02781771966
+Ratio Fem/Mal: Ratio:0.687627603103	Norm Ratio Fem/Male: 0.93609087713
 Initiating Speakers: 
-Percent Female: 0.414649580763	Ratio to female characters: 1.13825231389
-Percent Male: 0.585350419237	Ratio to male characters: 0.920776606598
-Ratio Fem/Mal: Ratio:0.708378378378	Norm Ratio Fem/Male: 1.23618726381
+Percent Female: 0.414649580763	Ratio to female characters: 0.979126178278
+Percent Male: 0.585350419237	Ratio to male characters: 1.01533335742
+Ratio Fem/Mal: Ratio:0.708378378378	Norm Ratio Fem/Male: 0.964339614297
 
 Vampire
 Percent for all Dialogue: 
-Percent Female: 0.354644944339	Ratio to female characters: 1.01148331461
-Percent Male: 0.645355055661	Ratio to male characters: 0.993799845357
-Ratio Fem/Mal: Ratio:0.549534618546	Norm Ratio Fem/Male: 1.01779379353
+Percent Female: 0.354644944339	Ratio to female characters: 0.85925949141
+Percent Male: 0.645355055661	Ratio to male characters: 1.09891294281
+Ratio Fem/Mal: Ratio:0.549534618546	Norm Ratio Fem/Male: 0.781917709707
 Unique Speakers: 
-Percent Female: 0.364371435867	Ratio to female characters: 1.03922425396
-Percent Male: 0.635628564133	Ratio to male characters: 0.978821755868
-Ratio Fem/Mal: Ratio:0.573245848956	Norm Ratio Fem/Male: 1.06170939472
+Percent Female: 0.364371435867	Ratio to female characters: 0.882825540486
+Percent Male: 0.635628564133	Ratio to male characters: 1.08235063756
+Ratio Fem/Mal: Ratio:0.573245848956	Norm Ratio Fem/Male: 0.815655767967
 Initiating Speakers: 
-Percent Female: 0.353568713795	Ratio to female characters: 1.00841379605
-Percent Male: 0.646431286205	Ratio to male characters: 0.995457162114
-Ratio Fem/Mal: Ratio:0.546954829292	Norm Ratio Fem/Male: 1.01301576244
+Percent Female: 0.353568713795	Ratio to female characters: 0.856651921995
+Percent Male: 0.646431286205	Ratio to male characters: 1.10074555211
+Ratio Fem/Mal: Ratio:0.546954829292	Norm Ratio Fem/Male: 0.77824699846
 
 Random
 Percent for all Dialogue: 
-Percent Female: 0.361499914305	Ratio to female characters: 1.01495465125
-Percent Male: 0.638500085695	Ratio to male characters: 0.991726886592
-Ratio Fem/Mal: Ratio:0.566170502406	Norm Ratio Fem/Male: 1.02342153366
+Percent Female: 0.361499914305	Ratio to female characters: 0.875949855739
+Percent Male: 0.638500085695	Ratio to male characters: 1.08716905749
+Ratio Fem/Mal: Ratio:0.566170502406	Norm Ratio Fem/Male: 0.805716323239
 Unique Speakers: 
-Percent Female: 0.382588418189	Ratio to female characters: 1.0741631718
-Percent Male: 0.617411581811	Ratio to male characters: 0.958971939853
-Ratio Fem/Mal: Ratio:0.619665113937	Norm Ratio Fem/Male: 1.12011950211
+Percent Female: 0.382588418189	Ratio to female characters: 0.92704937528
+Percent Male: 0.617411581811	Ratio to male characters: 1.05126182833
+Ratio Fem/Mal: Ratio:0.619665113937	Norm Ratio Fem/Male: 0.881844418102
 Initiating Speakers: 
-Percent Female: 0.380740941182	Ratio to female characters: 1.06897615707
-Percent Male: 0.619259058818	Ratio to male characters: 0.961841465889
-Ratio Fem/Mal: Ratio:0.614833058573	Norm Ratio Fem/Male: 1.11138497869
+Percent Female: 0.380740941182	Ratio to female characters: 0.922572756744
+Percent Male: 0.619259058818	Ratio to male characters: 1.05440751286
+Ratio Fem/Mal: Ratio:0.614833058573	Norm Ratio Fem/Male: 0.874967927955
 
 General-Fiction
 Percent for all Dialogue: 
-Percent Female: 0.438982717506	Ratio to female characters: 1.20902637783
-Percent Male: 0.561017282494	Ratio to male characters: 0.880839266529
-Ratio Fem/Mal: Ratio:0.78247628229	Norm Ratio Fem/Male: 1.37258456085
+Percent Female: 0.438982717506	Ratio to female characters: 1.0410755583
+Percent Male: 0.561017282494	Ratio to male characters: 0.970052026891
+Ratio Fem/Mal: Ratio:0.78247628229	Norm Ratio Fem/Male: 1.07321620845
 Unique Speakers: 
-Percent Female: 0.412058023572	Ratio to female characters: 1.13487160161
-Percent Male: 0.587941976428	Ratio to male characters: 0.92311305808
-Ratio Fem/Mal: Ratio:0.700848111025	Norm Ratio Fem/Male: 1.22939610882
+Percent Female: 0.412058023572	Ratio to female characters: 0.977221926591
+Percent Male: 0.587941976428	Ratio to male characters: 1.01660737329
+Ratio Fem/Mal: Ratio:0.700848111025	Norm Ratio Fem/Male: 0.96125795687
 Initiating Speakers: 
-Percent Female: 0.43758870281	Ratio to female characters: 1.2051870455
-Percent Male: 0.56241129719	Ratio to male characters: 0.883027974294
-Ratio Fem/Mal: Ratio:0.778058166677	Norm Ratio Fem/Male: 1.36483450194
+Percent Female: 0.43758870281	Ratio to female characters: 1.03776956339
+Percent Male: 0.56241129719	Ratio to male characters: 0.972462410356
+Ratio Fem/Mal: Ratio:0.778058166677	Norm Ratio Fem/Male: 1.06715648064
 
 Werewolf
 Percent for all Dialogue: 
-Percent Female: 0.34303737265	Ratio to female characters: 1.00805873956
-Percent Male: 0.65696262735	Ratio to male characters: 0.995843067632
-Ratio Fem/Mal: Ratio:0.522156601257	Norm Ratio Fem/Male: 1.01226666362
+Percent Female: 0.34303737265	Ratio to female characters: 0.857710972795
+Percent Male: 0.65696262735	Ratio to male characters: 1.09483768749
+Ratio Fem/Mal: Ratio:0.522156601257	Norm Ratio Fem/Male: 0.783413817953
 Unique Speakers: 
-Percent Female: 0.340652845972	Ratio to female characters: 1.00105150609
-Percent Male: 0.659347154028	Ratio to male characters: 0.999457602558
-Ratio Fem/Mal: Ratio:0.516651727229	Norm Ratio Fem/Male: 1.00159476853
+Percent Female: 0.340652845972	Ratio to female characters: 0.851748839045
+Percent Male: 0.659347154028	Ratio to male characters: 1.09881153557
+Ratio Fem/Mal: Ratio:0.516651727229	Norm Ratio Fem/Male: 0.775154620674
 Initiating Speakers: 
-Percent Female: 0.352152769541	Ratio to female characters: 1.03484548711
-Percent Male: 0.647847230459	Ratio to male characters: 0.982025683774
-Ratio Fem/Mal: Ratio:0.543573782497	Norm Ratio Fem/Male: 1.05378658034
+Percent Female: 0.352152769541	Ratio to female characters: 0.880502588397
+Percent Male: 0.647847230459	Ratio to male characters: 1.07964674719
+Ratio Fem/Mal: Ratio:0.543573782497	Norm Ratio Fem/Male: 0.815546928373
 
 Historical-Fiction
 Percent for all Dialogue: 
-Percent Female: 0.4256	Ratio to female characters: 1.17018585804
-Percent Male: 0.5744	Ratio to male characters: 0.902722969553
-Ratio Fem/Mal: Ratio:0.740947075209	Norm Ratio Fem/Male: 1.2962845718
+Percent Female: 0.4256	Ratio to female characters: 1.02826889353
+Percent Male: 0.5744	Ratio to male characters: 0.980036731255
+Ratio Fem/Mal: Ratio:0.740947075209	Norm Ratio Fem/Male: 1.04921464751
 Unique Speakers: 
-Percent Female: 0.405089058524	Ratio to female characters: 1.11379108913
-Percent Male: 0.594910941476	Ratio to male characters: 0.934957819827
-Ratio Fem/Mal: Ratio:0.680923866553	Norm Ratio Fem/Male: 1.19127415752
+Percent Female: 0.405089058524	Ratio to female characters: 0.97871352911
+Percent Male: 0.594910941476	Ratio to male characters: 1.01503233717
+Ratio Fem/Mal: Ratio:0.680923866553	Norm Ratio Fem/Male: 0.964219063046
 Initiating Speakers: 
-Percent Female: 0.438744719372	Ratio to female characters: 1.20632722251
-Percent Male: 0.561255280628	Ratio to male characters: 0.882064821736
-Ratio Fem/Mal: Ratio:0.781720430108	Norm Ratio Fem/Male: 1.36761742764
+Percent Female: 0.438744719372	Ratio to female characters: 1.06002713142
+Percent Male: 0.561255280628	Ratio to male characters: 0.957609315157
+Ratio Fem/Mal: Ratio:0.781720430108	Norm Ratio Fem/Male: 1.1069515664
 
 ChickLit
 Percent for all Dialogue: 
-Percent Female: 0.396600437477	Ratio to female characters: 1.0691398327
-Percent Male: 0.603399562523	Ratio to male characters: 0.959227833952
-Ratio Fem/Mal: Ratio:0.657276640737	Norm Ratio Fem/Male: 1.11458382968
+Percent Female: 0.396600437477	Ratio to female characters: 0.888349209898
+Percent Male: 0.603399562523	Ratio to male characters: 1.09004750938
+Ratio Fem/Mal: Ratio:0.657276640737	Norm Ratio Fem/Male: 0.814963753644
 Unique Speakers: 
-Percent Female: 0.424460431655	Ratio to female characters: 1.14424370728
-Percent Male: 0.575539568345	Ratio to male characters: 0.914938637325
-Ratio Fem/Mal: Ratio:0.7375	Norm Ratio Fem/Male: 1.2506234414
+Percent Female: 0.424460431655	Ratio to female characters: 0.950753084117
+Percent Male: 0.575539568345	Ratio to male characters: 1.03971814365
+Ratio Fem/Mal: Ratio:0.7375	Norm Ratio Fem/Male: 0.914433483653
 Initiating Speakers: 
-Percent Female: 0.412723243384	Ratio to female characters: 1.1126030576
-Percent Male: 0.587276756616	Ratio to male characters: 0.933597314561
-Ratio Fem/Mal: Ratio:0.702774694784	Norm Ratio Fem/Male: 1.19173763704
+Percent Female: 0.412723243384	Ratio to female characters: 0.924462840987
+Percent Male: 0.587276756616	Ratio to male characters: 1.06092149486
+Ratio Fem/Mal: Ratio:0.702774694784	Norm Ratio Fem/Male: 0.871377237117
 
