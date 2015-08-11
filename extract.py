@@ -9,7 +9,7 @@ import graph
 from speakerverbs import speakerverb
 from sets import Set
 import string
-
+import genderedterms
 
 nlp = spacy.en.English()
 
@@ -26,7 +26,9 @@ ratings = {}
 
 N = 200000
 MAXBUFF = 50
+MAXBUFFA = 3
 CONVOBUFFLENGTH = 150
+CONVOBUFF2LENGTH = 30
 
 f = open("/home/ubuntu/ebs/dataset/story_details/part-m-00000", "r")
 for line in f:
@@ -59,6 +61,8 @@ numFemInit = defaultdict(int)
 numMalInit = defaultdict(int)
 
 fdial = open("gendereddialog1.txt", 'w')
+fdial2 = open("gendereddialog21.txt", 'w')
+fadj = open("adjectives1.txt", 'w')
 
 def addtoquote(tk):
    if(tk == "\""):
@@ -96,7 +100,7 @@ def checkInit(tk, gender, cat, inConvo, storyid):
         cats[cat].malInit += 1
         numFemInit[storyid] += 1
 
-def extractDialogBack(buff, gender, cat, storyid):
+def extractDialogBack(buff, gender, cat, storyid, quotes):
   #print(buff[len(buff) - 2])
   #
   if(buff.count("\"") >= 2 and buff[len(buff) - 2] == "\""):
@@ -106,32 +110,48 @@ def extractDialogBack(buff, gender, cat, storyid):
         if(buff[i].count("\"") != 0): break
         quote = addtoquote(buff[i]) + quote
      fdial.write(quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+     if(len(quotes) == 1):
+        fdial2.write(quotes[0] + quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+        quotes.remove(quotes[0])
+     else:
+        quotes.append(quote + "\t" + gender + "\t")
      buff.reverse()
   return False
                    
 def countVerbs(chapter, cat, storyid):
   buff = []
   bufftk = []
+  buffA = []
   inquote = False
   gend = ""
   quote = ""
   count = 0
   convoBuff = CONVOBUFFLENGTH
   inConvo = False
+  convoBuff2 = CONVOBUFF2LENGTH
+  quotes = []
 #  for sen in chapter.split("." or "!" or "?"):
 #    if(cats[cat].count >= N): return
 #    if(cats[cat].count < N):
 #       cats[cat].count += 1
   try:
      for tk in nlp(unicode(chapter), parse=False):
+        #Dialogue extraction#
         convoBuff += 1
         if (convoBuff > CONVOBUFFLENGTH):
            inConvo = False
         else:
            inConvo = True 
+        if (convoBuff2 > CONVOBUFF2LENGTH) and len(quotes) > 0:
+           quotes.remove(quotes[0])
         if(len(buff) >= 2):
            if(inquote == True):
              if(tk.lower_== ("\"") or count >= 30):
+               if(len(quotes) == 1):
+                  fdial2.write(quotes[0] + quote + "\t" + gender + "\t" + str(cat) + "\t" + str(storyid) + "\n")
+                  quotes.remove(quotes[0])
+               else:
+                  quotes.append(quote + "\t" + gend + "\t")
                fdial.write(quote + "\t" + gend + "\t" + str(cat) + "\t" + str(storyid) + "\n")
                inquote = False
                gend = ""
@@ -148,14 +168,14 @@ def countVerbs(chapter, cat, storyid):
                  gender = "female"
                  cats[cat].femDialog += 1
                  numFemSpeakers[storyid] += 1
-                 extractDialogBack(buff, gender, cat, storyid)
+                 extractDialogBack(buff, gender, cat, storyid, quotes)
                  checkInit(buff[len(buff) - 1], gender, cat, inConvo, storyid)
                  convoBuff = 0
               if (buff[len(buff) - 1] == "he" or names.ismalename(buff[len(buff) - 1])):
                  gender = "male"
                  cats[cat].malDialog += 1
                  numMalSpeakers[storyid] += 1   
-                 extractDialogBack(buff, gender, cat, storyid)
+                 extractDialogBack(buff, gender, cat, storyid, quotes)
                  checkInit(buff[len(buff) - 1], gender, cat, inConvo, storyid)
                  convoBuff = 0
               checkUniq(buff[len(buff) - 1], cat, storyid)
@@ -166,7 +186,7 @@ def countVerbs(chapter, cat, storyid):
                  cats[cat].femDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
                  numFemSpeakers[storyid] += 1
-                 extractDialogBack(buff, gender, cat, storyid)
+                 extractDialogBack(buff, gender, cat, storyid, quotes)
                  checkInit(tk.lower_, gender, cat, inConvo, storyid)
                  convoBuff = 0
            if(names.ismalename(tk.lower_)):
@@ -175,7 +195,7 @@ def countVerbs(chapter, cat, storyid):
                  cats[cat].malDialog += 1
                  checkUniq(tk.lower_, cat, storyid)
                  numMalSpeakers[storyid] += 1
-                 extractDialogBack(buff, gender, cat, storyid)
+                 extractDialogBack(buff, gender, cat, storyid, quotes)
                  checkInit(tk.lower_, gender, cat, inConvo, storyid)
                  convoBuff = 0
                  
@@ -197,6 +217,31 @@ def countVerbs(chapter, cat, storyid):
         buff.append(tk.lower_)
         bufftk.append(tk.lemma_)
         
+        #Adjective extraction#
+        if(len(buffA) >= 2):
+           if(tk.pos_ == 'ADJ'):
+             if (buffA[len(buffA) - 1].lower_ == "her"):
+                fadj.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "female" + "\n")
+             if (buffA[len(buffA) - 1].lower_ == "him"):
+                fadj.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "male" + "\n")
+             
+             if (buffA[len(buffA) - 1].lemma_ == "be"):
+                if (buffA[len(buffA) - 2].lower_ == "she" or names.isfemalename(buffA[len(buffA) - 2].lower_) or genderedterms.isfemaleterm(buffA[len(buffA) - 2].lemma_)):
+                  fadj.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "female" + "\n")
+                if (buffA[len(buffA) - 2].lower_ == "he" or names.ismalename(buffA[len(buffA) - 2].lower_) or genderedterms.ismaleterm(buffA[len(buffA) - 2].lemma_)):
+                  fadj.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "male" + "\n")
+           
+           if(genderedterms.isfemaleterm(tk.lemma_)):
+              if (buffA[len(buffA) - 1].pos_ == 'ADJ'):
+                fadj.write(storyid + "\t" + str(cat) + "\t" + buffA[len(buffA) - 1].lower_ + "\t" + "female" + "\n")
+           elif(genderedterms.ismaleterm(tk.lemma_)):
+              if (buffA[len(buffA) - 1].pos_ == 'ADJ'):
+                fadj.write(storyid + "\t" + str(cat) + "\t" + buffA[len(buffA) - 1].lower_ + "\t" + "male" + "\n")
+                
+        if(len(buffA) >= MAXBUFFA):
+           buffA.remove(buffA[0])
+        if(tk.pos_ != 'ADV'):
+           buffA.append(tk)
   except UnicodeDecodeError:
       pass
            
