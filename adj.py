@@ -42,7 +42,7 @@ def countVerbs(chapter, cat, storyid):
            if(tk.pos_ == 'ADJ'):
              if (buff[len(buff) - 1].lower_ == "her"):
                 f.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "female" + "\n")
-             if (buff[len(buff) - 1].lower_ == "him"):
+             if (buff[len(buff) - 1].lower_ == "his"):
                 f.write(storyid + "\t" + str(cat) + "\t" + tk.lower_ + "\t" + "male" + "\n")
              
              if (buff[len(buff) - 1].lemma_ == "be"):
