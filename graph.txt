@@ -1,0 +1,22 @@
+1	Teen Fiction
+2	Poetry
+3	Fantasy
+4	Romance
+5	Science Fiction
+6	Fanfiction
+7	Humor
+8	Mystery / Thriller
+9	Horror
+10	Classics
+11	Adventure
+12	Paranormal
+13	Spiritual
+14	Action
+16	Non-Fiction
+17	Short Story
+18	Vampire
+19	Random
+21	General Fiction
+22	Werewolf
+23	Historical Fiction
+24	ChickLit

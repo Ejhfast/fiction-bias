@@ -7,7 +7,7 @@ def makehistogram(arr, binnum):
 
 def getGenres():
    genre = {}
-   f = open("/home/ubuntu/ebs/bias/metadata/categories/categories/part-m-00000", 'r')
+   f = open("graph.txt", 'r')
    for line in f:
      catID, cat = [x.rstrip() for x in line.split("\t")]
      catnum = int(catID)
