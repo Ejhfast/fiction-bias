@@ -1,6 +1,6 @@
 from sets import Set
 
-f = open("/home/ubuntu/ebs/names.txt", 'r')
+f = open("names.txt", 'r')
 malnames = Set([])
 femnames = Set([])
 for line in f:
