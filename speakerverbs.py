@@ -1,7 +1,7 @@
 from sets import Set
 import spacy.en
 
-f = open("/home/ubuntu/ebs/bias/speakerverbs.txt", 'r')
+f = open("speakerverbs.txt", 'r')
 # fi2 = open("/home/ubuntu/ebs/bias/actualspeakerverbs.txt", 'w')
 
 nlp = spacy.en.English()
