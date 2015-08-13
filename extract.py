@@ -18,10 +18,6 @@ MAXBUFFA = 3
 CONVOBUFFLENGTH = 150
 CONVOBUFF2LENGTH = 30
 
-dial = []
-dial2 = []
-adj = []
-
 def addtoquote(tk):
    if(tk == "\""):
       return ""
@@ -30,7 +26,7 @@ def addtoquote(tk):
    else:
       return " " + tk
 
-def extractDialogBack(buff, gender, quotes):
+def extractDialogBack(buff, gender, quotes, dial, dial2):
   #print(buff[len(buff) - 2])
   #
   if(buff.count("\"") >= 2 and buff[len(buff) - 2] == "\""):
@@ -47,8 +43,11 @@ def extractDialogBack(buff, gender, quotes):
         quotes.append(quote + "\t" + gender + "\t")
      buff.reverse()
   return False
-                   
+
 def analyze(chapter):
+  dial = []
+  dial2 = []
+  adj = []
   buff = []
   bufftk = []
   buffA = []
@@ -67,7 +66,7 @@ def analyze(chapter):
         if (convoBuff > CONVOBUFFLENGTH):
            inConvo = False
         else:
-           inConvo = True 
+           inConvo = True
         if (convoBuff2 > CONVOBUFF2LENGTH) and len(quotes) > 0:
            quotes.remove(quotes[0])
         if(len(buff) >= 2):
@@ -88,43 +87,43 @@ def analyze(chapter):
                count += 1
                quote += addtoquote(tk.lower_)
              continue
-                
+
            if(speakerverb(tk.lemma_)):
               if (buff[len(buff) - 1] == "she" or names.isfemalename(buff[len(buff) - 1])):
                  gender = "female"
-                 extractDialogBack(buff, gender, quotes)
+                 extractDialogBack(buff, gender, quotes, dial, dial2)
                  convoBuff = 0
               if (buff[len(buff) - 1] == "he" or names.ismalename(buff[len(buff) - 1])):
-                 gender = "male" 
-                 extractDialogBack(buff, gender, quotes)
+                 gender = "male"
+                 extractDialogBack(buff, gender, quotes, dial, dial2)
                  convoBuff = 0
-              
+
            if(names.isfemalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "female"
-                 extractDialogBack(buff, gender, quotes)
+                 extractDialogBack(buff, gender, quotes, dial, dial2)
                  convoBuff = 0
            if(names.ismalename(tk.lower_)):
               if (speakerverb(bufftk[len(bufftk) - 1])):
                  gender = "male"
-                 extractDialogBack(buff, gender, quotes)
+                 extractDialogBack(buff, gender, quotes, dial, dial2)
                  convoBuff = 0
-                 
+
            if(tk.lower_ == ("\"")):
              if(speakerverb(bufftk[len(bufftk) - 1])):
                 if (buff[len(buff) - 2] == "she" or names.isfemalename(buff[len(buff) - 2])):
                    gend = "female"
                    inquote = True
                 if (buff[len(buff) - 2] == "he" or names.ismalename(buff[len(buff) - 2])):
-                   gend = "male"   
+                   gend = "male"
                    inquote = True
-              
+
         if(len(buff) >= MAXBUFF):
            bufftk.remove(bufftk[0])
            buff.remove(buff[0])
         buff.append(tk.lower_)
         bufftk.append(tk.lemma_)
-        
+
         #Adjective extraction#
         if(len(buffA) >= 2):
            if(tk.pos_ == 'ADJ'):
@@ -132,26 +131,24 @@ def analyze(chapter):
                 adj.append([tk.lower_, "female"])
              if (buffA[len(buffA) - 1].lower_ == "his"):
                 adj.append([tk.lower_, "male"])
-             
+
              if (buffA[len(buffA) - 1].lemma_ == "be"):
                 if (buffA[len(buffA) - 2].lower_ == "she" or names.isfemalename(buffA[len(buffA) - 2].lower_) or genderedterms.isfemaleterm(buffA[len(buffA) - 2].lemma_)):
                   adj.append([tk.lower_, "female"])
                 if (buffA[len(buffA) - 2].lower_ == "he" or names.ismalename(buffA[len(buffA) - 2].lower_) or genderedterms.ismaleterm(buffA[len(buffA) - 2].lemma_)):
                   adj.append([tk.lower_, "male"])
-           
+
            if(genderedterms.isfemaleterm(tk.lemma_)):
               if (buffA[len(buffA) - 1].pos_ == 'ADJ'):
                 adj.append([buffA[len(buffA) - 1].lower_, "female"])
            elif(genderedterms.ismaleterm(tk.lemma_)):
               if (buffA[len(buffA) - 1].pos_ == 'ADJ'):
                 adj.append([buffA[len(buffA) - 1].lower_, "male"])
-                
+
         if(len(buffA) >= MAXBUFFA):
            buffA.remove(buffA[0])
         if(tk.pos_ != 'ADV'):
            buffA.append(tk)
   except UnicodeDecodeError:
       pass
-      
-for line in fileinput.input():
-  analyze(line)
+  return {"dialog":dial,"dialog-pairs":dial2,"adj":adj}

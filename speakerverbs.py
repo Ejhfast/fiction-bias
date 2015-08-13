@@ -1,7 +1,9 @@
 from sets import Set
 import spacy.en
+import os
+dir = os.path.dirname(__file__)
 
-f = open("speakerverbs.txt", 'r')
+f = open(os.path.join(dir,"speakerverbs.txt"), 'r')
 # fi2 = open("/home/ubuntu/ebs/bias/actualspeakerverbs.txt", 'w')
 
 nlp = spacy.en.English()

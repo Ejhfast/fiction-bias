@@ -1,6 +1,8 @@
 from sets import Set
+import os
+dir = os.path.dirname(__file__)
 
-f = open("names.txt", 'r')
+f = open(os.path.join(dir,"names.txt"), 'r')
 malnames = Set([])
 femnames = Set([])
 for line in f:
@@ -18,15 +20,15 @@ for name in duplicate:
   femnames.remove(name)
   malnames.remove(name)
 
-def ismalename(name):  
+def ismalename(name):
   if (name in malnames):
      return True
   else:
-     return False     
+     return False
 
 def isfemalename(name):
   #print (name)
   if (name in femnames):
      return True
   else:
-     return False  
+     return False

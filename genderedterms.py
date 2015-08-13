@@ -1,6 +1,8 @@
 from sets import Set
+import os
+dir = os.path.dirname(__file__)
 
-f = open ("genderedterms.txt", 'r')
+f = open (os.path.join(dir,"genderedterms.txt"), 'r')
 
 malnames = Set([])
 femnames = Set([])
@@ -12,14 +14,14 @@ for line in f:
   else:
     malnames.add(name)
 
-def ismaleterm(name):  
+def ismaleterm(name):
   if (name in malnames):
      return True
   else:
-     return False     
+     return False
 
 def isfemaleterm(name):
   if (name in femnames):
      return True
   else:
-     return False  
+     return False

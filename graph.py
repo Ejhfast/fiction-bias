@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+dir = os.path.dirname(__file__)
 
 def makehistogram(arr, binnum):
    plt.hist(arr, bins = binnum)
@@ -7,7 +9,7 @@ def makehistogram(arr, binnum):
 
 def getGenres():
    genre = {}
-   f = open("graph.txt", 'r')
+   f = open(os.path.join(dir,"graph.txt"), 'r')
    for line in f:
      catID, cat = [x.rstrip() for x in line.split("\t")]
      catnum = int(catID)
@@ -15,7 +17,7 @@ def getGenres():
    genre[0] = "Other"
    return genre
 
-def multhisto(row, col, n, arrs, binnum, ylim):  
+def multhisto(row, col, n, arrs, binnum, ylim):
    fig, axes = plt.subplots(nrows=row, ncols=col, sharex='col', sharey='row')
    if(n == 25):
       genre = getGenres()
@@ -30,7 +32,6 @@ def multhisto(row, col, n, arrs, binnum, ylim):
        ax.set_ylim(0, ylim)
 #       ax.set_xlabel('Difference in PMIs')
 #       ax.set_ylabel('Num Words')
-   
-   #fig.tight_layout()   
-   plt.show()
 
+   #fig.tight_layout()
+   plt.show()
