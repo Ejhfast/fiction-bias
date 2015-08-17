@@ -13,6 +13,8 @@ import genderedterms
 
 nlp = spacy.en.English()
 
+liwc_cache = cPickle.load(open("liwc_cache.pkl","rb"))
+
 MAXBUFF = 50
 MAXBUFFA = 3
 CONVOBUFFLENGTH = 150
