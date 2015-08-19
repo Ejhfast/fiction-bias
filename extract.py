@@ -50,9 +50,11 @@ def analyze(chapter):
   dial = []
   dial2 = []
   adj = []
+  verb = []
   buff = []
   bufftk = []
   buffA = []
+  buffV = []
   inquote = False
   gend = ""
   quote = ""
@@ -151,9 +153,29 @@ def analyze(chapter):
            buffA.remove(buffA[0])
         if(tk.pos_ != 'ADV'):
            buffA.append(tk)
+           
+        #verb extraction#   
+        if(len(buffV) >= 2):
+           if(tk.pos_ == 'VERB'):
+             if (buffV[len(buffV) - 1].lower_ == "she" or names.isfemalename(buffV[len(buffV) - 1].lower_) or genderedterms.isfemaleterm(buffV[len(buffV) - 1].lower_)):
+                verb.append([tk.lemma_, "female"])
+             if (buffV[len(buffV) - 1].lower_ == "he" or names.ismalename(buffV[len(buffV) - 1].lower_) or genderedterms.ismaleterm(buffV[len(buffV) - 1].lower_)):
+                verb.append([tk.lemma_, "male"])
+             
+             if (buffV[len(buffV) - 1].pos_ == "VERB"):
+                if (buffV[len(buffV) - 2].lower_ == "she" or names.isfemalename(buffV[len(buffV) - 2].lower_) or genderedterms.isfemaleterm(buffV[len(buffV) - 2].lemma_)):
+                  verb.append([buffV[len(buffV) - 1].lemma_ + " " + tk.lemma_, "female"])
+                if (buffV[len(buffV) - 2].lower_ == "he" or names.ismalename(buffV[len(buffV) - 2].lower_) or genderedterms.ismaleterm(buffV[len(buffV) - 2].lemma_)):
+                  verb.append([buffV[len(buffV) - 1].lemma_ + " " + tk.lemma_, "male"])
+                
+        if(len(buffV) >= MAXbuffV):
+           buffV.remove(buffV[0])
+        if(tk.pos_ != 'ADV' and tk.lower_ != 'to'):
+           buffV.append(tk)
   except UnicodeDecodeError:
       pass
-  return {"dialog":dial,"dialog-pairs":dial2,"adj":adj}
+  print(str(verb))
+  return {"dialog":dial,"dialog-pairs":dial2,"adj":adj,"verb":verb}
 
 def over_liwc(w):
   if w in liwc_cache:
